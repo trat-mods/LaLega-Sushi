@@ -1,0 +1,6 @@
+{
+    "variants":
+    {
+        "": { "model": "lalegamod:block/extreme_launcher_block" }
+    }
+}

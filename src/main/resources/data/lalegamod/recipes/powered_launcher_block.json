@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "gDg",
+        "III"
+    ],
+    "key": {
+        "#": {
+            "item": "lalegamod:launcher_block"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        }
+    },
+    "result": {
+        "item": "lalegamod:powered_launcher_block",
+        "count": 1
+    }
+}

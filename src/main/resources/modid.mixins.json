@@ -1,0 +1,17 @@
+{
+    "required": true,
+    "package": "net.la.lega.mod.mixin",
+    "compatibilityLevel": "JAVA_8",
+    "mixins":
+    [
+        "LauncherBlockActivationMixin"
+    ],
+    "client":
+    [
+
+    ],
+    "injectors": 
+    {
+        "defaultRequire": 1
+    }
+}

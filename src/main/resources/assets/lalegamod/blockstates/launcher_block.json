@@ -1,0 +1,6 @@
+{
+    "variants":
+    {
+        "": { "model": "lalegamod:block/launcher_block" }
+    }
+}
