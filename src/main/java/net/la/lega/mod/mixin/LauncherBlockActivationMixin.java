@@ -1,8 +1,6 @@
 package net.la.lega.mod.mixin;
 
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -28,10 +26,9 @@ public abstract class LauncherBlockActivationMixin extends Entity
         BlockPos pos = new BlockPos(getX(), getY() - 1, getZ());
         if(world.getBlockState(pos).getBlock() instanceof LauncherBlock)
         {
-            System.out.println("Called");
             LauncherBlock launcherBlock = (LauncherBlock) world.getBlockState(pos).getBlock();         
             LivingEntity instance = (LivingEntity) (Object) this;
-            launcherBlock.launchPlayer(world, pos, instance);
+            launcherBlock.launchLivingEntity(world, pos, instance);
         }
     }
 }

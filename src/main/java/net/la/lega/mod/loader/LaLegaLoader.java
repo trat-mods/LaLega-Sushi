@@ -6,12 +6,13 @@ import net.la.lega.mod.block.ChillBlasterBlock;
 import net.la.lega.mod.block.ExtremeLauncherBlock;
 import net.la.lega.mod.block.LauncherBlock;
 import net.la.lega.mod.block.PoweredLauncherBlock;
-import net.la.lega.mod.container.Containers;
 import net.la.lega.mod.entity.ChillBlasterBlockEntity;
+import net.la.lega.mod.gui.ChillBlasterBlockController;
 import net.la.lega.mod.recipe.ChillBlastingRecipe;
 import net.la.lega.mod.recipe.serializer.ChillBlastingRecipeSerializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.container.BlockContext;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -58,13 +59,17 @@ public class LaLegaLoader implements ModInitializer
         Registry.register(Registry.BLOCK, new Identifier("lalegamod", "extreme_launcher_block"), EXTREME_LAUNCHER_BLOCK);
         Registry.register(Registry.ITEM, new Identifier("lalegamod", "extreme_launcher_block"), new BlockItem(EXTREME_LAUNCHER_BLOCK, new Item.Settings().group(ItemGroup.REDSTONE)));
 
-        // Registry.register(Registry.BLOCK, new Identifier("lalegamod", "chill_blaster_block"), CHILL_BLASTER_BLOCK);
-        // Registry.register(Registry.ITEM, new Identifier("lalegamod", "chill_blaster_block"), new BlockItem(CHILL_BLASTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
+        ContainerProviderRegistry.INSTANCE.registerFactory(ChillBlasterBlock.ID, 
+            (syncId, id, player, buf) -> new ChillBlasterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
+        );
 
-        // CHILL_BLASTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY, "lalegamod:chill_blaster_block_entity", BlockEntityType.Builder.create(ChillBlasterBlockEntity::new, CHILL_BLASTER_BLOCK).build(null));
+        Registry.register(Registry.BLOCK, ChillBlasterBlock.ID, CHILL_BLASTER_BLOCK);
+        Registry.register(Registry.ITEM, ChillBlasterBlock.ID, new BlockItem(CHILL_BLASTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
 
-        // Registry.register(Registry.RECIPE_SERIALIZER, ChillBlastingRecipeSerializer.ID, ChillBlastingRecipeSerializer.INSTANCE);
-        // Registry.register(Registry.RECIPE_TYPE, new Identifier("lalegamod", ChillBlastingRecipe.Type.ID), ChillBlastingRecipe.Type.INSTANCE);
+        CHILL_BLASTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY, "lalegamod:chill_blaster_block_entity", BlockEntityType.Builder.create(ChillBlasterBlockEntity::new, CHILL_BLASTER_BLOCK).build(null));
+
+        Registry.register(Registry.RECIPE_SERIALIZER, ChillBlastingRecipeSerializer.ID, ChillBlastingRecipeSerializer.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, new Identifier("lalegamod", ChillBlastingRecipe.Type.ID), ChillBlastingRecipe.Type.INSTANCE);
 
         // ContainerProviderRegistry.INSTANCE.registerFactory(CHILL_BLASTER_CONTAINER_ID, Containers::createChillBlasterContainer);
     }
