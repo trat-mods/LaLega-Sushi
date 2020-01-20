@@ -1,6 +1,6 @@
 package net.la.lega.mod.recipe;
 
-import net.la.lega.mod.recipe.serializer.ChillBlastingRecipeSerializer;
+import net.la.lega.mod.recipe.serializer.BlastChillingRecipeSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -10,14 +10,14 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class ChillBlastingRecipe implements Recipe<Inventory> {
+public class BlastChillingRecipe implements Recipe<Inventory> {
 
     private final Ingredient input;
     private final ItemStack outputStack;
     private final int chillTime;
     private final Identifier id;
 
-    public ChillBlastingRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id)
+    public BlastChillingRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id)
     {
         this.input = input;
         this.outputStack = outputStack;
@@ -27,6 +27,7 @@ public class ChillBlastingRecipe implements Recipe<Inventory> {
 
     public Ingredient getInput() { return input; }
     public int getChillTime() { return chillTime; }
+    public int getOutputAmount() { return outputStack.getCount(); }
 
     @Override
     public boolean matches(Inventory inv, World world) {
@@ -56,10 +57,10 @@ public class ChillBlastingRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return ChillBlastingRecipeSerializer.INSTANCE;
+        return BlastChillingRecipeSerializer.INSTANCE;
     }
     
-    public static class Type implements RecipeType<ChillBlastingRecipe>
+    public static class Type implements RecipeType<BlastChillingRecipe>
     {
        private Type() {}
        public static final Type INSTANCE = new Type();

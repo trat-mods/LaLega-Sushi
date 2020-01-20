@@ -29,17 +29,21 @@ public interface TickableSidedInventory extends SidedInventory, Tickable
      * Returns the inventory size.
      */
     @Override
-    default int getInvSize() {
+    default int getInvSize() 
+    {
         return getItems().size();
     }
     /**
      * @return true if this inventory has only empty stacks, false otherwise
      */
     @Override
-    default boolean isInvEmpty() {
-        for (int i = 0; i < getInvSize(); i++) {
+    default boolean isInvEmpty() 
+    {
+        for (int i = 0; i < getInvSize(); i++)
+        {
             ItemStack stack = getInvStack(i);
-            if (!stack.isEmpty()) {
+            if (!stack.isEmpty()) 
+            {
                 return false;
             }
         }
@@ -49,7 +53,8 @@ public interface TickableSidedInventory extends SidedInventory, Tickable
      * Gets the item in the slot.
      */
     @Override
-    default ItemStack getInvStack(int slot) {
+    default ItemStack getInvStack(int slot) 
+    {
         return getItems().get(slot);
     }
     /**
@@ -58,9 +63,11 @@ public interface TickableSidedInventory extends SidedInventory, Tickable
      * takes all items in that slot.
      */
     @Override
-    default ItemStack takeInvStack(int slot, int count) {
+    default ItemStack takeInvStack(int slot, int count) 
+    {
         ItemStack result = Inventories.splitStack(getItems(), slot, count);
-        if (!result.isEmpty()) {
+        if (!result.isEmpty()) 
+        {
             markDirty();
         }
         return result;
@@ -69,7 +76,8 @@ public interface TickableSidedInventory extends SidedInventory, Tickable
      * Removes the current stack in the {@code slot} and returns it.
      */
     @Override
-    default ItemStack removeInvStack(int slot) {
+    default ItemStack removeInvStack(int slot) 
+    {
         return Inventories.removeStack(getItems(), slot);
     }
     /**
@@ -78,9 +86,11 @@ public interface TickableSidedInventory extends SidedInventory, Tickable
      * it gets resized to this inventory's maximum amount.
      */
     @Override
-    default void setInvStack(int slot, ItemStack stack) {
+    default void setInvStack(int slot, ItemStack stack) 
+    {
         getItems().set(slot, stack);
-        if (stack.getCount() > getInvMaxStackAmount()) {
+        if (stack.getCount() > getInvMaxStackAmount()) 
+        {
             stack.setCount(getInvMaxStackAmount());
         }
     }
@@ -88,12 +98,14 @@ public interface TickableSidedInventory extends SidedInventory, Tickable
      * Clears {@linkplain #getItems() the item list}}.
      */
     @Override
-    default void clear() {
+    default void clear() 
+    {
         getItems().clear();
     }
 
     @Override
-    default boolean canPlayerUseInv(PlayerEntity player) {
+    default boolean canPlayerUseInv(PlayerEntity player) 
+    {
         return true;
     }
 }

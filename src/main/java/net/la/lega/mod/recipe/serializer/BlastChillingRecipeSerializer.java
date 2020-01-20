@@ -3,8 +3,8 @@ package net.la.lega.mod.recipe.serializer;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.la.lega.mod.recipe.ChillBlastingRecipe;
-import net.la.lega.mod.recipe.jsonformat.ChillBlastingRecipeJsonFormat;
+import net.la.lega.mod.recipe.BlastChillingRecipe;
+import net.la.lega.mod.recipe.jsonformat.BlastChillingRecipeJsonFormat;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -15,19 +15,19 @@ import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.registry.Registry;
 
 
-public class ChillBlastingRecipeSerializer implements RecipeSerializer<ChillBlastingRecipe> 
+public class BlastChillingRecipeSerializer implements RecipeSerializer<BlastChillingRecipe> 
 {
 
-    private ChillBlastingRecipeSerializer() {}
+    private BlastChillingRecipeSerializer() {}
 
-    public static final ChillBlastingRecipeSerializer INSTANCE = new ChillBlastingRecipeSerializer();
+    public static final BlastChillingRecipeSerializer INSTANCE = new BlastChillingRecipeSerializer();
 
-    public static final Identifier ID = new Identifier("lalegamod:chill_blasting_recipe");
+    public static final Identifier ID = new Identifier("lalegamod:blast_chilling");
 
     @Override
-    public ChillBlastingRecipe read(Identifier id, JsonObject json)
+    public BlastChillingRecipe read(Identifier id, JsonObject json)
     {
-        ChillBlastingRecipeJsonFormat recipeJson = new Gson().fromJson(json, ChillBlastingRecipeJsonFormat.class);
+        BlastChillingRecipeJsonFormat recipeJson = new Gson().fromJson(json, BlastChillingRecipeJsonFormat.class);
 
         if (recipeJson.getInput() == null || recipeJson.getOutput() == null) {
             throw new JsonSyntaxException("A required attribute is missing!");
@@ -47,21 +47,21 @@ public class ChillBlastingRecipeSerializer implements RecipeSerializer<ChillBlas
             );
         ItemStack output = new ItemStack(outputItem, recipeJson.getOutputAmount());
 
-        return new ChillBlastingRecipe(input, output, chillTime, id);
+        return new BlastChillingRecipe(input, output, chillTime, id);
     }
 
     @Override
-    public ChillBlastingRecipe read(Identifier id, PacketByteBuf buf)
+    public BlastChillingRecipe read(Identifier id, PacketByteBuf buf)
     {
         // Make sure the read in the same order you have written!
         Ingredient input = Ingredient.fromPacket(buf);
         int chillTime = buf.readVarInt();
         ItemStack output = buf.readItemStack();
-        return new ChillBlastingRecipe(input, output, chillTime, id);
+        return new BlastChillingRecipe(input, output, chillTime, id);
     }
 
     @Override
-    public void write(PacketByteBuf buf, ChillBlastingRecipe recipe)
+    public void write(PacketByteBuf buf, BlastChillingRecipe recipe)
     {
         recipe.getInput().write(buf);
         buf.writeVarInt(recipe.getChillTime());

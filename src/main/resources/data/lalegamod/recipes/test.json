@@ -1,9 +1,0 @@
-{
-    "type": "lalegamod:chill_blasting_recipe",
-    "input" : {
-      "item": "minecraft:redstone"
-    },
-    "output": "minecraft:cobblestone",
-    "chilltime": 100,
-    "outputAmount": 10
-}

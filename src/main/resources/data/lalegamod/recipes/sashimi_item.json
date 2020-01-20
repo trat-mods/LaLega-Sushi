@@ -1,0 +1,10 @@
+{
+    "type": "lalegamod:blast_chilling",
+    "input" : 
+    {
+      "item": "lalegamod:salmon_fillet_item"
+    },
+    "output": "lalegamod:sashimi_item",
+    "chilltime": 40,
+    "outputAmount": 1
+}

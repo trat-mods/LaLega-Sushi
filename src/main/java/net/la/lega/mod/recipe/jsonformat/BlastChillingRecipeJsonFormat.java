@@ -2,7 +2,7 @@ package net.la.lega.mod.recipe.jsonformat;
 
 import com.google.gson.JsonObject;
 
-public class ChillBlastingRecipeJsonFormat
+public class BlastChillingRecipeJsonFormat
 {
     private JsonObject input;
     private String output;

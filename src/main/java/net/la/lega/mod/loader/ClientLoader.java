@@ -2,9 +2,9 @@ package net.la.lega.mod.loader;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
-import net.la.lega.mod.block.ChillBlasterBlock;
-import net.la.lega.mod.gui.ChillBlasterBlockController;
-import net.la.lega.mod.gui.ChillBlasterBlockScreen;
+import net.la.lega.mod.block.BlastChillerBlock;
+import net.la.lega.mod.gui.BlastChillerBlockController;
+import net.la.lega.mod.gui.BlastChillerBlockScreen;
 import net.minecraft.container.BlockContext;
 
 public class ClientLoader implements ClientModInitializer
@@ -13,9 +13,9 @@ public class ClientLoader implements ClientModInitializer
     public void onInitializeClient()
     {
         ScreenProviderRegistry.INSTANCE.registerFactory(
-            ChillBlasterBlock.ID, 
-            (syncId, id, player, buf) -> new ChillBlasterBlockScreen( 
-                new ChillBlasterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), 
+            BlastChillerBlock.ID, 
+            (syncId, id, player, buf) -> new BlastChillerBlockScreen( 
+                new BlastChillerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), 
                 player)
         );
     }
