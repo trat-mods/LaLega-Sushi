@@ -27,7 +27,7 @@ import net.minecraft.util.registry.Registry;
 // Slot
 // Inventory
 // CraftingTableBlock
-// Hopper
+// HopperBlock
 // StonecutterBlock
 // SmokerBlock
 // BlastFurnaceBlock
@@ -69,10 +69,6 @@ public class LaLegaLoader implements ModInitializer
         Registry.register(Registry.BLOCK, new Identifier("lalegamod", "extreme_launcher_block"), EXTREME_LAUNCHER_BLOCK);
         Registry.register(Registry.ITEM, new Identifier("lalegamod", "extreme_launcher_block"), new BlockItem(EXTREME_LAUNCHER_BLOCK, new Item.Settings().group(ItemGroup.REDSTONE)));
 
-        ContainerProviderRegistry.INSTANCE.registerFactory(BlastChillerBlock.ID, 
-            (syncId, id, player, buf) -> new BlastChillerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
-        );
-
         Registry.register(Registry.BLOCK, BlastChillerBlock.ID, CHILL_BLASTER_BLOCK);
         Registry.register(Registry.ITEM, BlastChillerBlock.ID, new BlockItem(CHILL_BLASTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
 
@@ -80,6 +76,9 @@ public class LaLegaLoader implements ModInitializer
 
         Registry.register(Registry.RECIPE_SERIALIZER, BlastChillingRecipeSerializer.ID, BlastChillingRecipeSerializer.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, new Identifier("lalegamod", BlastChillingRecipe.Type.ID), BlastChillingRecipe.Type.INSTANCE);
-
+        
+        ContainerProviderRegistry.INSTANCE.registerFactory(BlastChillerBlock.ID, 
+            (syncId, id, player, buf) -> new BlastChillerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
+        );
     }
 }

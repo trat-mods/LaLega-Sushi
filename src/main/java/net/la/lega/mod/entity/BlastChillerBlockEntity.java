@@ -2,25 +2,23 @@ package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import net.la.lega.mod.TickableSidedInventory;
+import net.la.lega.mod.ImplementedInventory;
+import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.container.PropertyDelegate;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.BasicInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.DefaultedList;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.IWorld;
 
-public class BlastChillerBlockEntity extends BlockEntity implements TickableSidedInventory, PropertyDelegateHolder, InventoryProvider 
+public class BlastChillerBlockEntity extends BlockEntity implements ImplementedInventory, PropertyDelegateHolder, Tickable
 {
 
     public static final int CHILL_TIME = 0;
@@ -28,7 +26,7 @@ public class BlastChillerBlockEntity extends BlockEntity implements TickableSide
 
     private static final int[] TOP_SLOTS = new int[] { 0 };
     private static final int[] BOTTOM_SLOTS = new int[] { 1 };
-    private static final int[] SIDE_SLOTS = new int[] { 1 };
+    private static final int[] SIDE_SLOTS = new int[] { 0 };
 
     private int currentChillTime = 0;
     private int chillTimeTotal;
@@ -124,7 +122,7 @@ public class BlastChillerBlockEntity extends BlockEntity implements TickableSide
     @Override
     public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir) 
     {
-        return this.isValidInvStack(slot, stack);
+        return dir != Direction.DOWN && this.isValidInvStack(slot, stack);
     }
 
     @Override
@@ -132,7 +130,7 @@ public class BlastChillerBlockEntity extends BlockEntity implements TickableSide
     {
         if(slot == 1)
         {
-            return (dir == Direction.DOWN) || (dir != Direction.UP);
+            return (dir == Direction.DOWN);
         }
         return false;
     }
@@ -140,34 +138,38 @@ public class BlastChillerBlockEntity extends BlockEntity implements TickableSide
     @Override
     public void tick() 
     {
-        
         boolean stateChanged = this.isChilling();
         boolean crafted = false;
 
-        BasicInventory inv = new BasicInventory(items.get(0));
-        BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, inv, world).orElse(null);
-        if (!this.isChilling())
+        if(!this.world.isClient)
         {
-            if(this.canAcceptRecipeOutput(match)) 
+            BasicInventory inv = new BasicInventory(items.get(0));
+            BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, inv, world).orElse(null);
+            if (!this.isChilling())
             {
-                this.currentChillTime = match.getChillTime();
+                if(this.canAcceptRecipeOutput(match)) 
+                {
+                    this.currentChillTime = match.getChillTime();
+                }
+            }
+
+            boolean set = isChilling();
+            this.world.setBlockState(this.pos, (BlockState)this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, set), 3);
+
+            if(this.isChilling())
+            {
+                this.currentChillTime--;
+                if(this.currentChillTime == 0)
+                {
+                    this.craftRecipe(match);
+                    crafted = true;
+                }   
+            }
+            if(stateChanged != this.isChilling())
+            {
+                crafted = true;
             }
         }
-
-        if(this.isChilling())
-        {
-            this.currentChillTime--;
-            if(this.currentChillTime == 0)
-            {
-                this.craftRecipe(match);
-                crafted = true;
-            }   
-        }
-        if(stateChanged != this.isChilling())
-        {
-            crafted = true;
-        }
-
         if(crafted)
         {
             this.markDirty();
@@ -178,12 +180,6 @@ public class BlastChillerBlockEntity extends BlockEntity implements TickableSide
     public PropertyDelegate getPropertyDelegate() 
     {
         return this.propertyDelegate;
-    }
-
-    @Override
-    public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) 
-    {
-        return this;
     }
 
     public boolean isChilling()

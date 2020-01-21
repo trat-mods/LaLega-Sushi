@@ -8,5 +8,4 @@ public class BlastChillerBlockScreen extends CottonInventoryScreen<BlastChillerB
     public BlastChillerBlockScreen(BlastChillerBlockController container, PlayerEntity player) {
         super(container, player);
     }
-
 }

@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": 
+    {
+        "top": "lalegamod:block/blast_chiller_top",
+        "front": "lalegamod:block/blast_chiller_front_off",
+        "side": "lalegamod:block/blast_chiller_side"
+    }
+}
