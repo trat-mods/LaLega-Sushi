@@ -22,7 +22,8 @@ import java.util.List;
  * @author Juuz
  */
 @FunctionalInterface
-public interface ImplementedInventory extends SidedInventory {
+public interface ImplementedInventory extends SidedInventory 
+{
     /**
      * Gets the item list of this inventory.
      * Must return the same instance every time it's called.
@@ -39,7 +40,8 @@ public interface ImplementedInventory extends SidedInventory {
      * @param items the item list
      * @return a new inventory
      */
-    static ImplementedInventory of(DefaultedList<ItemStack> items) {
+    static ImplementedInventory of(DefaultedList<ItemStack> items) 
+    {
         return () -> items;
     }
 
@@ -64,12 +66,13 @@ public interface ImplementedInventory extends SidedInventory {
      * @return the available slots
      */
     @Override
-    default int[] getInvAvailableSlots(Direction side) {
+    default int[] getInvAvailableSlots(Direction side) 
+    {
         int[] result = new int[getItems().size()];
-        for (int i = 0; i < result.length; i++) {
+        for (int i = 0; i < result.length; i++) 
+        {
             result[i] = i;
         }
-
         return result;
     }
 
@@ -84,7 +87,8 @@ public interface ImplementedInventory extends SidedInventory {
      * @return true if the stack can be inserted
      */
     @Override
-    default boolean canInsertInvStack(int slot, ItemStack stack, Direction side) {
+    default boolean canInsertInvStack(int slot, ItemStack stack, Direction side) 
+    {
         return true;
     }
 
@@ -99,7 +103,8 @@ public interface ImplementedInventory extends SidedInventory {
      * @return true if the stack can be extracted
      */
     @Override
-    default boolean canExtractInvStack(int slot, ItemStack stack, Direction side) {
+    default boolean canExtractInvStack(int slot, ItemStack stack, Direction side) 
+    {
         return true;
     }
 
@@ -113,7 +118,8 @@ public interface ImplementedInventory extends SidedInventory {
      * @return the inventory size
      */
     @Override
-    default int getInvSize() {
+    default int getInvSize() 
+    {
         return getItems().size();
     }
 
@@ -121,10 +127,13 @@ public interface ImplementedInventory extends SidedInventory {
      * @return true if this inventory has only empty stacks, false otherwise
      */
     @Override
-    default boolean isInvEmpty() {
-        for (int i = 0; i < getInvSize(); i++) {
+    default boolean isInvEmpty() 
+    {
+        for (int i = 0; i < getInvSize(); i++) 
+        {
             ItemStack stack = getInvStack(i);
-            if (!stack.isEmpty()) {
+            if (!stack.isEmpty()) 
+            {
                 return false;
             }
         }
@@ -139,7 +148,8 @@ public interface ImplementedInventory extends SidedInventory {
      * @return the item in the slot
      */
     @Override
-    default ItemStack getInvStack(int slot) {
+    default ItemStack getInvStack(int slot) 
+    {
         return getItems().get(slot);
     }
 
@@ -154,13 +164,15 @@ public interface ImplementedInventory extends SidedInventory {
      * @return a stack
      */
     @Override
-    default ItemStack takeInvStack(int slot, int count) {
-        ItemStack result = Inventories.splitStack(getItems(), slot, count);
-        if (!result.isEmpty()) {
-            markDirty();
-        }
+    default ItemStack takeInvStack(int slot, int count)
+    {
+        return Inventories.splitStack(this.getItems(), slot, count);
+        // ItemStack result = Inventories.splitStack(getItems(), slot, count);
+        // if (!result.isEmpty()) {
+        //     markDirty();
+        // }
 
-        return result;
+        // return result;
     }
 
     /**
@@ -172,7 +184,8 @@ public interface ImplementedInventory extends SidedInventory {
      * @return the removed stack
      */
     @Override
-    default ItemStack removeInvStack(int slot) {
+    default ItemStack removeInvStack(int slot) 
+    {
         return Inventories.removeStack(getItems(), slot);
     }
 
@@ -186,28 +199,34 @@ public interface ImplementedInventory extends SidedInventory {
      * @param stack the stack
      */
     @Override
-    default void setInvStack(int slot, ItemStack stack) {
-        getItems().set(slot, stack);
-        if (stack.getCount() > getInvMaxStackAmount()) {
-            stack.setCount(getInvMaxStackAmount());
+    default void setInvStack(int slot, ItemStack stack) 
+    {
+        this.getItems().set(slot, stack);
+        if (stack.getCount() > this.getInvMaxStackAmount())
+        {
+           stack.setCount(this.getInvMaxStackAmount());
         }
+        // getItems().set(slot, stack);
+        // if (stack.getCount() > getInvMaxStackAmount()) {
+        //     stack.setCount(getInvMaxStackAmount());
+        // }
     }
+
+    @Override
+    default void markDirty() {}
 
     /**
      * Clears {@linkplain #getItems() the item list}}.
      */
     @Override
-    default void clear() {
+    default void clear() 
+    {
         getItems().clear();
     }
 
     @Override
-    default void markDirty() {
-        // Override if you want behavior.
-    }
-
-    @Override
-    default boolean canPlayerUseInv(PlayerEntity player) {
+    default boolean canPlayerUseInv(PlayerEntity player) 
+    {
         return true;
     }
 }

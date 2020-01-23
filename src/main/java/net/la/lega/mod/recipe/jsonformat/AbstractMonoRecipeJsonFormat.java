@@ -2,18 +2,18 @@ package net.la.lega.mod.recipe.jsonformat;
 
 import com.google.gson.JsonObject;
 
-public class BlastChillingRecipeJsonFormat
+public class AbstractMonoRecipeJsonFormat
 {
     private JsonObject input;
     private String output;
-    private int chillTime;
+    private int processingTime;
     private int outputAmount;
 
     public JsonObject getInput() { return input; }
     public String getOutput() { return output; }
     public int getOutputAmount() { return outputAmount; }
-    public int getChillTime() { return chillTime; }
+    public int getChillTime() { return processingTime; }
 
     public void setOutputAmount(int outputAmount) { this.outputAmount = outputAmount; }
-    public void setChillTime(int chillTime) { this.chillTime = chillTime; }
+    public void setChillTime(int processingTime) { this.processingTime = processingTime; }
 }

@@ -1,12 +1,10 @@
 package net.la.lega.mod.loader;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.gui.BlastChillerBlockController;
 import net.la.lega.mod.gui.BlastChillerBlockScreen;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.container.BlockContext;
 
 public class ClientLoader implements ClientModInitializer
@@ -21,6 +19,6 @@ public class ClientLoader implements ClientModInitializer
                 player)
         );
 
-        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.CHILL_BLASTER_BLOCK, RenderLayer.getTranslucent());
+        //BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.CHILL_BLASTER_BLOCK, RenderLayer.getTranslucent());
     }
 }

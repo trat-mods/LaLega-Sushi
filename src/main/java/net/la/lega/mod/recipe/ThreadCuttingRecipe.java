@@ -1,18 +1,18 @@
 package net.la.lega.mod.recipe;
 
 import net.la.lega.mod.recipe.abstraction.AbstractMonoRecipe;
-import net.la.lega.mod.recipe.serializer.BlastChillingRecipeSerializer;
+import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 
-public class BlastChillingRecipe extends AbstractMonoRecipe
+public class ThreadCuttingRecipe extends AbstractMonoRecipe 
 {
-    public static final String recipeID = "blast_chilling";
+    public static final String recipeID = "thread_cutting";
 
-    public BlastChillingRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id)
+    public ThreadCuttingRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id) 
     {
         super(input, outputStack, chillTime, id);
     }
@@ -20,7 +20,7 @@ public class BlastChillingRecipe extends AbstractMonoRecipe
     @Override
     public RecipeSerializer<?> getSerializer() 
     {
-        return BlastChillingRecipeSerializer.INSTANCE;
+        return ThreadCuttingRecipeSerializer.INSTANCE;
     }
 
     @Override
@@ -29,11 +29,10 @@ public class BlastChillingRecipe extends AbstractMonoRecipe
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<BlastChillingRecipe>
+    public static class Type implements RecipeType<ThreadCuttingRecipe>
     {
        private Type() {}
        public static final Type INSTANCE = new Type();
-       public static final String ID = "chill_blasting_recipe";
+       public static final String ID = "thread_cutting_recipe";
     }
-
 }

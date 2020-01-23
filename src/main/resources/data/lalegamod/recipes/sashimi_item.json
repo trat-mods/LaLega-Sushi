@@ -5,6 +5,6 @@
       "item": "lalegamod:salmon_fillet_item"
     },
     "output": "lalegamod:sashimi_item",
-    "chilltime": 40,
+    "processingTime": 50,
     "outputAmount": 1
 }

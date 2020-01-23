@@ -6,12 +6,15 @@ import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 
 public class LauncherBlock extends Block 
 {
+   public static final Identifier ID =  new Identifier("lalegamod", "launcher_block");
+
    private double launchForce = 1F;
 
    private int maxStackable = 4;

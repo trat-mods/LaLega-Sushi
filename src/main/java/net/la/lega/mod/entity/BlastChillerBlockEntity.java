@@ -1,66 +1,54 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
-import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import net.la.lega.mod.ImplementedInventory;
 import net.la.lega.mod.block.BlastChillerBlock;
+import net.la.lega.mod.entity.abstraction.AbstractOutputterEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.container.PropertyDelegate;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.BasicInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.DefaultedList;
-import net.minecraft.util.Tickable;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
 
-public class BlastChillerBlockEntity extends BlockEntity implements ImplementedInventory, PropertyDelegateHolder, Tickable
+public class BlastChillerBlockEntity extends AbstractOutputterEntity
 {
-
     public static final int CHILL_TIME = 0;
-    public static final int CHILL_TIME_TOTAL = 1;
+    public static final int UNIT_CHILL_TIME = 1;
 
     private static final int[] TOP_SLOTS = new int[] { 0 };
     private static final int[] BOTTOM_SLOTS = new int[] { 1 };
     private static final int[] SIDE_SLOTS = new int[] { 0 };
 
-    private int currentChillTime = 0;
-    private int chillTimeTotal;
-    private final PropertyDelegate propertyDelegate;
+    private int currentChillTime = -1;
+    private int unitChillTime = 0;
 
+    public BlastChillerBlockEntity() 
+    {
+        super(LaLegaLoader.BLAST_CHILLER_BLOCK_ENTITY, 2);
 
-    DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
-
-    public BlastChillerBlockEntity() {
-        super(LaLegaLoader.CHILL_BLASTER_BLOCK_ENTITY);
-
-        this.propertyDelegate = new PropertyDelegate() {
-            public int get(int key) {
-                switch (key) {
-                case CHILL_TIME:
-                    return BlastChillerBlockEntity.this.currentChillTime;
-                case CHILL_TIME_TOTAL:
-                    return BlastChillerBlockEntity.this.chillTimeTotal;
-                default:
-                    return 0;
+        this.propertyDelegate = new PropertyDelegate() 
+        {
+            public int get(int key) 
+            {
+                switch (key) 
+                {
+                    case CHILL_TIME:
+                        //System.out.println("CHILL_TIME: " + BlastChillerBlockEntity.this.currentChillTime);
+                        return BlastChillerBlockEntity.this.currentChillTime;
+                    case UNIT_CHILL_TIME:
+                        //System.out.println("UNIT_CHILL_TIME: " + BlastChillerBlockEntity.this.unitChillTime);
+                        return BlastChillerBlockEntity.this.unitChillTime;
+                    default:
+                        return 0;
                 }
             }
-
-            public void set(int key, int value) {
-                switch (key) {
-                case CHILL_TIME:
-                    BlastChillerBlockEntity.this.currentChillTime = value;
-                    break;
-                case CHILL_TIME_TOTAL:
-                    BlastChillerBlockEntity.this.chillTimeTotal = value;
-                    break;
-                }
+            public void set(int key, int value) 
+            {
+                return;
             }
-
             public int size() 
             {
                 return 2;
@@ -69,35 +57,18 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
     }
 
     @Override
-    public DefaultedList<ItemStack> getItems() 
-    {
-        return items;
-    }
-
-    @Override
-    public boolean canPlayerUseInv(PlayerEntity player) 
-    {
-        if (this.world.getBlockEntity(this.pos) != this) 
-        {
-            return false;
-        } 
-        else 
-        {
-            return player.squaredDistanceTo((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-        }
-    }
-
-    @Override
     public void fromTag(CompoundTag tag) 
     {
+        this.currentChillTime = tag.getShort("CurrentChillTime");
+        this.unitChillTime = tag.getShort("UnitChillTime");
         super.fromTag(tag);
-        Inventories.fromTag(tag, items);
     }
 
     @Override
     public CompoundTag toTag(CompoundTag tag) 
     {
-        Inventories.toTag(tag, items);
+        tag.putShort("CurrentChillTime", (short)this.currentChillTime);
+        tag.putShort("UnitChillTime", (short)this.unitChillTime);
         return super.toTag(tag);
     }
 
@@ -114,6 +85,7 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
         }
     }
 
+    @Override
     public boolean isValidInvStack(int slot, ItemStack stack) 
     {
         return slot != 1;
@@ -136,11 +108,22 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
     }
 
     @Override
+    public void setInvStack(int slot, ItemStack stack) 
+    {
+        super.setInvStack(slot, stack);
+        ItemStack itemStack = (ItemStack)this.getItems().get(slot);
+        boolean bl = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
+        if (slot == 0 && !bl) 
+        {
+            this.currentChillTime = 0;
+            this.markDirty();
+         }
+    }
+
+
+    @Override
     public void tick() 
     {
-        boolean stateChanged = this.isChilling();
-        boolean crafted = false;
-
         if(!this.world.isClient)
         {
             BasicInventory inv = new BasicInventory(items.get(0));
@@ -149,7 +132,9 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
             {
                 if(this.canAcceptRecipeOutput(match)) 
                 {
-                    this.currentChillTime = match.getChillTime();
+                    this.currentChillTime = 1;
+                    this.unitChillTime = match.getChillTime();
+                    sync();
                 }
             }
 
@@ -158,40 +143,31 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
 
             if(this.isChilling())
             {
-                this.currentChillTime--;
-                if(this.currentChillTime == 0)
+                this.currentChillTime++;
+                if(this.currentChillTime >= unitChillTime)
                 {
                     this.craftRecipe(match);
-                    crafted = true;
-                }   
-            }
-            if(stateChanged != this.isChilling())
-            {
-                crafted = true;
+                    this.currentChillTime = -1;
+                }
+                sync();
             }
         }
-        if(crafted)
-        {
-            this.markDirty();
-        }
+        this.markDirty();
     }
 
-    @Override
-    public PropertyDelegate getPropertyDelegate() 
-    {
-        return this.propertyDelegate;
-    }
 
     public boolean isChilling()
     {
-        return this.currentChillTime != 0;
+        return this.currentChillTime > 0;
     }
 
-    protected boolean canAcceptRecipeOutput(@Nullable BlastChillingRecipe recipe)
+    @Override
+    protected boolean canAcceptRecipeOutput(Recipe<?> recipe) 
     {
+        BlastChillingRecipe bcRecipe = (BlastChillingRecipe) recipe;
         if (!((ItemStack)this.items.get(0)).isEmpty() && recipe != null) 
         {
-           ItemStack itemStack = recipe.getOutput();
+           ItemStack itemStack = bcRecipe.getOutput();
            if (itemStack.isEmpty()) 
            {
                 return false;
@@ -207,7 +183,7 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
                 {
                     return false;
                 } 
-                else if (itemStack2.getCount() + recipe.getOutputAmount() <= this.getInvMaxStackAmount() && itemStack2.getCount() + recipe.getOutputAmount() <= itemStack2.getMaxCount()) 
+                else if (itemStack2.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount() && itemStack2.getCount() + bcRecipe.getOutputAmount() <= itemStack2.getMaxCount()) 
                 {
                     return true;
                 } 
@@ -223,12 +199,14 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
         }
     }
 
-     private void craftRecipe(@Nullable BlastChillingRecipe recipe) 
-     {
+    @Override
+    protected void craftRecipe(@Nullable Recipe<?> recipe) 
+    {
+        BlastChillingRecipe bcRecipe = (BlastChillingRecipe) recipe;
         if (recipe != null && this.canAcceptRecipeOutput(recipe)) 
         {
            ItemStack inputSlot = (ItemStack)this.items.get(0);
-           ItemStack output = recipe.getOutput();
+           ItemStack output = bcRecipe.getOutput();
            ItemStack outputSlot = (ItemStack)this.items.get(1);
            if (outputSlot.isEmpty()) 
            {
@@ -236,9 +214,9 @@ public class BlastChillerBlockEntity extends BlockEntity implements ImplementedI
            }
            else if (outputSlot.getItem() == output.getItem()) 
            {
-              outputSlot.increment(recipe.getOutputAmount());
+              outputSlot.increment(bcRecipe.getOutputAmount());
            }
            inputSlot.decrement(1);
         }
-     }
+    }
 }
