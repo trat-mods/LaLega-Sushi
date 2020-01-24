@@ -12,9 +12,9 @@ public class ThreadCuttingRecipe extends AbstractMonoRecipe
 {
     public static final String recipeID = "thread_cutting";
 
-    public ThreadCuttingRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id) 
+    public ThreadCuttingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id) 
     {
-        super(input, outputStack, chillTime, id);
+        super(input, outputStack, processingTime, id);
     }
 
     @Override

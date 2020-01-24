@@ -1,14 +1,10 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": 
-    [
-        {
-            "item": "minecraft:salmon"
-        }
-    ],
-    "result": 
+    "type": "lalegamod:thread_cutting",
+    "input" : 
     {
-        "item": "lalegamod:salmon_fillet_item",
-        "count": 2
-    }
+      "item": "minecraft:salmon"
+    },
+    "output": "lalegamod:salmon_fillet_item",
+    "processingTime": 20,
+    "outputAmount": 1
 }

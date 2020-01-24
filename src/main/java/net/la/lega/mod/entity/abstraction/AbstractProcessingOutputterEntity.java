@@ -1,7 +1,6 @@
 package net.la.lega.mod.entity.abstraction;
 
 import blue.endless.jankson.annotation.Nullable;
-import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.la.lega.mod.ImplementedInventory;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,18 +14,22 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
-
-public abstract class AbstractOutputterEntity extends BlockEntity implements ImplementedInventory, PropertyDelegateHolder, Tickable, BlockEntityClientSerializable
+/**
+ * 1Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
+ * @author t_r_a_t
+ */
+public abstract class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, BlockEntityClientSerializable
 {
+    protected DefaultedList<ItemStack> items;
 
     protected PropertyDelegate propertyDelegate = null;
-
-    protected DefaultedList<ItemStack> items;
+    private int currentProcessingTime = -1;
+    private int unitProcessingTime = 0;
 
     /**
     * @param entity the entity type
     */
-    public AbstractOutputterEntity(BlockEntityType<?> entity) 
+    public AbstractProcessingOutputterEntity(BlockEntityType<?> entity) 
     {
         super(entity);
         items = DefaultedList.ofSize(1,  ItemStack.EMPTY);
@@ -36,7 +39,7 @@ public abstract class AbstractOutputterEntity extends BlockEntity implements Imp
     * @param entity the entity type
     * @param itemStackNumber the number of item stacks in this container
     */
-    public AbstractOutputterEntity(BlockEntityType<?> entity, int itemStackNumber)
+    public AbstractProcessingOutputterEntity(BlockEntityType<?> entity, int itemStackNumber)
     {
         super(entity);
         items = DefaultedList.ofSize(itemStackNumber,  ItemStack.EMPTY);
@@ -84,16 +87,9 @@ public abstract class AbstractOutputterEntity extends BlockEntity implements Imp
         ImplementedInventory.super.setInvStack(slot, stack);
     }
 
-    @Override
-    public PropertyDelegate getPropertyDelegate() 
-    {
-        return this.propertyDelegate;
-    }
-
     protected abstract boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe);
 
     protected abstract void craftRecipe(@Nullable Recipe<?> recipe);
-
 
     @Override
     public void fromClientTag(CompoundTag tag) 
@@ -112,12 +108,75 @@ public abstract class AbstractOutputterEntity extends BlockEntity implements Imp
     {
         super.fromTag(tag);
         Inventories.fromTag(tag, items);
+        this.currentProcessingTime = tag.getShort("currentProcessingTime");
+        this.unitProcessingTime = tag.getShort("unitProcessingTime");
     }
 
     @Override
     public CompoundTag toTag(CompoundTag tag) 
     {
         Inventories.toTag(tag, items);
+        tag.putShort("currentProcessingTime", (short)this.currentProcessingTime);
+        tag.putShort("unitProcessingTime", (short)this.unitProcessingTime);
         return super.toTag(tag);
+    }
+
+
+    /**
+    * @return true if the outputter is currently processing
+    */
+    protected boolean isProcessing()
+    {
+        return currentProcessingTime > 0;
+    }
+
+    /**
+    * initialize a new processing
+    * @param unitProcessingTime the processing time of a single unit
+    */
+    protected void initializeProcessing(int unitProcessingTime)
+    {
+        this.currentProcessingTime = 1;
+        this.unitProcessingTime = unitProcessingTime;
+    }
+
+    /**
+    * @return true if the current unit has been processed
+    */
+    protected boolean isProcessingCompleted()
+    {
+        return currentProcessingTime >= unitProcessingTime;
+    }
+
+    /**
+     * perform a step in the process
+     */
+    protected void processStep()
+    {
+        this.currentProcessingTime++;
+    }
+
+    /**
+     * reset the processing task
+     */
+    protected void resetProcessing()
+    {
+        this.currentProcessingTime = -1;
+        this.unitProcessingTime = 0;
+    }
+
+    protected int getCurrentProcessingTime()   
+    {
+        return this.currentProcessingTime;
+    }
+
+    protected int getCurrentUnitProcessingTime()
+    {
+        return this.unitProcessingTime;
+    }
+
+    public PropertyDelegate getPropertyDelegate()
+    {
+        return this.propertyDelegate;
     }
 }

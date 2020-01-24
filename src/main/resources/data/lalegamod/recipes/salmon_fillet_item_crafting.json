@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": 
+    [
+        {
+            "item": "minecraft:salmon"
+        }
+    ],
+    "result": 
+    {
+        "item": "lalegamod:salmon_fillet_item",
+        "count": 1
+    }
+}

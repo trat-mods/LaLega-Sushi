@@ -1,19 +1,19 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
+import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.la.lega.mod.block.BlastChillerBlock;
-import net.la.lega.mod.entity.abstraction.AbstractOutputterEntity;
+import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.container.PropertyDelegate;
 import net.minecraft.inventory.BasicInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
 
-public class BlastChillerBlockEntity extends AbstractOutputterEntity
+public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity implements PropertyDelegateHolder
 {
     public static final int CHILL_TIME = 0;
     public static final int UNIT_CHILL_TIME = 1;
@@ -21,9 +21,6 @@ public class BlastChillerBlockEntity extends AbstractOutputterEntity
     private static final int[] TOP_SLOTS = new int[] { 0 };
     private static final int[] BOTTOM_SLOTS = new int[] { 1 };
     private static final int[] SIDE_SLOTS = new int[] { 0 };
-
-    private int currentChillTime = -1;
-    private int unitChillTime = 0;
 
     public BlastChillerBlockEntity() 
     {
@@ -37,10 +34,10 @@ public class BlastChillerBlockEntity extends AbstractOutputterEntity
                 {
                     case CHILL_TIME:
                         //System.out.println("CHILL_TIME: " + BlastChillerBlockEntity.this.currentChillTime);
-                        return BlastChillerBlockEntity.this.currentChillTime;
+                        return BlastChillerBlockEntity.this.getCurrentProcessingTime();
                     case UNIT_CHILL_TIME:
                         //System.out.println("UNIT_CHILL_TIME: " + BlastChillerBlockEntity.this.unitChillTime);
-                        return BlastChillerBlockEntity.this.unitChillTime;
+                        return BlastChillerBlockEntity.this.getCurrentUnitProcessingTime();
                     default:
                         return 0;
                 }
@@ -54,22 +51,6 @@ public class BlastChillerBlockEntity extends AbstractOutputterEntity
                 return 2;
             }
         };
-    }
-
-    @Override
-    public void fromTag(CompoundTag tag) 
-    {
-        this.currentChillTime = tag.getShort("CurrentChillTime");
-        this.unitChillTime = tag.getShort("UnitChillTime");
-        super.fromTag(tag);
-    }
-
-    @Override
-    public CompoundTag toTag(CompoundTag tag) 
-    {
-        tag.putShort("CurrentChillTime", (short)this.currentChillTime);
-        tag.putShort("UnitChillTime", (short)this.unitChillTime);
-        return super.toTag(tag);
     }
 
     @Override
@@ -115,11 +96,10 @@ public class BlastChillerBlockEntity extends AbstractOutputterEntity
         boolean bl = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
         if (slot == 0 && !bl) 
         {
-            this.currentChillTime = 0;
+            resetProcessing();
             this.markDirty();
          }
     }
-
 
     @Override
     public void tick() 
@@ -128,37 +108,29 @@ public class BlastChillerBlockEntity extends AbstractOutputterEntity
         {
             BasicInventory inv = new BasicInventory(items.get(0));
             BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, inv, world).orElse(null);
-            if (!this.isChilling())
+            if (!this.isProcessing())
             {
                 if(this.canAcceptRecipeOutput(match)) 
                 {
-                    this.currentChillTime = 1;
-                    this.unitChillTime = match.getChillTime();
+                    initializeProcessing(match.getProcessingTime());
                     sync();
                 }
             }
 
-            boolean set = isChilling();
-            this.world.setBlockState(this.pos, (BlockState)this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, set), 3);
+            this.world.setBlockState(this.pos, (BlockState)this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, isProcessing()), 3);
 
-            if(this.isChilling())
+            if(this.isProcessing())
             {
-                this.currentChillTime++;
-                if(this.currentChillTime >= unitChillTime)
+                processStep();
+                if(isProcessingCompleted())
                 {
                     this.craftRecipe(match);
-                    this.currentChillTime = -1;
+                    resetProcessing();
                 }
                 sync();
             }
         }
         this.markDirty();
-    }
-
-
-    public boolean isChilling()
-    {
-        return this.currentChillTime > 0;
     }
 
     @Override

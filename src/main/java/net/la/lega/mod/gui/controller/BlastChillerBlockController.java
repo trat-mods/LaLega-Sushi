@@ -1,6 +1,5 @@
-package net.la.lega.mod.gui;
+package net.la.lega.mod.gui.controller;
 
-import io.github.cottonmc.cotton.gui.CottonCraftingController;
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.ValidatedSlot;
 import io.github.cottonmc.cotton.gui.widget.WBar;
@@ -10,22 +9,18 @@ import io.github.cottonmc.cotton.gui.widget.WPanel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WWidget;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
+import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.minecraft.container.BlockContext;
 import net.minecraft.container.PropertyDelegate;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Identifier;
 
-public class BlastChillerBlockController extends CottonCraftingController 
+public class BlastChillerBlockController extends AbstractBlockController
 {
-    BlastChillerBlockEntity bufferEntity;
-
     public BlastChillerBlockController(int syncId, PlayerInventory playerInventory, BlockContext context) 
     {
-        super(BlastChillingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context));
-
-        bufferEntity = getBufferEntity(context);
+        super(BlastChillingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
 
         WPlainPanel root = new WPlainPanel();
         root.setSize(158, 140);
@@ -37,7 +32,7 @@ public class BlastChillerBlockController extends CottonCraftingController
 
         WBar progressBar = new WBar(new Identifier("lalegamod:textures/progress_bg.png"), new Identifier("lalegamod:textures/progress_bar.png"), BlastChillerBlockEntity.CHILL_TIME, BlastChillerBlockEntity.UNIT_CHILL_TIME, WBar.Direction.RIGHT);
 
-        ProgressBarDescriptor descriptor = new ProgressBarDescriptor(bufferEntity.getPropertyDelegate());
+        ProgressBarDescriptor descriptor = new ProgressBarDescriptor(getBufferEntity().getPropertyDelegate());
         progressBar.createPeers(descriptor);
 
         root.add(title, 10, 2);
@@ -46,23 +41,6 @@ public class BlastChillerBlockController extends CottonCraftingController
         root.add(progressBar, 70, 32);
         root.add(this.createPlayerInventoryPanel(), 0, 70);
         root.validate(this);
-    }
-
-    public BlastChillerBlockEntity getBufferEntity(BlockContext context) 
-    {
-        BlastChillerBlockEntity[] lambdaBypass = new BlastChillerBlockEntity[1];
-
-        context.run((world, blockPosition) -> {
-            BlastChillerBlockEntity temporaryEntity = (BlastChillerBlockEntity) world.getBlockEntity(blockPosition);
-            lambdaBypass[0] = temporaryEntity;
-        });
-        return lambdaBypass[0];
-    }
-
-    @Override
-    public void close(PlayerEntity player)
-    {
-        super.close(player);
     }
 
     private class ProgressBarDescriptor implements GuiDescription

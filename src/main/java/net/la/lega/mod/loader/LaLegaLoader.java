@@ -9,7 +9,8 @@ import net.la.lega.mod.block.PoweredLauncherBlock;
 import net.la.lega.mod.block.ThreadCutterBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
-import net.la.lega.mod.gui.BlastChillerBlockController;
+import net.la.lega.mod.gui.controller.BlastChillerBlockController;
+import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
 import net.la.lega.mod.item.SalmonFilletItem;
 import net.la.lega.mod.item.SashimiItem;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
@@ -41,12 +42,12 @@ import net.minecraft.util.registry.Registry;
 // StonecutterBlock
 // AbstractButtonBlock
 // LivingEntity
+// DropperBlock
 
 //PlayerEntity
 
 public class LaLegaLoader implements ModInitializer
 {
-
     public static final String MOD_ID = "lalegamod";
 
     //Items
@@ -114,6 +115,10 @@ public class LaLegaLoader implements ModInitializer
     {
         ContainerProviderRegistry.INSTANCE.registerFactory(BlastChillerBlock.ID, 
             (syncId, id, player, buf) -> new BlastChillerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
+        );
+
+        ContainerProviderRegistry.INSTANCE.registerFactory(ThreadCutterBlock.ID, 
+            (syncId, id, player, buf) -> new ThreadCutterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
         );
     }
 }

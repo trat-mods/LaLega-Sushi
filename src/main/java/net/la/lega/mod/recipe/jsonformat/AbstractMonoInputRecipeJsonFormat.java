@@ -2,7 +2,7 @@ package net.la.lega.mod.recipe.jsonformat;
 
 import com.google.gson.JsonObject;
 
-public class AbstractMonoRecipeJsonFormat
+public class AbstractMonoInputRecipeJsonFormat 
 {
     private JsonObject input;
     private String output;
@@ -12,8 +12,8 @@ public class AbstractMonoRecipeJsonFormat
     public JsonObject getInput() { return input; }
     public String getOutput() { return output; }
     public int getOutputAmount() { return outputAmount; }
-    public int getChillTime() { return processingTime; }
+    public int getProcessingTime() { return processingTime; }
 
     public void setOutputAmount(int outputAmount) { this.outputAmount = outputAmount; }
-    public void setChillTime(int processingTime) { this.processingTime = processingTime; }
+    public void setProcessingTime(int processingTime) { this.processingTime = processingTime; }
 }
