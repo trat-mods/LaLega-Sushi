@@ -18,7 +18,7 @@ import net.minecraft.util.math.Direction;
  * 1Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
  * @author t_r_a_t
  */
-public abstract class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, BlockEntityClientSerializable
+public class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, BlockEntityClientSerializable
 {
     protected DefaultedList<ItemStack> items;
 
@@ -68,18 +68,30 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
     }
 
     @Override
-    public abstract int[] getInvAvailableSlots(Direction side);
+    public int[] getInvAvailableSlots(Direction side)
+    {
+        return null;
+    }
 
     /**
     * @apiNote is the slot valid for extract/insert
     */
-    public abstract boolean isValidInvStack(int slot, ItemStack stack);
+    public boolean isValidInvStack(int slot, ItemStack stack)
+    {
+        return false;
+    }
 
     @Override
-    public abstract boolean canInsertInvStack(int slot, ItemStack stack, Direction dir);
+    public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir)
+    {
+        return false;
+    }
 
     @Override
-    public abstract boolean canExtractInvStack(int slot, ItemStack stack, Direction dir);
+    public boolean canExtractInvStack(int slot, ItemStack stack, Direction dir)
+    {
+        return false;
+    }
 
     @Override
     public void setInvStack(int slot, ItemStack stack) 
@@ -87,9 +99,15 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
         ImplementedInventory.super.setInvStack(slot, stack);
     }
 
-    protected abstract boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe);
+    protected boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe)
+    {
+        return false;
+    }
 
-    protected abstract void craftRecipe(@Nullable Recipe<?> recipe);
+    protected void craftRecipe(@Nullable Recipe<?> recipe)
+    {
+
+    }
 
     @Override
     public void fromClientTag(CompoundTag tag) 
@@ -178,5 +196,10 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
     public PropertyDelegate getPropertyDelegate()
     {
         return this.propertyDelegate;
+    }
+
+    @Override
+    public void tick() 
+    {
     }
 }

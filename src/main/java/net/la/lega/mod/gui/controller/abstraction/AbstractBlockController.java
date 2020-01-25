@@ -11,7 +11,6 @@ import net.minecraft.recipe.RecipeType;
 
 public abstract class AbstractBlockController extends CottonCraftingController 
 {
-
     private AbstractProcessingOutputterEntity bufferEntity;
 
     protected AbstractBlockController(RecipeType<?> recipeType, int syncId, PlayerInventory playerInventory, Inventory blockInventory, PropertyDelegate delegate, BlockContext context) 
@@ -24,7 +23,6 @@ public abstract class AbstractBlockController extends CottonCraftingController
         super(recipeType, syncId, playerInventory);
         initializeBufferEntity(context);
     }
-
     
     public AbstractProcessingOutputterEntity getBufferEntity()
     {

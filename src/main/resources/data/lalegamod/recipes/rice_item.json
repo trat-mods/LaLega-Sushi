@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:wheat"
+        },
+        {
+            "item": "minecraft:bamboo"
+        }
+    ],
+    "result": {
+        "item": "lalegamod:rice_item",
+        "count": 1
+    }
+}

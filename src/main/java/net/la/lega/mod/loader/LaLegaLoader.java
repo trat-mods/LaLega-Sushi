@@ -11,6 +11,7 @@ import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.gui.controller.BlastChillerBlockController;
 import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
+import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.item.SalmonFilletItem;
 import net.la.lega.mod.item.SashimiItem;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
@@ -20,7 +21,9 @@ import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.container.BlockContext;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
@@ -51,8 +54,32 @@ public class LaLegaLoader implements ModInitializer
     public static final String MOD_ID = "lalegamod";
 
     //Items
-    public static final Item SASHIMI_ITEM = new SashimiItem(new Item.Settings().group(ItemGroup.FOOD));
-    public static final Item SALMON_FILLET_ITEM = new SalmonFilletItem(new Item.Settings().group(ItemGroup.FOOD));
+    public static final Item SASHIMI_ITEM = new SashimiItem(
+        new Item.Settings().group(ItemGroup.FOOD)
+        .food(new FoodComponent.Builder()
+            .hunger(SashimiItem.hunger)
+            .saturationModifier(SashimiItem.saturation)
+            .snack().alwaysEdible()
+            .statusEffect(
+                new StatusEffectInstance(SashimiItem.effect, SashimiItem.effectDuration), SashimiItem.effectChance)
+        .build()));
+
+    public static final Item SALMON_FILLET_ITEM = new SalmonFilletItem(
+        new Item.Settings().group(ItemGroup.FOOD)
+        .food(new FoodComponent.Builder()
+            .hunger(SalmonFilletItem.hunger)
+            .saturationModifier(SalmonFilletItem.saturation)
+            .snack().alwaysEdible()
+            .statusEffect(
+                new StatusEffectInstance(SalmonFilletItem.effect, SalmonFilletItem.effectDuration), SalmonFilletItem.effectChance)
+        .build()));
+
+    public static final Item RICE_ITEM = new RiceItem(
+        new Item.Settings().group(ItemGroup.FOOD)
+        .food(new FoodComponent.Builder()
+            .hunger(RiceItem.hunger)
+            .saturationModifier(RiceItem.saturation)
+        .build()));
 
     //Blocks
     public static final Block LAUNCHER_BLOCK = new LauncherBlock();
@@ -69,17 +96,22 @@ public class LaLegaLoader implements ModInitializer
     @Override
     public void onInitialize() 
     { 
+        registerItems();
         registerBlocks();
         registerEntities();
         registerRecipes();
         registerControllers();
     }
 
-    private void registerBlocks()
+    private void registerItems()
     {
         Registry.register(Registry.ITEM, SashimiItem.ID, SASHIMI_ITEM);
         Registry.register(Registry.ITEM, SalmonFilletItem.ID, SALMON_FILLET_ITEM);
+        Registry.register(Registry.ITEM, RiceItem.ID, RICE_ITEM);
+    }
 
+    private void registerBlocks()
+    {
         Registry.register(Registry.BLOCK,LauncherBlock.ID, LAUNCHER_BLOCK);
         Registry.register(Registry.ITEM, LauncherBlock.ID, new BlockItem(LAUNCHER_BLOCK, new Item.Settings().group(ItemGroup.REDSTONE)));
 

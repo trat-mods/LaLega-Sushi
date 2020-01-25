@@ -30,24 +30,24 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
-            System.out.println("Ticking");
             BasicInventory inv = new BasicInventory(items.get(0));
-            ThreadCuttingRecipe match = world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, inv, world).orElse(null);
+            ThreadCuttingRecipe recipe = this.world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, inv, world).orElse(null);
             if (!this.isProcessing())
             {
-                if(this.canAcceptRecipeOutput(match)) 
+                if(recipe == null)
                 {
-                    initializeProcessing(match.getProcessingTime());
-                    sync();
+                    System.out.println("Recipe NULL");
                 }
                 else
                 {
-                    System.out.println("Cant accept");
+                    System.out.println("N: " + recipe.getOutputAmount() +", PT: " + recipe.getProcessingTime());
                 }
-            }
-            else
-            {
-                System.out.println("still processing");
+            
+                if(this.canAcceptRecipeOutput(recipe)) 
+                {
+                    initializeProcessing(recipe.getProcessingTime());
+                    sync();
+                }
             }
 
             if(this.isProcessing())
@@ -55,7 +55,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
                 processStep();
                 if(isProcessingCompleted())
                 {
-                    this.craftRecipe(match);
+                    this.craftRecipe(recipe);
                     resetProcessing();
                 }
                 sync();
@@ -95,12 +95,13 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected boolean canAcceptRecipeOutput(Recipe<?> recipe) 
     {
-        ThreadCuttingRecipe bcRecipe = (ThreadCuttingRecipe) recipe;
         if (!((ItemStack)this.items.get(0)).isEmpty() && recipe != null) 
         {
-           ItemStack itemStack = bcRecipe.getOutput();
+           ItemStack itemStack = recipe.getOutput();
            if (itemStack.isEmpty()) 
            {
+               //CODE FAILS HERE!!
+                //System.out.println("Outputstack empty");
                 return false;
            } 
            else
@@ -110,14 +111,13 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
         } 
         else 
         {
-           return false;
+            return false;
         }
     }
 
     @Override
     protected void craftRecipe(Recipe<?> recipe) 
     {
-        ThreadCuttingRecipe bcRecipe = (ThreadCuttingRecipe) recipe;
         if (recipe != null && this.canAcceptRecipeOutput(recipe)) 
         {
             ItemStack inputSlot = (ItemStack)this.items.get(0);
@@ -125,10 +125,10 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
 
             Direction direction = (Direction)blockPointerImpl.getBlockState().get(ThreadCutterBlock.FACING);
             Position position = getOutputLocation(blockPointerImpl);
-            ItemStack output = bcRecipe.getOutput();
-              
+            ItemStack output = recipe.getOutput();
+          
             blockPointerImpl.getWorld().playLevelEvent(1000, blockPointerImpl.getBlockPos(), 0);
-            spawnItem(blockPointerImpl.getWorld(), output, 6, direction, position);
+            spawnItem(blockPointerImpl.getWorld(), output.copy(), 6, direction, position);
             System.out.println("SPAWNED");
             inputSlot.decrement(1);
         }

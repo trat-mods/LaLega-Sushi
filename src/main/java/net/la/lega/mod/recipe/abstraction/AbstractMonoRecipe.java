@@ -9,23 +9,23 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class AbstractMonoRecipe implements Recipe<Inventory> 
+public abstract class AbstractMonoRecipe implements Recipe<Inventory> 
 {
     private final Ingredient input;
     private final ItemStack outputStack;
-    private final int chillTime;
+    private final int processingTime;
     private final Identifier id;
 
-    public AbstractMonoRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id)
+    public AbstractMonoRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
     {
         this.input = input;
         this.outputStack = outputStack;
-        this.chillTime = chillTime;
+        this.processingTime = processingTime;
         this.id = id;
     }
 
     public Ingredient getInput() { return input; }
-    public int getProcessingTime() { return chillTime; }
+    public int getProcessingTime() { return processingTime; }
     public int getOutputAmount() { return outputStack.getCount(); }
 
     @Override
@@ -59,13 +59,7 @@ public class AbstractMonoRecipe implements Recipe<Inventory>
         return id;
     }
 
-    public RecipeSerializer<?> getSerializer()
-    {
-        return null;
-    };
+    public abstract RecipeSerializer<?> getSerializer();
 
-    public RecipeType<?> getType()
-    {
-        return null;
-    }
+    public abstract RecipeType<?> getType();
 }

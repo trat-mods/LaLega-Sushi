@@ -6,7 +6,6 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class BlastChillerBlockScreen extends CottonInventoryScreen<BlastChillerBlockController> 
 {
-
     public BlastChillerBlockScreen(BlastChillerBlockController container, PlayerEntity player) 
     {
         super(container, player);

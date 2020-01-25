@@ -12,9 +12,9 @@ public class BlastChillingRecipe extends AbstractMonoRecipe
 {
     public static final String recipeID = "blast_chilling";
 
-    public BlastChillingRecipe(Ingredient input, ItemStack outputStack, int chillTime, Identifier id)
+    public BlastChillingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
     {
-        super(input, outputStack, chillTime, id);
+        super(input, outputStack, processingTime, id);
     }
 
     @Override

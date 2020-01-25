@@ -178,7 +178,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
         if (recipe != null && this.canAcceptRecipeOutput(recipe)) 
         {
            ItemStack inputSlot = (ItemStack)this.items.get(0);
-           ItemStack output = bcRecipe.getOutput();
+           ItemStack output = bcRecipe.getOutput().copy();
            ItemStack outputSlot = (ItemStack)this.items.get(1);
            if (outputSlot.isEmpty()) 
            {
