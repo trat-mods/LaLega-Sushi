@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": 
+    {
+        "top": "lalegamod:block/thread_cutter_sides",
+        "front": "lalegamod:block/thread_cutter_front",
+        "side": "lalegamod:block/thread_cutter_sides"
+    }
+}

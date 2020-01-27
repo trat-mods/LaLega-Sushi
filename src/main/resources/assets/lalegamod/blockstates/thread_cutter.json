@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=down":  { "model": "lalegamod:block/thread_cutter_vertical", "x": 180 },
+        "facing=up":    { "model": "lalegamod:block/thread_cutter_vertical" },
+        "facing=north": { "model": "lalegamod:block/thread_cutter" },
+        "facing=south": { "model": "lalegamod:block/thread_cutter", "y": 180 },
+        "facing=west":  { "model": "lalegamod:block/thread_cutter", "y": 270 },
+        "facing=east":  { "model": "lalegamod:block/thread_cutter", "y": 90 }
+    }
+}

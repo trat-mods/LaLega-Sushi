@@ -2,9 +2,9 @@
     "type": "lalegamod:blast_chilling",
     "input" : 
     {
-      "item": "lalegamod:salmon_fillet_item"
+      "item": "lalegamod:salmon_fillet"
     },
-    "output": "lalegamod:sashimi_item",
+    "output": "lalegamod:sashimi",
     "processingTime": 50,
     "outputAmount": 1
 }

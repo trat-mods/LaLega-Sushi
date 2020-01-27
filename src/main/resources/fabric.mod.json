@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "La Lega Serbem Mod",
-  "description": "Adds three new blocks to the game: Launcher Block, Powered Launcher Block and Extreme Launcher Block",
+  "description": "Go on the website to check this mod out in details",
   "authors": [
     "t_r_a_t"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/IdentityError/LaLegaMod/wiki",
+    "sources": "https://github.com/IdentityError/LaLegaMod"
   },
 
   "license": "CC0-1.0",

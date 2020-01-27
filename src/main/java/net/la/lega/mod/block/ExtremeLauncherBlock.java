@@ -9,8 +9,8 @@ public class ExtremeLauncherBlock extends LauncherBlock
     public ExtremeLauncherBlock()
     {
         super();
-        baseMultiplier = 3.15F;
-        stackPowerPercentage = 0.25F;
+        baseMultiplier = 3F;
+        stackPowerPercentage = 0.325F;
         stackMultiplier = baseMultiplier * stackPowerPercentage;
     }
 }

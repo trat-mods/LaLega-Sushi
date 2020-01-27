@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 
 public class SashimiItem extends Item
 {
-    public static final Identifier ID = new Identifier("lalegamod", "sashimi_item");
+    public static final Identifier ID = new Identifier("lalegamod", "sashimi");
     
     public static final StatusEffect effect = StatusEffects.HUNGER;
     public static final int effectDuration = 20 * 5;

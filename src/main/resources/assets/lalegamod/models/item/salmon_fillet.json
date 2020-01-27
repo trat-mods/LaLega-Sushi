@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": 
     {
-        "layer0": "lalegamod:item/salmon_fillet_item"
+        "layer0": "lalegamod:item/salmon_fillet"
     }
 }

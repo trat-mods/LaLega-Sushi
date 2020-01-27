@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 
 public class ThreadCutterBlock extends AbstractBlockWithEntity 
 {
-    public static final Identifier ID = new Identifier("lalegamod", "thread_cutter_block");
+    public static final Identifier ID = new Identifier("lalegamod", "thread_cutter");
   
     public static final DirectionProperty FACING;
     static
@@ -68,7 +68,7 @@ public class ThreadCutterBlock extends AbstractBlockWithEntity
 
     public BlockState getPlacementState(ItemPlacementContext ctx)
     {
-        return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, BlockRotation rotation) 

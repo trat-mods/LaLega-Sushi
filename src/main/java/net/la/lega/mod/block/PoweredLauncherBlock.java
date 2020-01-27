@@ -9,8 +9,8 @@ public class PoweredLauncherBlock extends LauncherBlock
     public PoweredLauncherBlock()
     {
         super();
-        baseMultiplier = 1.9F;
-        stackPowerPercentage = 0.32F;
+        baseMultiplier = 2F;
+        stackPowerPercentage = 0.325F;
         stackMultiplier = baseMultiplier * stackPowerPercentage;
     }
 }

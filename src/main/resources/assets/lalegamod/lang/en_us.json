@@ -2,9 +2,10 @@
     "block.lalegamod.launcher_block": "Launcher Block",
     "block.lalegamod.powered_launcher_block": "Powered Launcher Block",
     "block.lalegamod.extreme_launcher_block": "Extreme Launcher Block",
-    "block.lalegamod.blast_chiller_block": "Blast Chiller",
-    "item.lalegamod.sashimi_item": "Sashimi",
-    "item.lalegamod.rice_item": "Rice",
-    "item.lalegamod.salmon_fillet_item": "Salmon Fillet",
-    "block.lalegamod.thread_cutter_block": "Thread Cutter"
+    "block.lalegamod.blast_chiller": "Blast Chiller",
+    "item.lalegamod.sashimi": "Sashimi",
+    "item.lalegamod.rice": "Rice",
+    "item.lalegamod.salmon_fillet": "Salmon Fillet",
+    "block.lalegamod.thread_cutter": "Thread Cutter",
+    "item.lalegamod.nigiri_sake": "Nigiri Sake"
 }

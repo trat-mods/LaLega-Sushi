@@ -33,16 +33,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
             BasicInventory inv = new BasicInventory(items.get(0));
             ThreadCuttingRecipe recipe = this.world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, inv, world).orElse(null);
             if (!this.isProcessing())
-            {
-                if(recipe == null)
-                {
-                    System.out.println("Recipe NULL");
-                }
-                else
-                {
-                    System.out.println("N: " + recipe.getOutputAmount() +", PT: " + recipe.getProcessingTime());
-                }
-            
+            {        
                 if(this.canAcceptRecipeOutput(recipe)) 
                 {
                     initializeProcessing(recipe.getProcessingTime());
@@ -129,12 +120,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
           
             blockPointerImpl.getWorld().playLevelEvent(1000, blockPointerImpl.getBlockPos(), 0);
             spawnItem(blockPointerImpl.getWorld(), output.copy(), 6, direction, position);
-            System.out.println("SPAWNED");
             inputSlot.decrement(1);
-        }
-        else
-        {
-            System.out.println("CANT SPAWN");
         }
     }   
 

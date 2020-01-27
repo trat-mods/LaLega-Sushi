@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 
 public class SalmonFilletItem extends Item
 {
-    public static final Identifier ID = new Identifier("lalegamod", "salmon_fillet_item");
+    public static final Identifier ID = new Identifier("lalegamod", "salmon_fillet");
     
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 3;

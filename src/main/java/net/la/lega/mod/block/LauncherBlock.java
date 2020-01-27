@@ -18,8 +18,8 @@ public class LauncherBlock extends Block
    private double launchForce = 1F;
 
    private int maxStackable = 4;
-   protected double stackPowerPercentage = 0.425F;
-   protected double stackMultiplier = 0.425;
+   protected double stackPowerPercentage = 0.325F;
+   protected double stackMultiplier = 0.325;
    protected double baseMultiplier = 1F;
 
    public LauncherBlock() {
@@ -49,7 +49,7 @@ public class LauncherBlock extends Block
       }
 
       force *= multiplier;
-      System.out.println("F: " + force + ", SM: " + multiplier+", Index: " +currentIndex);
+      //System.out.println("F: " + force + ", SM: " + multiplier+", Index: " +currentIndex);
       entity.setVelocity(0F, force, 0F);
       return;
    }

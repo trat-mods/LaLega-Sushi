@@ -11,6 +11,7 @@ import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.gui.controller.BlastChillerBlockController;
 import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
+import net.la.lega.mod.item.NigiriSake;
 import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.item.SalmonFilletItem;
 import net.la.lega.mod.item.SashimiItem;
@@ -81,6 +82,14 @@ public class LaLegaLoader implements ModInitializer
             .saturationModifier(RiceItem.saturation)
         .build()));
 
+    public static final Item NIGIRI_SAKE_ITEM = new NigiriSake(
+    new Item.Settings().group(ItemGroup.FOOD)
+    .food(new FoodComponent.Builder()
+        .hunger(NigiriSake.hunger)
+        .saturationModifier(NigiriSake.saturation)
+        .snack().alwaysEdible()
+    .build()));
+
     //Blocks
     public static final Block LAUNCHER_BLOCK = new LauncherBlock();
     public static final Block POWERED_LAUNCHER_BLOCK = new PoweredLauncherBlock();
@@ -108,6 +117,7 @@ public class LaLegaLoader implements ModInitializer
         Registry.register(Registry.ITEM, SashimiItem.ID, SASHIMI_ITEM);
         Registry.register(Registry.ITEM, SalmonFilletItem.ID, SALMON_FILLET_ITEM);
         Registry.register(Registry.ITEM, RiceItem.ID, RICE_ITEM);
+        Registry.register(Registry.ITEM, NigiriSake.ID, NIGIRI_SAKE_ITEM);
     }
 
     private void registerBlocks()

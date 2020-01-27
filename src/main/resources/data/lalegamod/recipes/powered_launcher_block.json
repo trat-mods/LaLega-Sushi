@@ -1,11 +1,14 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "###",
+        "#P#",
         "gDg",
         "III"
     ],
     "key": {
+        "P": {
+            "item": "minecraft:tnt"
+        },
         "#": {
             "item": "lalegamod:launcher_block"
         },

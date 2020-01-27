@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 public class BlastChillerBlock extends AbstractBlockWithEntity
 {
 
-    public static final Identifier ID = new Identifier("lalegamod", "blast_chiller_block");
+    public static final Identifier ID = new Identifier("lalegamod", "blast_chiller");
 
     public static final BooleanProperty ON;    
     public static final DirectionProperty FACING;
