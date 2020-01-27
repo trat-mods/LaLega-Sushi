@@ -2,7 +2,6 @@ package net.la.lega.mod.entity.abstraction;
 
 import blue.endless.jankson.annotation.Nullable;
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.la.lega.mod.ImplementedInventory;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -19,7 +18,7 @@ import net.minecraft.util.math.Direction;
  * Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
  * @author t_r_a_t
  */
-public class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, BlockEntityClientSerializable, PropertyDelegateHolder
+public class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, PropertyDelegateHolder
 {
     public static final int PROCESS_TIME = 0;
     public static final int UNIT_PROCESS_TIME = 1;
@@ -29,23 +28,31 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
     private int currentProcessingTime = -1;
     private int unitProcessingTime = 0;
     
-    private final PropertyDelegate propertyDelegate = new PropertyDelegate() 
+    private final PropertyDelegate propertyDelegate = new PropertyDelegate()
     {
         public int get(int key) 
         {
             switch (key) 
             {
                 case PROCESS_TIME:
-                    return getCurrentProcessingTime();
+                    return currentProcessingTime;
                 case UNIT_PROCESS_TIME:
-                    return getCurrentUnitProcessingTime();
+                    return unitProcessingTime;
                 default:
                     return 0;
             }
         }
         public void set(int key, int value) 
         {
-            return;
+            switch(key)
+            {
+                case PROCESS_TIME:
+                    currentProcessingTime = value;
+                    break;
+                case UNIT_PROCESS_TIME:
+                    unitProcessingTime = value;
+                    break;
+            }
         }
         public int size() 
         {
@@ -120,18 +127,6 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
     {
 
     }
-
-    @Override
-    public void fromClientTag(CompoundTag tag) 
-    {
-        fromTag(tag);
-    }
-
-    @Override
-    public CompoundTag toClientTag(CompoundTag tag) 
-    {
-        return toTag(tag);
-    }
     
     @Override
     public void fromTag(CompoundTag tag) 
@@ -150,7 +145,6 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
         tag.putShort("unitProcessingTime", (short)this.unitProcessingTime);
         return super.toTag(tag);
     }
-
 
     /**
     * @return true if the outputter is currently processing

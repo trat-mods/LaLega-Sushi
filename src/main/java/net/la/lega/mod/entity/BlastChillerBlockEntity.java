@@ -1,6 +1,7 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
+import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
@@ -10,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
 
-public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
+public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity implements PropertyDelegateHolder
 {
     private static final int[] TOP_SLOTS = new int[] { 0 };
     private static final int[] BOTTOM_SLOTS = new int[] { 1 };
@@ -96,7 +97,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
                 }
             }
         }
-        this.markDirty();
+        //this.markDirty();
     }
 
     @Override

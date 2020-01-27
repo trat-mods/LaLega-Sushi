@@ -28,13 +28,10 @@ public class BlastChillerBlockController extends AbstractBlockController
 
         WBar progressBar = new WBar(new Identifier("lalegamod:textures/progress_bg.png"), new Identifier("lalegamod:textures/progress_bar.png"), 0, 1, WBar.Direction.RIGHT);
 
-        //ProgressBarDescriptor descriptor = new ProgressBarDescriptor(getPropertyDelegate());
-        //progressBar.createPeers(descriptor);
-
         root.add(title, 10, 2);
-        root.add(inputSlot, 36, 32);
-        root.add(outputSlot, 108, 32);
-        root.add(progressBar, 70, 32);
+        root.add(inputSlot, 34, 32);
+        root.add(outputSlot, 110, 32);
+        root.add(progressBar, 62, 35, 30, 12);
         root.add(this.createPlayerInventoryPanel(), 0, 70);
         root.validate(this);
     }
