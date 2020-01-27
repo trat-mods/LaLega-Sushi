@@ -5,7 +5,6 @@ import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.inventory.BasicInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.BlockPointer;
@@ -30,14 +29,12 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
-            BasicInventory inv = new BasicInventory(items.get(0));
-            ThreadCuttingRecipe recipe = this.world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, inv, world).orElse(null);
+            ThreadCuttingRecipe recipe = this.world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, this, world).orElse(null);
             if (!this.isProcessing())
             {        
                 if(this.canAcceptRecipeOutput(recipe)) 
                 {
                     initializeProcessing(recipe.getProcessingTime());
-                    sync();
                 }
             }
 
@@ -49,7 +46,6 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
                     this.craftRecipe(recipe);
                     resetProcessing();
                 }
-                sync();
             }
         }
         this.markDirty();

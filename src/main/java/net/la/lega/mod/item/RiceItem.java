@@ -7,7 +7,7 @@ public class RiceItem extends Item
 {
     public static final Identifier ID = new Identifier("lalegamod", "rice");
     
-    public static final float saturation = 1F;
+    public static final float saturation = 0.8F;
     public static final int hunger = 2;
 
     public RiceItem(Settings settings) 

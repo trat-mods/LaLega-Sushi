@@ -11,9 +11,9 @@ public class SashimiItem extends Item
     
     public static final StatusEffect effect = StatusEffects.HUNGER;
     public static final int effectDuration = 20 * 5;
-    public static final float effectChance = 0.2F;
-    public static final float saturation = 0.85F;
-    public static final int hunger = 3;
+    public static final float effectChance = 0.15F;
+    public static final float saturation = 0.6F;
+    public static final int hunger = 2;
 
     public SashimiItem(Settings settings) 
     {

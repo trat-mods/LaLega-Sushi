@@ -1,6 +1,7 @@
 package net.la.lega.mod.entity.abstraction;
 
 import blue.endless.jankson.annotation.Nullable;
+import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.la.lega.mod.ImplementedInventory;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,25 +16,42 @@ import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 /**
- * 1Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
+ * Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
  * @author t_r_a_t
  */
-public class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, BlockEntityClientSerializable
+public class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, BlockEntityClientSerializable, PropertyDelegateHolder
 {
-    protected DefaultedList<ItemStack> items;
+    public static final int PROCESS_TIME = 0;
+    public static final int UNIT_PROCESS_TIME = 1;
 
-    protected PropertyDelegate propertyDelegate = null;
+    protected DefaultedList<ItemStack> items;
+    
     private int currentProcessingTime = -1;
     private int unitProcessingTime = 0;
-
-    /**
-    * @param entity the entity type
-    */
-    public AbstractProcessingOutputterEntity(BlockEntityType<?> entity) 
+    
+    private final PropertyDelegate propertyDelegate = new PropertyDelegate() 
     {
-        super(entity);
-        items = DefaultedList.ofSize(1,  ItemStack.EMPTY);
-    }
+        public int get(int key) 
+        {
+            switch (key) 
+            {
+                case PROCESS_TIME:
+                    return getCurrentProcessingTime();
+                case UNIT_PROCESS_TIME:
+                    return getCurrentUnitProcessingTime();
+                default:
+                    return 0;
+            }
+        }
+        public void set(int key, int value) 
+        {
+            return;
+        }
+        public int size() 
+        {
+            return 2;
+        }
+    };
 
     /**
     * @param entity the entity type
@@ -91,12 +109,6 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
     public boolean canExtractInvStack(int slot, ItemStack stack, Direction dir)
     {
         return false;
-    }
-
-    @Override
-    public void setInvStack(int slot, ItemStack stack) 
-    {
-        ImplementedInventory.super.setInvStack(slot, stack);
     }
 
     protected boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe)
@@ -193,6 +205,7 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
         return this.unitProcessingTime;
     }
 
+    @Override
     public PropertyDelegate getPropertyDelegate()
     {
         return this.propertyDelegate;

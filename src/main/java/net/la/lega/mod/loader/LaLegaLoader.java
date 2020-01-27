@@ -70,7 +70,7 @@ public class LaLegaLoader implements ModInitializer
         .food(new FoodComponent.Builder()
             .hunger(SalmonFilletItem.hunger)
             .saturationModifier(SalmonFilletItem.saturation)
-            .snack().alwaysEdible()
+            .alwaysEdible()
             .statusEffect(
                 new StatusEffectInstance(SalmonFilletItem.effect, SalmonFilletItem.effectDuration), SalmonFilletItem.effectChance)
         .build()));

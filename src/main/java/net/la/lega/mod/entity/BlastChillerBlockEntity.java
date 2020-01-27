@@ -1,23 +1,17 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
-import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.container.PropertyDelegate;
-import net.minecraft.inventory.BasicInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
 
-public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity implements PropertyDelegateHolder
+public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
 {
-    public static final int CHILL_TIME = 0;
-    public static final int UNIT_CHILL_TIME = 1;
-
     private static final int[] TOP_SLOTS = new int[] { 0 };
     private static final int[] BOTTOM_SLOTS = new int[] { 1 };
     private static final int[] SIDE_SLOTS = new int[] { 0 };
@@ -25,32 +19,6 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     public BlastChillerBlockEntity() 
     {
         super(LaLegaLoader.BLAST_CHILLER_BLOCK_ENTITY, 2);
-
-        this.propertyDelegate = new PropertyDelegate() 
-        {
-            public int get(int key) 
-            {
-                switch (key) 
-                {
-                    case CHILL_TIME:
-                        //System.out.println("CHILL_TIME: " + BlastChillerBlockEntity.this.currentChillTime);
-                        return BlastChillerBlockEntity.this.getCurrentProcessingTime();
-                    case UNIT_CHILL_TIME:
-                        //System.out.println("UNIT_CHILL_TIME: " + BlastChillerBlockEntity.this.unitChillTime);
-                        return BlastChillerBlockEntity.this.getCurrentUnitProcessingTime();
-                    default:
-                        return 0;
-                }
-            }
-            public void set(int key, int value) 
-            {
-                return;
-            }
-            public int size() 
-            {
-                return 2;
-            }
-        };
     }
 
     @Override
@@ -106,14 +74,12 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     {
         if(!this.world.isClient)
         {
-            BasicInventory inv = new BasicInventory(items.get(0));
-            BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, inv, world).orElse(null);
+            BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
             if (!this.isProcessing())
             {
                 if(this.canAcceptRecipeOutput(match)) 
                 {
                     initializeProcessing(match.getProcessingTime());
-                    sync();
                 }
             }
 
@@ -122,12 +88,12 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
             if(this.isProcessing())
             {
                 processStep();
+
                 if(isProcessingCompleted())
                 {
                     this.craftRecipe(match);
                     resetProcessing();
                 }
-                sync();
             }
         }
         this.markDirty();
@@ -191,4 +157,5 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
            inputSlot.decrement(1);
         }
     }
+
 }

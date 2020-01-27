@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 
 public abstract class AbstractBlockWithEntity extends BlockWithEntity 
 {
-
     protected AbstractBlockWithEntity(Settings settings) 
     {
         super(settings);
