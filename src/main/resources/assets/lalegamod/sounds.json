@@ -1,0 +1,17 @@
+{
+    "blast_chiller_hum":
+    {
+        "sounds":
+        [
+            "lalegamod:blast_chiller_hum"
+        ]
+    },
+    
+    "thread_cutter_cut":
+    {
+        "sounds":
+        [
+            "lalegamod:thread_cutter_cut"
+        ]
+    }
+}

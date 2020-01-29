@@ -7,6 +7,7 @@ import net.la.lega.mod.recipe.ThreadCuttingRecipe;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.Direction;
@@ -114,8 +115,9 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
             Position position = getOutputLocation(blockPointerImpl);
             ItemStack output = recipe.getOutput();
           
-            blockPointerImpl.getWorld().playLevelEvent(1000, blockPointerImpl.getBlockPos(), 0);
+            //blockPointerImpl.getWorld().playLevelEvent(1000, blockPointerImpl.getBlockPos(), 0);
             spawnItem(blockPointerImpl.getWorld(), output.copy(), 6, direction, position);
+            world.playSound(null, getPos(), LaLegaLoader.THREAD_CUTTER_CUT_SOUNDEVENT, SoundCategory.BLOCKS, 0.035F, 0.85F);
             inputSlot.decrement(1);
         }
     }   

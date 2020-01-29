@@ -1,6 +1,7 @@
 package net.la.lega.mod.block;
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import net.la.lega.mod.loader.LaLegaLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +14,7 @@ import net.minecraft.world.World;
 
 public class LauncherBlock extends Block 
 {
-   public static final Identifier ID =  new Identifier("lalegamod", "launcher_block");
+   public static final Identifier ID =  new Identifier(LaLegaLoader.MOD_ID, "launcher_block");
 
    private double launchForce = 1F;
 

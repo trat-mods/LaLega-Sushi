@@ -1,14 +1,20 @@
 package net.la.lega.mod.block;
 
+import java.util.Random;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.la.lega.mod.block.abstraction.AbstractBlockWithEntity;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
+import net.la.lega.mod.loader.LaLegaLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -27,7 +33,8 @@ import net.minecraft.world.World;
 public class BlastChillerBlock extends AbstractBlockWithEntity
 {
 
-    public static final Identifier ID = new Identifier("lalegamod", "blast_chiller");
+    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "blast_chiller");
+    public static final Identifier HUM_SOUND = new Identifier(LaLegaLoader.MOD_ID, "blast_chiller_hum");
 
     public static final BooleanProperty ON;    
     public static final DirectionProperty FACING;
@@ -36,6 +43,8 @@ public class BlastChillerBlock extends AbstractBlockWithEntity
         ON = BooleanProperty.of("on");
         FACING = HorizontalFacingBlock.FACING;
     }
+
+
 
     public BlastChillerBlock() 
     {
@@ -84,4 +93,19 @@ public class BlastChillerBlock extends AbstractBlockWithEntity
         return state.rotate(mirror.getRotation((Direction)state.get(FACING)));
     }
 
+    
+    @Environment(EnvType.CLIENT)
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) 
+    {
+        if((Boolean)state.get(ON)) 
+        {
+            double d = (double)pos.getX() + 0.5D;
+            double e = (double)pos.getY();
+            double f = (double)pos.getZ() + 0.5D;
+            if (random.nextDouble() < 0.175D) 
+            {
+               world.playSound(d, e, f, LaLegaLoader.BLAST_CHILLER_HUM_SOUNDEVENT, SoundCategory.BLOCKS, 0.7F, 1.1F, false);
+            }
+        }
+    }
 }

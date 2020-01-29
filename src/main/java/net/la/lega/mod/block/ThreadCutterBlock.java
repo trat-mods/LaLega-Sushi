@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.la.lega.mod.block.abstraction.AbstractBlockWithEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
+import net.la.lega.mod.loader.LaLegaLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
@@ -27,8 +28,9 @@ import net.minecraft.world.World;
 
 public class ThreadCutterBlock extends AbstractBlockWithEntity 
 {
-    public static final Identifier ID = new Identifier("lalegamod", "thread_cutter");
-  
+    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "thread_cutter");
+    public static final Identifier CUT_SOUND = new Identifier(LaLegaLoader.MOD_ID, "thread_cutter_cut");
+
     public static final DirectionProperty FACING;
     static
     {

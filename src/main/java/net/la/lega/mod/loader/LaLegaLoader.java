@@ -11,6 +11,7 @@ import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.gui.controller.BlastChillerBlockController;
 import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
+import net.la.lega.mod.item.HosomakiSake;
 import net.la.lega.mod.item.NigiriSake;
 import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.item.SalmonFilletItem;
@@ -27,9 +28,13 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+
+// MinecartSoundInstance
+// MinecartEntity
 // DropperBlock
 // HopperBlock
 // FurnaceBlockEntity
@@ -53,7 +58,12 @@ import net.minecraft.util.registry.Registry;
 public class LaLegaLoader implements ModInitializer
 {
     public static final String MOD_ID = "lalegamod";
+    
+    //SOUND EVENTS
+    public static SoundEvent THREAD_CUTTER_CUT_SOUNDEVENT = new SoundEvent(ThreadCutterBlock.CUT_SOUND);
+    public static SoundEvent BLAST_CHILLER_HUM_SOUNDEVENT = new SoundEvent(BlastChillerBlock.HUM_SOUND);
 
+    //#region ITEMS
     //Items
     public static final Item SASHIMI_ITEM = new SashimiItem(
         new Item.Settings().group(ItemGroup.FOOD)
@@ -87,8 +97,17 @@ public class LaLegaLoader implements ModInitializer
     .food(new FoodComponent.Builder()
         .hunger(NigiriSake.hunger)
         .saturationModifier(NigiriSake.saturation)
-        .snack().alwaysEdible()
+        .alwaysEdible()
     .build()));
+
+    public static final Item HOSOMAKI_SAKE_ITEM = new HosomakiSake(
+        new Item.Settings().group(ItemGroup.FOOD)
+        .food(new FoodComponent.Builder()
+            .hunger(HosomakiSake.hunger)
+            .saturationModifier(HosomakiSake.saturation)
+            .snack().alwaysEdible()
+        .build()));
+//#endregion
 
     //Blocks
     public static final Block LAUNCHER_BLOCK = new LauncherBlock();
@@ -110,6 +129,7 @@ public class LaLegaLoader implements ModInitializer
         registerEntities();
         registerRecipes();
         registerControllers();
+        registerSounds();
     }
 
     private void registerItems()
@@ -118,6 +138,7 @@ public class LaLegaLoader implements ModInitializer
         Registry.register(Registry.ITEM, SalmonFilletItem.ID, SALMON_FILLET_ITEM);
         Registry.register(Registry.ITEM, RiceItem.ID, RICE_ITEM);
         Registry.register(Registry.ITEM, NigiriSake.ID, NIGIRI_SAKE_ITEM);
+        Registry.register(Registry.ITEM, HosomakiSake.ID, HOSOMAKI_SAKE_ITEM);
     }
 
     private void registerBlocks()
@@ -162,5 +183,11 @@ public class LaLegaLoader implements ModInitializer
         ContainerProviderRegistry.INSTANCE.registerFactory(ThreadCutterBlock.ID, 
             (syncId, id, player, buf) -> new ThreadCutterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
         );
+    }
+
+    private void registerSounds()
+    {
+        Registry.register(Registry.SOUND_EVENT, ThreadCutterBlock.CUT_SOUND, THREAD_CUTTER_CUT_SOUNDEVENT);
+        Registry.register(Registry.SOUND_EVENT, BlastChillerBlock.HUM_SOUND, BLAST_CHILLER_HUM_SOUNDEVENT);
     }
 }
