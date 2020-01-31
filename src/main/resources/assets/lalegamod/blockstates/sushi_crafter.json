@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "lalegamod:block/sushi_crafter" },
+        "facing=south": { "model": "lalegamod:block/sushi_crafter", "y": 180 },
+        "facing=west":  { "model": "lalegamod:block/sushi_crafter", "y": 270 },
+        "facing=east":  { "model": "lalegamod:block/sushi_crafter", "y": 90 }
+    }
+}

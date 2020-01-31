@@ -18,6 +18,7 @@ public abstract class AbstractBlockController extends CottonCraftingController
         super(recipeType, syncId, playerInventory, blockInventory, delegate);
         initializeBufferEntity(context);
     }
+    
     protected AbstractBlockController(RecipeType<?> recipeType, int syncId, PlayerInventory playerInventory, BlockContext context) 
     {
         super(recipeType, syncId, playerInventory);

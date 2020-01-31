@@ -58,19 +58,6 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     }
 
     @Override
-    public void setInvStack(int slot, ItemStack stack) 
-    {
-        super.setInvStack(slot, stack);
-        ItemStack itemStack = (ItemStack)this.getItems().get(slot);
-        boolean bl = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
-        if (slot == 0 && !bl) 
-        {
-            resetProcessing();
-            this.markDirty();
-         }
-    }
-
-    @Override
     public void tick() 
     {
         if(!this.world.isClient)
@@ -97,7 +84,6 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
                 }
             }
         }
-        //this.markDirty();
     }
 
     @Override
@@ -145,7 +131,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
         if (recipe != null && this.canAcceptRecipeOutput(recipe)) 
         {
            ItemStack inputSlot = (ItemStack)this.items.get(0);
-           ItemStack output = bcRecipe.getOutput().copy();
+           ItemStack output = bcRecipe.craft(this);
            ItemStack outputSlot = (ItemStack)this.items.get(1);
            if (outputSlot.isEmpty()) 
            {

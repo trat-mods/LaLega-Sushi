@@ -2,23 +2,29 @@ package net.la.lega.mod.loader;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.block.ExtremeLauncherBlock;
 import net.la.lega.mod.block.LauncherBlock;
 import net.la.lega.mod.block.PoweredLauncherBlock;
+import net.la.lega.mod.block.SushiCrafterBlock;
 import net.la.lega.mod.block.ThreadCutterBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
+import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.gui.controller.BlastChillerBlockController;
+import net.la.lega.mod.gui.controller.SushiCrafterBlockController;
 import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
 import net.la.lega.mod.item.HosomakiSake;
 import net.la.lega.mod.item.NigiriSake;
 import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.item.SalmonFilletItem;
-import net.la.lega.mod.item.SashimiItem;
+import net.la.lega.mod.item.SashimiSakeItem;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
+import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
 import net.la.lega.mod.recipe.serializer.BlastChillingRecipeSerializer;
+import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
@@ -29,9 +35,9 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
 
 // MinecartSoundInstance
 // MinecartEntity
@@ -52,6 +58,9 @@ import net.minecraft.util.registry.Registry;
 // AbstractButtonBlock
 // LivingEntity
 // DropperBlock
+// ShapedRecipe
+// ShapelessRecipe
+// FabricToolTags
 
 //PlayerEntity
 
@@ -59,20 +68,25 @@ public class LaLegaLoader implements ModInitializer
 {
     public static final String MOD_ID = "lalegamod";
     
+    public static Tag<Item> SUSHI_FISH;
+    private String sushi_fish_id = "sushi_fish";
+    public static Tag<Item> SUSHI_INGREDIENT;
+    private String sushi_ingredient_id = "sushi_ingredient";
+
     //SOUND EVENTS
     public static SoundEvent THREAD_CUTTER_CUT_SOUNDEVENT = new SoundEvent(ThreadCutterBlock.CUT_SOUND);
     public static SoundEvent BLAST_CHILLER_HUM_SOUNDEVENT = new SoundEvent(BlastChillerBlock.HUM_SOUND);
 
     //#region ITEMS
     //Items
-    public static final Item SASHIMI_ITEM = new SashimiItem(
+    public static final Item SASHIMI_SAKE_ITEM = new SashimiSakeItem(
         new Item.Settings().group(ItemGroup.FOOD)
         .food(new FoodComponent.Builder()
-            .hunger(SashimiItem.hunger)
-            .saturationModifier(SashimiItem.saturation)
+            .hunger(SashimiSakeItem.hunger)
+            .saturationModifier(SashimiSakeItem.saturation)
             .snack().alwaysEdible()
             .statusEffect(
-                new StatusEffectInstance(SashimiItem.effect, SashimiItem.effectDuration), SashimiItem.effectChance)
+                new StatusEffectInstance(SashimiSakeItem.effect, SashimiSakeItem.effectDuration), SashimiSakeItem.effectChance)
         .build()));
 
     public static final Item SALMON_FILLET_ITEM = new SalmonFilletItem(
@@ -115,10 +129,12 @@ public class LaLegaLoader implements ModInitializer
     public static final Block EXTREME_LAUNCHER_BLOCK = new ExtremeLauncherBlock();
     public static final Block BLAST_CHILLER_BLOCK = new BlastChillerBlock();
     public static final Block THREAD_CUTTER_BLOCK = new ThreadCutterBlock();
+    public static final Block SUSHI_CRAFTER_BLOCK = new SushiCrafterBlock();
 
     //Entities
     public static BlockEntityType<BlastChillerBlockEntity> BLAST_CHILLER_BLOCK_ENTITY;
     public static BlockEntityType<ThreadCutterBlockEntity> THREAD_CUTTER_BLOCK_ENTITY;
+    public static BlockEntityType<SushiCrafterBlockEntity> SUSHI_CRAFTER_BLOCK_ENTITY;
 
 
     @Override
@@ -130,11 +146,12 @@ public class LaLegaLoader implements ModInitializer
         registerRecipes();
         registerControllers();
         registerSounds();
+        registerTags();
     }
 
     private void registerItems()
     {
-        Registry.register(Registry.ITEM, SashimiItem.ID, SASHIMI_ITEM);
+        Registry.register(Registry.ITEM, SashimiSakeItem.ID, SASHIMI_SAKE_ITEM);
         Registry.register(Registry.ITEM, SalmonFilletItem.ID, SALMON_FILLET_ITEM);
         Registry.register(Registry.ITEM, RiceItem.ID, RICE_ITEM);
         Registry.register(Registry.ITEM, NigiriSake.ID, NIGIRI_SAKE_ITEM);
@@ -157,12 +174,16 @@ public class LaLegaLoader implements ModInitializer
 
         Registry.register(Registry.BLOCK, ThreadCutterBlock.ID, THREAD_CUTTER_BLOCK);
         Registry.register(Registry.ITEM, ThreadCutterBlock.ID, new BlockItem(THREAD_CUTTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
+
+        Registry.register(Registry.BLOCK, SushiCrafterBlock.ID, SUSHI_CRAFTER_BLOCK);
+        Registry.register(Registry.ITEM, SushiCrafterBlock.ID, new BlockItem(SUSHI_CRAFTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
     }
 
     private void registerEntities()
     {
-        BLAST_CHILLER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY, MOD_ID + BlastChillerBlock.ID.getPath(), BlockEntityType.Builder.create(BlastChillerBlockEntity::new, BLAST_CHILLER_BLOCK).build(null));
-        THREAD_CUTTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY, MOD_ID + ThreadCutterBlock.ID.getPath(), BlockEntityType.Builder.create(ThreadCutterBlockEntity::new, THREAD_CUTTER_BLOCK).build(null));
+        BLAST_CHILLER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + BlastChillerBlock.ID.getPath(), BlockEntityType.Builder.create(BlastChillerBlockEntity::new, BLAST_CHILLER_BLOCK).build(null));
+        THREAD_CUTTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ThreadCutterBlock.ID.getPath(), BlockEntityType.Builder.create(ThreadCutterBlockEntity::new, THREAD_CUTTER_BLOCK).build(null));
+        SUSHI_CRAFTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + SushiCrafterBlock.ID.getPath(), BlockEntityType.Builder.create(SushiCrafterBlockEntity::new, SUSHI_CRAFTER_BLOCK).build(null));
     }
 
     private void registerRecipes()
@@ -172,6 +193,9 @@ public class LaLegaLoader implements ModInitializer
 
         Registry.register(Registry.RECIPE_SERIALIZER, ThreadCuttingRecipeSerializer.ID, ThreadCuttingRecipeSerializer.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, ThreadCuttingRecipe.Type.ID), ThreadCuttingRecipe.Type.INSTANCE);
+
+        Registry.register(Registry.RECIPE_SERIALIZER, SushiCraftingRecipeSerializer.ID, SushiCraftingRecipeSerializer.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, SushiCraftingRecipe.Type.ID), SushiCraftingRecipe.Type.INSTANCE);
     }
 
     private void registerControllers()
@@ -183,11 +207,21 @@ public class LaLegaLoader implements ModInitializer
         ContainerProviderRegistry.INSTANCE.registerFactory(ThreadCutterBlock.ID, 
             (syncId, id, player, buf) -> new ThreadCutterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
         );
+
+        ContainerProviderRegistry.INSTANCE.registerFactory(SushiCrafterBlock.ID, 
+            (syncId, id, player, buf) -> new SushiCrafterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos()))
+        );
     }
 
     private void registerSounds()
     {
         Registry.register(Registry.SOUND_EVENT, ThreadCutterBlock.CUT_SOUND, THREAD_CUTTER_CUT_SOUNDEVENT);
         Registry.register(Registry.SOUND_EVENT, BlastChillerBlock.HUM_SOUND, BLAST_CHILLER_HUM_SOUNDEVENT);
+    }
+
+    private void registerTags()
+    {
+        SUSHI_FISH= TagRegistry.item(new Identifier(MOD_ID, sushi_fish_id));
+        SUSHI_INGREDIENT= TagRegistry.item(new Identifier(MOD_ID, sushi_ingredient_id));
     }
 }

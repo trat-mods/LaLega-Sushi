@@ -206,10 +206,6 @@ public interface ImplementedInventory extends SidedInventory
         {
            stack.setCount(this.getInvMaxStackAmount());
         }
-        // getItems().set(slot, stack);
-        // if (stack.getCount() > getInvMaxStackAmount()) {
-        //     stack.setCount(getInvMaxStackAmount());
-        // }
     }
 
     @Override

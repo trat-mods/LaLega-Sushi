@@ -6,7 +6,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.la.lega.mod.block.abstraction.AbstractBlockWithEntity;
+import net.la.lega.mod.block.abstraction.AbstractProcessingOutputterBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.minecraft.block.BlockState;
@@ -30,9 +30,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class BlastChillerBlock extends AbstractBlockWithEntity
+public class BlastChillerBlock extends AbstractProcessingOutputterBlock
 {
-
     public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "blast_chiller");
     public static final Identifier HUM_SOUND = new Identifier(LaLegaLoader.MOD_ID, "blast_chiller_hum");
 
@@ -43,7 +42,6 @@ public class BlastChillerBlock extends AbstractBlockWithEntity
         ON = BooleanProperty.of("on");
         FACING = HorizontalFacingBlock.FACING;
     }
-
 
 
     public BlastChillerBlock() 
@@ -77,7 +75,6 @@ public class BlastChillerBlock extends AbstractBlockWithEntity
         stateManager.add(ON).add(FACING);
     }
 
-    
     public BlockState getPlacementState(ItemPlacementContext ctx)
     {
         return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());

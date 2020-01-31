@@ -18,7 +18,7 @@ import net.minecraft.util.math.Direction;
  * Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
  * @author t_r_a_t
  */
-public class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, PropertyDelegateHolder
+public abstract class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, PropertyDelegateHolder
 {
     public static final int PROCESS_TIME = 0;
     public static final int UNIT_PROCESS_TIME = 1;
@@ -28,6 +28,7 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
     private int currentProcessingTime = -1;
     private int unitProcessingTime = 0;
     
+    //#region Property Delegate
     private final PropertyDelegate propertyDelegate = new PropertyDelegate()
     {
         public int get(int key) 
@@ -59,6 +60,7 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
             return 2;
         }
     };
+    //#endregion
 
     /**
     * @param entity the entity type
@@ -92,41 +94,37 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
         }
     }
 
-    @Override
-    public int[] getInvAvailableSlots(Direction side)
+    @Override 
+    public void setInvStack(int slot, ItemStack stack) 
     {
-        return null;
+        ImplementedInventory.super.setInvStack(slot, stack);
+        ItemStack itemStack = (ItemStack)this.getItems().get(slot);
+        boolean bl = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
+        if (slot == 0 && !bl) 
+        {
+            resetProcessing();
+            this.markDirty();
+        }
     }
+
+    @Override
+    public abstract int[] getInvAvailableSlots(Direction side);
 
     /**
     * @apiNote is the slot valid for extract/insert
     */
-    public boolean isValidInvStack(int slot, ItemStack stack)
-    {
-        return false;
-    }
+    @Override
+    public abstract boolean isValidInvStack(int slot, ItemStack stack);
 
     @Override
-    public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir)
-    {
-        return false;
-    }
+    public abstract boolean canInsertInvStack(int slot, ItemStack stack, Direction dir);
 
     @Override
-    public boolean canExtractInvStack(int slot, ItemStack stack, Direction dir)
-    {
-        return false;
-    }
+    public abstract boolean canExtractInvStack(int slot, ItemStack stack, Direction dir);
 
-    protected boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe)
-    {
-        return false;
-    }
+    protected abstract boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe);
 
-    protected void craftRecipe(@Nullable Recipe<?> recipe)
-    {
-
-    }
+    protected abstract void craftRecipe(@Nullable Recipe<?> recipe);
     
     @Override
     public void fromTag(CompoundTag tag) 
@@ -145,6 +143,8 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
         tag.putShort("unitProcessingTime", (short)this.unitProcessingTime);
         return super.toTag(tag);
     }
+
+    //#region Processing
 
     /**
     * @return true if the outputter is currently processing
@@ -199,6 +199,8 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
         return this.unitProcessingTime;
     }
 
+    //#endregion
+
     @Override
     public PropertyDelegate getPropertyDelegate()
     {
@@ -206,7 +208,6 @@ public class AbstractProcessingOutputterEntity extends BlockEntity implements Im
     }
 
     @Override
-    public void tick() 
-    {
-    }
+    public void tick(){}
+
 }

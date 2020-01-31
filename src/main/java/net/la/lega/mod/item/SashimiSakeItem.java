@@ -1,13 +1,14 @@
 package net.la.lega.mod.item;
 
+import net.la.lega.mod.loader.LaLegaLoader;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
-public class SashimiItem extends Item
+public class SashimiSakeItem extends Item
 {
-    public static final Identifier ID = new Identifier("lalegamod", "sashimi");
+    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "sashimi_sake");
     
     public static final StatusEffect effect = StatusEffects.HUNGER;
     public static final int effectDuration = 20 * 8;
@@ -15,7 +16,7 @@ public class SashimiItem extends Item
     public static final float saturation = 0.55F;
     public static final int hunger = 2;
 
-    public SashimiItem(Settings settings) 
+    public SashimiSakeItem(Settings settings) 
     {
         super(settings);
     }

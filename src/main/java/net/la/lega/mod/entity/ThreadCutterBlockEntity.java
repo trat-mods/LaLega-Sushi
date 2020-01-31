@@ -106,19 +106,19 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected void craftRecipe(Recipe<?> recipe) 
     {
-        if (recipe != null && this.canAcceptRecipeOutput(recipe)) 
+        ThreadCuttingRecipe tCRecipe = (ThreadCuttingRecipe) recipe;
+        if (tCRecipe != null && this.canAcceptRecipeOutput(tCRecipe)) 
         {
             ItemStack inputSlot = (ItemStack)this.items.get(0);
             BlockPointerImpl blockPointerImpl = new BlockPointerImpl(world, pos);
 
             Direction direction = (Direction)blockPointerImpl.getBlockState().get(ThreadCutterBlock.FACING);
             Position position = getOutputLocation(blockPointerImpl);
-            ItemStack output = recipe.getOutput();
-          
-            //blockPointerImpl.getWorld().playLevelEvent(1000, blockPointerImpl.getBlockPos(), 0);
+            ItemStack output = tCRecipe.craft(this);
+            inputSlot.decrement(1);
+            
             spawnItem(blockPointerImpl.getWorld(), output.copy(), 6, direction, position);
             world.playSound(null, getPos(), LaLegaLoader.THREAD_CUTTER_CUT_SOUNDEVENT, SoundCategory.BLOCKS, 0.035F, 0.85F);
-            inputSlot.decrement(1);
         }
     }   
 

@@ -3,18 +3,16 @@ package net.la.lega.mod.block;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.la.lega.mod.block.abstraction.AbstractProcessingOutputterBlock;
-import net.la.lega.mod.entity.ThreadCutterBlockEntity;
+import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FacingBlock;
-import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.block.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
@@ -26,36 +24,34 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class ThreadCutterBlock extends AbstractProcessingOutputterBlock 
+public class SushiCrafterBlock extends AbstractProcessingOutputterBlock
 {
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "thread_cutter");
-    public static final Identifier CUT_SOUND = new Identifier(LaLegaLoader.MOD_ID, "thread_cutter_cut");
-
+    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "sushi_crafter"); 
     public static final DirectionProperty FACING;
     static
     {
-        FACING = FacingBlock.FACING;
+        FACING = HorizontalFacingBlock.FACING;
     }
 
-    public ThreadCutterBlock() 
+    public SushiCrafterBlock() 
     {
-        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(0.8F, 0.8F).build());
+        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(1F, 1F).build());
         this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)));
     }
 
     @Override
     public BlockEntity createBlockEntity(BlockView view) 
     {
-        return new ThreadCutterBlockEntity();
+        return new SushiCrafterBlockEntity();
     }
-    
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) 
     {
         if (world.isClient) return ActionResult.SUCCESS;
 
 		BlockEntity be = world.getBlockEntity(pos);
-        if (be!=null && be instanceof ThreadCutterBlockEntity) 
+        if (be!=null && be instanceof SushiCrafterBlockEntity) 
         {
 			ContainerProviderRegistry.INSTANCE.openContainer(ID, player, (packetByteBuf -> packetByteBuf.writeBlockPos(pos)));
 		}
@@ -70,7 +66,7 @@ public class ThreadCutterBlock extends AbstractProcessingOutputterBlock
 
     public BlockState getPlacementState(ItemPlacementContext ctx)
     {
-        return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
+        return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     public BlockState rotate(BlockState state, BlockRotation rotation) 
@@ -81,5 +77,5 @@ public class ThreadCutterBlock extends AbstractProcessingOutputterBlock
     public BlockState mirror(BlockState state, BlockMirror mirror) 
     {
         return state.rotate(mirror.getRotation((Direction)state.get(FACING)));
-    }
+    }   
 }

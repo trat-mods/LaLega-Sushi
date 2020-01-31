@@ -1,0 +1,10 @@
+{
+    "parent": "block/orientable",
+    "textures": 
+    {
+        "top": "lalegamod:block/sushi_crafter_top",
+        "front": "lalegamod:block/sushi_crafter_front",
+        "side": "lalegamod:block/sushi_crafter_side",
+        "bottom": "lalegamod:block/sushi_crafter_bottom"
+    }
+}

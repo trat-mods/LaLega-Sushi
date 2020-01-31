@@ -12,9 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public abstract class AbstractBlockWithEntity extends BlockWithEntity 
+public abstract class AbstractProcessingOutputterBlock extends BlockWithEntity 
 {
-    protected AbstractBlockWithEntity(Settings settings) 
+    public AbstractProcessingOutputterBlock(Settings settings) 
     {
         super(settings);
     }

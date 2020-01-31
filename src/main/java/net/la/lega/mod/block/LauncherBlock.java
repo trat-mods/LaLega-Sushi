@@ -23,7 +23,8 @@ public class LauncherBlock extends Block
    protected double stackMultiplier = 0.325;
    protected double baseMultiplier = 1F;
 
-   public LauncherBlock() {
+   public LauncherBlock() 
+   {
       super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(0.8F, 0.5F).build());
    }
 

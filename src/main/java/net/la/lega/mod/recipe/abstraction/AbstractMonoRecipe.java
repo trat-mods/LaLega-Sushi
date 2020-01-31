@@ -9,6 +9,7 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
+
 public abstract class AbstractMonoRecipe implements Recipe<Inventory> 
 {
     private final Ingredient input;
@@ -38,7 +39,7 @@ public abstract class AbstractMonoRecipe implements Recipe<Inventory>
     @Override
     public ItemStack craft(Inventory inv) 
     {
-        return ItemStack.EMPTY;
+        return this.outputStack.copy();
     }
 
     @Override
