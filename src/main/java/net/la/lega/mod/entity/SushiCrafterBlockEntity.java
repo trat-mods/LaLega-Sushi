@@ -1,15 +1,12 @@
 package net.la.lega.mod.entity;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import net.la.lega.mod.block.SushiCrafterBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.inventory.BasicInventory;
 import net.minecraft.item.Item;
@@ -29,6 +26,8 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     private static final int[] TOP_SLOTS = new int[] { 3 };
     private static final int[] BOTTOM_SLOTS = new int[] { 4 };
     private static final int[] SIDE_SLOTS = new int[] { 0, 1, 2 };
+
+    private int currentSushiVillagers = 0;
 
 
     public SushiCrafterBlockEntity() 
@@ -117,14 +116,12 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     protected boolean canAcceptRecipeOutput(Recipe<?> recipe) 
     {
         SushiCraftingRecipe bcRecipe = (SushiCraftingRecipe) recipe;
-        if (bcRecipe != null)
+        if (bcRecipe != null && areRequiredSlotNotEmpty())
         {
-            if(areRequiredSlotNotEmpty())
-            {
                 ItemStack outputStack = bcRecipe.getOutput();
                 if (outputStack.isEmpty()) 
                 {
-                        System.out.println("Output empty");
+
                         return false;
                 } 
                 else
@@ -136,7 +133,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
                         } 
                         else if (!currentOutputStack.isItemEqualIgnoreDamage(outputStack)) 
                         {
-                            System.out.println("Not equal ignore damage");
                             return false;
                         } 
                         else if (currentOutputStack.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount() && currentOutputStack.getCount() + bcRecipe.getOutputAmount() <= currentOutputStack.getMaxCount()) 
@@ -145,20 +141,12 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
                         } 
                         else
                         {
-                            System.out.println("Returning output < outputcraft");
                             return currentOutputStack.getCount() < outputStack.getMaxCount();
                         }
-                    }
-            }
-            else
-            {
-                System.out.println("Required Slot empty");
-                return false;
-            }
-        } 
+                }
+        }
         else 
         {
-            System.out.println("recipe null");
             return false;
         }
     }
@@ -167,10 +155,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     protected void craftRecipe(Recipe<?> recipe) 
     {
         SushiCraftingRecipe bcRecipe = (SushiCraftingRecipe) recipe;
-        if(bcRecipe == null)
-        {
-            System.out.println("Recipe null");
-        }
         if (bcRecipe != null && this.canAcceptRecipeOutput(bcRecipe)) 
         {
             ItemStack ing2Slot = (ItemStack)this.items.get(ING2_SLOT);
@@ -183,12 +167,10 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 
             if (outputSlot.isEmpty()) 
             {
-                System.out.println("Setting output");
                 this.items.set(OUTPUT_SLOT, output);
             }
             else if (outputSlot.getItem() == output.getItem()) 
             {
-                System.out.println("Incrementing 1");
                 outputSlot.increment(bcRecipe.getOutputAmount());
             }
             if(!ingSlot.isEmpty())
@@ -207,26 +189,33 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     public void tick()
     {
-        if(!this.world.isClient && isSushiVillagerNear())
+        if(!this.world.isClient)
         {
-            BasicInventory craftingInventory = new BasicInventory(items.get(RICE_SLOT), items.get(FISH_SLOT), items.get(ING_SLOT), items.get(ING2_SLOT));
-            SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, craftingInventory, world).orElse(null);
-            if (!this.isProcessing())
+            if(isSushiVillagerNear())
             {
-                if(this.canAcceptRecipeOutput(match)) 
+                BasicInventory craftingInventory = new BasicInventory(items.get(RICE_SLOT), items.get(FISH_SLOT), items.get(ING_SLOT), items.get(ING2_SLOT));
+                SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, craftingInventory, world).orElse(null);
+                if (!this.isProcessing())
                 {
-                    initializeProcessing(match.getProcessingTime());
+                    if(this.canAcceptRecipeOutput(match)) 
+                    {
+                        initializeProcessing(match.getProcessingTime());
+                    }
+                }
+
+                if(this.isProcessing())
+                {
+                    processStep();
+                    if(isProcessingCompleted())
+                    {
+                        this.craftRecipe(match);
+                        resetProcessing();
+                    }
                 }
             }
-
-            if(this.isProcessing())
+            else
             {
-                processStep();
-                if(isProcessingCompleted())
-                {
-                    this.craftRecipe(match);
-                    resetProcessing();
-                }
+                resetProcessing();
             }
         }
     }
@@ -238,10 +227,9 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 
     private boolean isSushiVillagerNear()
     {
-        Box checkBox = new Box(pos);
+        Box checkBox = new Box(getPos());
         checkBox.expand(10);
-        List<VillagerEntity> sushiVillagers = world.getEntities(VillagerEntity.class, checkBox, Predicate.isEqual(VillagerEntity.class));
-        System.out.println(sushiVillagers.size());
-        return sushiVillagers.size() > 0;
+        this.currentSushiVillagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(2D, 2D, 2D)).size();
+        return this.currentSushiVillagers > 0;
     }
 }
