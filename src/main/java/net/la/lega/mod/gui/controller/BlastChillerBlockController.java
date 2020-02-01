@@ -26,12 +26,12 @@ public class BlastChillerBlockController extends AbstractBlockController
         WItemSlot outputSlot = WItemSlot.outputOf(blockInventory, 1);
         WLabel title = new WLabel("Blast Chiller", WLabel.DEFAULT_TEXT_COLOR);
 
-        WBar progressBar = new WBar(new Identifier("lalegamod:textures/progress_bg.png"), new Identifier("lalegamod:textures/progress_bar.png"), 0, 1, WBar.Direction.RIGHT);
+        WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"), 0, 1, WBar.Direction.RIGHT);
 
         root.add(title, 10, 2);
         root.add(inputSlot, 34, 32);
         root.add(outputSlot, 110, 32);
-        root.add(progressBar, 62, 35, 30, 12);
+        root.add(progressBar, 68, 32, 26, 17);
         root.add(this.createPlayerInventoryPanel(), 0, 70);
         root.validate(this);
     }

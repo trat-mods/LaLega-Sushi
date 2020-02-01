@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#C#",
+        "#H#",
+        "#R#"
+    ],
+    "key": {
+        "#": {
+            "tag": "minecraft:planks"
+        },
+        "C": {
+            "item": "minecraft:crafting_table"
+        },
+        "H": {
+            "item": "minecraft:heart_of_the_sea"
+        },
+        "R": {
+            "item": "minecraft:redstone_block"
+        }
+    },
+    "result": {
+        "item": "lalegamod:sushi_crafter",
+        "count": 1
+    }
+}

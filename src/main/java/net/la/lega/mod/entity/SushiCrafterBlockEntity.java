@@ -1,14 +1,21 @@
 package net.la.lega.mod.entity;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import net.la.lega.mod.block.SushiCrafterBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.inventory.BasicInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 
 public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity 
@@ -200,7 +207,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     public void tick()
     {
-        if(!this.world.isClient && world.isReceivingRedstonePower(pos))
+        if(!this.world.isClient && isSushiVillagerNear())
         {
             BasicInventory craftingInventory = new BasicInventory(items.get(RICE_SLOT), items.get(FISH_SLOT), items.get(ING_SLOT), items.get(ING2_SLOT));
             SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, craftingInventory, world).orElse(null);
@@ -227,5 +234,14 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     private boolean areRequiredSlotNotEmpty()
     {
         return !((ItemStack)items.get(FISH_SLOT)).isEmpty() && !((ItemStack)items.get(RICE_SLOT)).isEmpty();
+    }
+
+    private boolean isSushiVillagerNear()
+    {
+        Box checkBox = new Box(pos);
+        checkBox.expand(10);
+        List<VillagerEntity> sushiVillagers = world.getEntities(VillagerEntity.class, checkBox, Predicate.isEqual(VillagerEntity.class));
+        System.out.println(sushiVillagers.size());
+        return sushiVillagers.size() > 0;
     }
 }
