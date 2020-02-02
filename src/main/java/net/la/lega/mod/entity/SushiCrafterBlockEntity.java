@@ -1,8 +1,5 @@
 package net.la.lega.mod.entity;
 
-import java.util.List;
-
-import net.la.lega.mod.block.SushiCrafterBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.item.RiceItem;
 import net.la.lega.mod.loader.LaLegaLoader;
@@ -23,9 +20,9 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     public static final int RICE_SLOT = 3;
     public static final int OUTPUT_SLOT = 4;
 
-    private static final int[] TOP_SLOTS = new int[] { 3 };
+    private static final int[] TOP_SLOTS = new int[] { 0, 1, 2, 3 };
     private static final int[] BOTTOM_SLOTS = new int[] { 4 };
-    private static final int[] SIDE_SLOTS = new int[] { 0, 1, 2 };
+    private static final int[] SIDE_SLOTS = new int[] { 0, 1, 2, 3 };
 
     private int currentSushiVillagers = 0;
 
@@ -78,32 +75,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir) 
     {
-        Direction facing = getCachedState().get(SushiCrafterBlock.FACING);
-        Item stackItem = stack.getItem();
-
-        if(slot == FISH_SLOT)
-        {
-            return dir == facing.getOpposite() && stackItem.isIn(LaLegaLoader.SUSHI_FISH);
-        }
-        else if(slot == RICE_SLOT)
-        {
-            return dir == Direction.UP && (stackItem.asItem() instanceof RiceItem);
-        }
-        else if(facing == Direction.NORTH || facing == Direction.SOUTH)
-        {
-            if(slot == ING_SLOT || slot == ING2_SLOT)
-            {
-                return (dir == Direction.WEST || dir == Direction.EAST) && stackItem.isIn(LaLegaLoader.SUSHI_INGREDIENT);
-            }
-        }
-        else if(facing == Direction.WEST || facing == Direction.EAST)
-        {
-            if(slot == ING_SLOT || slot == ING2_SLOT)
-            {
-                return (dir == Direction.NORTH || dir == Direction.SOUTH) && stackItem.isIn(LaLegaLoader.SUSHI_INGREDIENT);
-            }
-        }
-        return false;
+        return slot != OUTPUT_SLOT;
     }
 
     @Override
@@ -227,9 +199,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 
     private boolean isSushiVillagerNear()
     {
-        Box checkBox = new Box(getPos());
-        checkBox.expand(10);
-        this.currentSushiVillagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(2D, 2D, 2D)).size();
-        return this.currentSushiVillagers > 0;
+        return (this.currentSushiVillagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(2D, 2D, 2D)).size()) > 0;
     }
 }

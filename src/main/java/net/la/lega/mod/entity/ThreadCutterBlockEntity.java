@@ -118,7 +118,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
             inputSlot.decrement(1);
             
             spawnItem(blockPointerImpl.getWorld(), output.copy(), 6, direction, position);
-            world.playSound(null, getPos(), LaLegaLoader.THREAD_CUTTER_CUT_SOUNDEVENT, SoundCategory.BLOCKS, 0.035F, 0.85F);
+            world.playSound(null, getPos(), LaLegaLoader.THREAD_CUTTER_CUT_SOUNDEVENT, SoundCategory.BLOCKS, 0.045F, 0.85F);
         }
     }   
 

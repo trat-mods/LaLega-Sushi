@@ -99,9 +99,9 @@ public class BlastChillerBlock extends AbstractProcessingOutputterBlock
             double d = (double)pos.getX() + 0.5D;
             double e = (double)pos.getY();
             double f = (double)pos.getZ() + 0.5D;
-            if (random.nextDouble() < 0.175D) 
+            if (random.nextDouble() < 0.15D) 
             {
-               world.playSound(d, e, f, LaLegaLoader.BLAST_CHILLER_HUM_SOUNDEVENT, SoundCategory.BLOCKS, 0.7F, 1.1F, false);
+               world.playSound(d, e, f, LaLegaLoader.BLAST_CHILLER_HUM_SOUNDEVENT, SoundCategory.BLOCKS, 0.75F, 1.1F, false);
             }
         }
     }
