@@ -1,6 +1,7 @@
 package net.la.lega.mod.loader;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.block.SushiCrafterBlock;
@@ -11,6 +12,7 @@ import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
 import net.la.lega.mod.gui.screen.BlastChillerBlockScreen;
 import net.la.lega.mod.gui.screen.SushiCrafterBlockScreen;
 import net.la.lega.mod.gui.screen.ThreadCutterBlockScreen;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.container.BlockContext;
 
 public class ClientLoader implements ClientModInitializer
@@ -39,6 +41,6 @@ public class ClientLoader implements ClientModInitializer
                 player)
         );
 
-        //BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.CHILL_BLASTER_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.AVOCADOES_BLOCK, RenderLayer.getTranslucent());
     }
 }

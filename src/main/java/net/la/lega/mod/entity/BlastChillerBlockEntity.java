@@ -1,7 +1,6 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
-import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.loader.LaLegaLoader;
@@ -11,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
 
-public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity implements PropertyDelegateHolder
+public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity 
 {
     private static final int[] TOP_SLOTS = new int[] { 0 };
     private static final int[] BOTTOM_SLOTS = new int[] { 1 };
@@ -23,12 +22,12 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     }
 
     @Override
-    public int[] getInvAvailableSlots(Direction side)
+    public int[] getInvAvailableSlots(Direction side) 
     {
-        if(side == Direction.DOWN)
+        if (side == Direction.DOWN) 
         {
             return BOTTOM_SLOTS;
-        }
+        } 
         else 
         {
             return side == Direction.UP ? TOP_SLOTS : SIDE_SLOTS;
@@ -50,7 +49,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     @Override
     public boolean canExtractInvStack(int slot, ItemStack stack, Direction dir) 
     {
-        if(slot == 1)
+        if (slot == 1) 
         {
             return (dir == Direction.DOWN);
         }
@@ -58,26 +57,27 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     }
 
     @Override
-    public void tick() 
-    {
-        if(!this.world.isClient)
+    public void tick() {
+        if (!this.world.isClient) 
         {
-            BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
-            if (!this.isProcessing())
+            BlastChillingRecipe match = world.getRecipeManager()
+                    .getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
+            if (!this.isProcessing()) 
             {
-                if(this.canAcceptRecipeOutput(match)) 
+                if (this.canAcceptRecipeOutput(match)) 
                 {
                     initializeProcessing(match.getProcessingTime());
                 }
             }
 
-            this.world.setBlockState(this.pos, (BlockState)this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, isProcessing()), 3);
+            this.world.setBlockState(this.pos,
+                    (BlockState) this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, isProcessing()), 3);
 
-            if(this.isProcessing())
+            if (this.isProcessing()) 
             {
                 processStep();
 
-                if(isProcessingCompleted())
+                if (isProcessingCompleted()) 
                 {
                     this.craftRecipe(match);
                     resetProcessing();
@@ -90,37 +90,35 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
     protected boolean canAcceptRecipeOutput(Recipe<?> recipe) 
     {
         BlastChillingRecipe bcRecipe = (BlastChillingRecipe) recipe;
-        if (!((ItemStack)this.items.get(0)).isEmpty() && recipe != null) 
+        if (!((ItemStack) this.items.get(0)).isEmpty() && recipe != null) 
         {
-           ItemStack itemStack = bcRecipe.getOutput();
-           if (itemStack.isEmpty()) 
-           {
+            ItemStack itemStack = bcRecipe.getOutput();
+            if (itemStack.isEmpty()) 
+            {
                 return false;
-           } 
-           else
-           {
-                ItemStack itemStack2 = (ItemStack)this.items.get(1);
+            } 
+            else 
+            {
+                ItemStack itemStack2 = (ItemStack) this.items.get(1);
                 if (itemStack2.isEmpty()) 
                 {
                     return true;
-                } 
-                else if (!itemStack2.isItemEqualIgnoreDamage(itemStack)) 
+                } else if (!itemStack2.isItemEqualIgnoreDamage(itemStack))
                 {
                     return false;
                 } 
-                else if (itemStack2.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount() && itemStack2.getCount() + bcRecipe.getOutputAmount() <= itemStack2.getMaxCount()) 
+                else if (itemStack2.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount()
+                        && itemStack2.getCount() + bcRecipe.getOutputAmount() <= itemStack2.getMaxCount()) 
                 {
                     return true;
                 } 
-                else
+                else 
                 {
                     return itemStack2.getCount() < itemStack.getMaxCount();
                 }
             }
-        } 
-        else 
-        {
-           return false;
+        } else {
+            return false;
         }
     }
 
@@ -130,18 +128,17 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity i
         BlastChillingRecipe bcRecipe = (BlastChillingRecipe) recipe;
         if (recipe != null && this.canAcceptRecipeOutput(recipe)) 
         {
-           ItemStack inputSlot = (ItemStack)this.items.get(0);
-           ItemStack output = bcRecipe.craft(this);
-           ItemStack outputSlot = (ItemStack)this.items.get(1);
-           if (outputSlot.isEmpty()) 
-           {
-              this.items.set(1, output.copy());
-           }
-           else if (outputSlot.getItem() == output.getItem()) 
-           {
-              outputSlot.increment(bcRecipe.getOutputAmount());
-           }
-           inputSlot.decrement(1);
+            ItemStack inputSlot = (ItemStack) this.items.get(0);
+            ItemStack output = bcRecipe.craft(this);
+            ItemStack outputSlot = (ItemStack) this.items.get(1);
+            if (outputSlot.isEmpty()) 
+            {
+                this.items.set(1, output.copy());
+            } else if (outputSlot.getItem() == output.getItem()) 
+            {
+                outputSlot.increment(bcRecipe.getOutputAmount());
+            }
+            inputSlot.decrement(1);
         }
     }
 

@@ -1,7 +1,7 @@
 package net.la.lega.mod.entity;
 
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
-import net.la.lega.mod.item.RiceItem;
+import net.la.lega.mod.item.Rice;
 import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -56,7 +56,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
         }
         else if(slot == RICE_SLOT)
         {
-            return stackItem.asItem() instanceof RiceItem;
+            return stackItem.asItem() instanceof Rice;
         }
         else if(slot == FISH_SLOT)
         {
