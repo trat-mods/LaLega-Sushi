@@ -79,6 +79,7 @@ import net.minecraft.world.gen.stateprovider.SimpleStateProvider;
 // SugarcaneFeature
 // DefaultBiomeFeatures
 // BeehiveBlock
+// DispenserBlock
 
 public class LaLegaLoader implements ModInitializer 
 {
@@ -180,15 +181,11 @@ public class LaLegaLoader implements ModInitializer
 
         private void registerEntities() 
         {
-                BLAST_CHILLER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,
-                                MOD_ID + BlastChillerBlock.ID.getPath(), BlockEntityType.Builder
-                                                .create(BlastChillerBlockEntity::new, BLAST_CHILLER_BLOCK).build(null));
-                THREAD_CUTTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,
-                                MOD_ID + ThreadCutterBlock.ID.getPath(), BlockEntityType.Builder
-                                                .create(ThreadCutterBlockEntity::new, THREAD_CUTTER_BLOCK).build(null));
-                SUSHI_CRAFTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,
-                                MOD_ID + SushiCrafterBlock.ID.getPath(), BlockEntityType.Builder
-                                                .create(SushiCrafterBlockEntity::new, SUSHI_CRAFTER_BLOCK).build(null));
+                BLAST_CHILLER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + BlastChillerBlock.ID.getPath(), BlockEntityType.Builder.create(BlastChillerBlockEntity::new, BLAST_CHILLER_BLOCK).build(null));
+
+                THREAD_CUTTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ThreadCutterBlock.ID.getPath(), BlockEntityType.Builder.create(ThreadCutterBlockEntity::new, THREAD_CUTTER_BLOCK).build(null));
+
+                SUSHI_CRAFTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + SushiCrafterBlock.ID.getPath(), BlockEntityType.Builder.create(SushiCrafterBlockEntity::new, SUSHI_CRAFTER_BLOCK).build(null));
         }
 
         private void registerRecipes() 

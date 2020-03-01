@@ -31,7 +31,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class AvocadoBlock extends PlantBlock implements Fertilizable 
+public class AvocadoBlock extends PlantBlock implements Fertilizable
 {
     public static final IntProperty AGE;
 
@@ -126,7 +126,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
             {
                 world.playSound(player, player.getX(), player.getY(), player.getZ(), LaLegaLoader.AVOCADO_HARVEST_SOUNDEVENT, SoundCategory.NEUTRAL, 0.8F, 1.15F);
                 dropStack(world, pos, new ItemStack(LaLegaLoader.AVOCADO, avocadoesAmount));
-                itemStack.damage(1, (LivingEntity)player, (Consumer)((playerx) -> { ((LivingEntity) playerx).sendToolBreakStatus(hand); }));
+                itemStack.damage(1, (LivingEntity)player, (Consumer<LivingEntity>)((playerx) -> { ((LivingEntity) playerx).sendToolBreakStatus(hand); }));
                 hasBeenHarvested = true;
             }
         }
