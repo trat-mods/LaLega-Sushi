@@ -1,0 +1,6 @@
+{
+    "parent": "lalegamod:supermodel/narrow_crop",
+    "textures": {
+        "crop": "lalegamod:crop/rice_stage3"
+    }
+}

@@ -3,7 +3,7 @@ package net.la.lega.mod.loader;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.fabricmc.fabric.api.tag.TagRegistry;
-import net.la.lega.mod.block.AvocadoesBlock;
+import net.la.lega.mod.block.RiceBlock;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.block.ExtremeLauncherBlock;
 import net.la.lega.mod.block.LauncherBlock;
@@ -16,7 +16,6 @@ import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.gui.controller.BlastChillerBlockController;
 import net.la.lega.mod.gui.controller.SushiCrafterBlockController;
 import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
-import net.la.lega.mod.item.Avocado;
 import net.la.lega.mod.item.HosomakiSake;
 import net.la.lega.mod.item.NigiriSake;
 import net.la.lega.mod.item.Rice;
@@ -29,6 +28,7 @@ import net.la.lega.mod.recipe.serializer.BlastChillingRecipeSerializer;
 import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.container.BlockContext;
 import net.minecraft.item.BlockItem;
@@ -38,6 +38,14 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.CountDecoratorConfig;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
+import net.minecraft.world.gen.placer.SimpleBlockPlacer;
+import net.minecraft.world.gen.stateprovider.SimpleStateProvider;
 
 // MinecartSoundInstance
 // MinecartEntity
@@ -62,8 +70,11 @@ import net.minecraft.util.registry.Registry;
 // ShapelessRecipe
 // Blocks
 // Items
-// 
-//PlayerEntity
+// Pumpking
+// PlayerEntity
+// SugarCane
+// SugarcaneFeature
+// DefaultBiomeFeatures
 
 public class LaLegaLoader implements ModInitializer 
 {
@@ -85,8 +96,7 @@ public class LaLegaLoader implements ModInitializer
         public static final Item RICE_ITEM = new Rice();
         public static final Item NIGIRI_SAKE_ITEM = new NigiriSake();
         public static final Item HOSOMAKI_SAKE_ITEM = new HosomakiSake();
-        public static final Item AVOCADO = new Avocado();
-        public static Item AVOCADO_SEEDS;
+        public static Item RICE_SEEDS;
         // #endregion
 
         // Blocks
@@ -96,7 +106,9 @@ public class LaLegaLoader implements ModInitializer
         public static final Block BLAST_CHILLER_BLOCK = new BlastChillerBlock();
         public static final Block THREAD_CUTTER_BLOCK = new ThreadCutterBlock();
         public static final Block SUSHI_CRAFTER_BLOCK = new SushiCrafterBlock();
-        public static final Block AVOCADOES_BLOCK = new AvocadoesBlock();
+        public static final Block RICE_BLOCK = new RiceBlock();
+
+        public static RandomPatchFeatureConfig RICE_CONFIG;
 
         // Entities
         public static BlockEntityType<BlastChillerBlockEntity> BLAST_CHILLER_BLOCK_ENTITY;
@@ -113,6 +125,7 @@ public class LaLegaLoader implements ModInitializer
                 registerControllers();
                 registerSounds();
                 registerTags();
+                registerFeatures();
         }
 
         private void registerItems() 
@@ -122,7 +135,6 @@ public class LaLegaLoader implements ModInitializer
                 Registry.register(Registry.ITEM, Rice.ID, RICE_ITEM);
                 Registry.register(Registry.ITEM, NigiriSake.ID, NIGIRI_SAKE_ITEM);
                 Registry.register(Registry.ITEM, HosomakiSake.ID, HOSOMAKI_SAKE_ITEM);
-                Registry.register(Registry.ITEM, Avocado.ID, AVOCADO);
         }
 
         private void registerBlocks() 
@@ -145,8 +157,8 @@ public class LaLegaLoader implements ModInitializer
                 Registry.register(Registry.BLOCK, SushiCrafterBlock.ID, SUSHI_CRAFTER_BLOCK);
                 Registry.register(Registry.ITEM, SushiCrafterBlock.ID, new BlockItem(SUSHI_CRAFTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
 
-                Registry.register(Registry.BLOCK, AvocadoesBlock.ID, AVOCADOES_BLOCK);
-                AVOCADO_SEEDS = Registry.register(Registry.ITEM, AvocadoesBlock.ID, new BlockItem(AVOCADOES_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
+                Registry.register(Registry.BLOCK, RiceBlock.ID, RICE_BLOCK);
+                RICE_SEEDS = Registry.register(Registry.ITEM, RiceBlock.ID, new BlockItem(RICE_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
         }
 
         private void registerEntities() 
@@ -205,5 +217,13 @@ public class LaLegaLoader implements ModInitializer
         {
                 SUSHI_FISH = TagRegistry.item(new Identifier(MOD_ID, sushi_fish_id));
                 SUSHI_INGREDIENT = TagRegistry.item(new Identifier(MOD_ID, sushi_ingredient_id));
+        }
+
+        private void registerFeatures()
+        {
+                BlockState RICE_STATE = RICE_BLOCK.getDefaultState();
+                RICE_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleStateProvider(RICE_STATE), new SimpleBlockPlacer())).tries(15).spreadX(6).spreadY(0).spreadZ(6).cannotProject().needsWater().build();
+                Registry.BIOME.forEach(biome -> biome.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(RICE_CONFIG).createDecoratedFeature(Decorator.COUNT_HEIGHTMAP_DOUBLE.configure(new CountDecoratorConfig(14)))));
+                // Registry.BIOME.get(getId(Biomes.)).addFeature
         }
 }
