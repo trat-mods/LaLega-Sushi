@@ -24,9 +24,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     private static final int[] BOTTOM_SLOTS = new int[] { 4 };
     private static final int[] SIDE_SLOTS = new int[] { 0, 1, 2, 3 };
 
-    private int currentSushiVillagers = 0;
-
-
     public SushiCrafterBlockEntity() 
     {
         super(LaLegaLoader.SUSHI_CRAFTER_BLOCK_ENTITY, 5);
@@ -199,6 +196,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 
     private boolean isSushiVillagerNear()
     {
-        return (this.currentSushiVillagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(2D, 2D, 2D)).size()) > 0;
+        return world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(2D, 2D, 2D)).size() > 0;
     }
 }

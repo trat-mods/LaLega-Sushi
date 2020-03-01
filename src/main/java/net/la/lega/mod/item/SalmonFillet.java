@@ -14,9 +14,9 @@ public class SalmonFillet extends Item
     public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "salmon_fillet");
     
     public static final StatusEffect effect = StatusEffects.POISON;
-    public static final int effectDuration = 20 * 15;
+    public static final int effectDuration = 20 * 25;
     public static final float effectChance = 0.225F;
-    public static final float saturation = 0.7F;
+    public static final float saturation = 0.95F;
     public static final int hunger = 2;
 
     public SalmonFillet() 
@@ -28,5 +28,4 @@ public class SalmonFillet extends Item
                 .build())
             );
     }
-
 }

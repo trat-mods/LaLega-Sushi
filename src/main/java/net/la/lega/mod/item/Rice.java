@@ -10,7 +10,7 @@ public class Rice extends Item
 {
     public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "rice");
     
-    public static final float saturation = 0.75F;
+    public static final float saturation = 1F;
     public static final int hunger = 2;
 
     public Rice() 

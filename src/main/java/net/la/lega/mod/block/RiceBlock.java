@@ -32,7 +32,15 @@ public class RiceBlock extends CropBlock
         super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().build());
     }
     
-    private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 3.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)};
+    private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D)};
  
     @Environment(EnvType.CLIENT)
     protected ItemConvertible getSeedsItem() 
@@ -48,14 +56,14 @@ public class RiceBlock extends CropBlock
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) 
     {
         Block block = world.getBlockState(pos.down()).getBlock();
-        if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL || block == Blocks.SAND || block == Blocks.RED_SAND) 
+        if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT) 
         {
             BlockPos blockPos = pos.down();
-            Iterator var6 = Direction.Type.HORIZONTAL.iterator();
+            Iterator<Direction> horizontalIterator = Direction.Type.HORIZONTAL.iterator();
 
-            while(var6.hasNext()) 
+            while(horizontalIterator.hasNext()) 
             {
-                Direction direction = (Direction)var6.next();
+                Direction direction = (Direction)horizontalIterator.next();
                 BlockState blockState = world.getBlockState(blockPos.offset(direction));
                 FluidState fluidState = world.getFluidState(blockPos.offset(direction));
                 if (fluidState.matches(FluidTags.WATER) || blockState.getBlock() == Blocks.FROSTED_ICE) 

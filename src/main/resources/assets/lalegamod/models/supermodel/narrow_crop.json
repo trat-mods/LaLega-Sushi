@@ -4,32 +4,32 @@
         "particle": "#crop"
     },
     "elements": [
-        {   "from": [ 6, 0, 0 ],
-            "to": [ 6, 16, 16 ],
+        {   "from": [ 7, 0, 0 ],
+            "to": [ 7, 16, 16 ],
             "shade": false,
             "faces": {
                 "west": { "texture": "#crop" },
                 "east": { "texture": "#crop" }
             }
         },
-        {   "from": [ 10, 0, 0 ],
-            "to": [ 10, 16, 16 ],
+        {   "from": [ 9, 0, 0 ],
+            "to": [ 9, 16, 16 ],
             "shade": false,
             "faces": {
                 "west": { "texture": "#crop" },
                 "east": { "texture": "#crop" }
             }
         },
-        {   "from": [ 0, 0, 6 ],
-            "to": [ 16, 16, 6 ],
+        {   "from": [ 0, 0, 7 ],
+            "to": [ 16, 16, 7 ],
             "shade": false,
             "faces": {
                 "north": { "texture": "#crop" },
                 "south": { "texture": "#crop" }
             }
         },
-        {   "from": [ 0, 0, 10 ],
-            "to": [ 16, 16, 10 ],
+        {   "from": [ 0, 0, 9 ],
+            "to": [ 16, 16, 9 ],
             "shade": false,
             "faces": {
                 "north": { "texture": "#crop" },

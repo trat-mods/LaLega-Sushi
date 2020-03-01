@@ -14,9 +14,9 @@ public class SashimiSake extends Item
     public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "sashimi_sake");
     
     public static final StatusEffect effect = StatusEffects.HUNGER;
-    public static final int effectDuration = 20 * 8;
-    public static final float effectChance = 0.2F;
-    public static final float saturation = 0.55F;
+    public static final int effectDuration = 20 * 60;
+    public static final float effectChance = 0.175F;
+    public static final float saturation = 0.95F;
     public static final int hunger = 2;
 
     public SashimiSake() 
@@ -29,5 +29,4 @@ public class SashimiSake extends Item
                 .build())
             );
     }
-
 }

@@ -10,7 +10,7 @@ public class NigiriSake extends Item
 {
     public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "nigiri_sake");
     
-    public static final float saturation = 0.9F;
+    public static final float saturation = 1.8F;
     public static final int hunger = 5;
 
     public NigiriSake() 
