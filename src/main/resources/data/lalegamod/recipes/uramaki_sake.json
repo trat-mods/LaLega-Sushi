@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#A",
+        "RR"
+    ],
+    "key": {
+        "#": 
+        {
+            "item": "lalegamod:sashimi_sake"
+        },
+        "R": 
+        {
+            "item": "lalegamod:rice"
+        },
+        "A":
+        {
+            "item": "lalegamod:avocado"
+        }
+    },
+    "result": {
+        "item": "lalegamod:uramaki_sake",
+        "count": 1
+    }
+}

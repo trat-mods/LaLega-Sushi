@@ -33,7 +33,7 @@ public abstract class AbstractProcessingOutputterBlock extends BlockWithEntity
            }
            super.onBlockRemoved(state, world, pos, newState, moved);
         }
-     }
+    }
 
     public boolean hasComparatorOutput(BlockState state)
     {

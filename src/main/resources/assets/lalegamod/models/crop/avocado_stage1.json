@@ -1,0 +1,7 @@
+{
+    "parent": "lalegamod:supermodel/narrow_crop",
+    "textures": 
+    {
+        "crop": "lalegamod:crop/avocado_stage1"
+    }
+}

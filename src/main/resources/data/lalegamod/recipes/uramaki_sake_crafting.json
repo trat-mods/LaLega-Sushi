@@ -9,10 +9,10 @@
             "item": "lalegamod:sashimi_sake"
         },
         {
-            "item": "minecraft:dried_kelp"
+            "item": "lalegamod:avocado"
         }
     ],
-    "output": "lalegamod:hosomaki_sake",
-    "processingTime": 380,
+    "output": "lalegamod:uramaki_sake",
+    "processingTime": 400,
     "outputAmount": 1
 }

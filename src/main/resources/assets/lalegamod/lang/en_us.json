@@ -10,5 +10,8 @@
     "item.lalegamod.nigiri_sake": "Nigiri Sake",
     "item.lalegamod.hosomaki_sake": "Hosomaki Sake",
     "block.lalegamod.sushi_crafter": "Sushi Crafter",
-    "block.lalegamod.rice_block": "Rice Seeds"
+    "block.lalegamod.rice_block": "Rice Seeds",
+    "block.lalegamod.avocado_block": "Avocado Seed",
+    "item.lalegamod.avocado": "Avocado",
+    "item.lalegamod.uramaki_sake": "Uramaki Sake"
 }

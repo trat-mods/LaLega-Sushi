@@ -1,0 +1,55 @@
+{
+    "parent": "block/block",
+    "textures": 
+    {
+        "crop": "lalegamod:crop/avocado_stage0",
+        "top": "lalegamod:crop/avocado_stage0_top",
+        "particle": "#crop"
+    },
+    "elements": [
+        {   
+            "from": [ 7, 0, 0 ],
+            "to": [ 7, 16, 16 ],
+            "shade": false,
+            "faces": {
+                "west": { "texture": "#crop" },
+                "east": { "texture": "#crop" }
+            }
+        },
+        {   
+            "from": [ 9, 0, 0 ],
+            "to": [ 9, 16, 16 ],
+            "shade": false,
+            "faces": {
+                "west": { "texture": "#crop" },
+                "east": { "texture": "#crop" }
+            }
+        },
+        {   
+            "from": [ 0, 0, 7 ],
+            "to": [ 16, 16, 7 ],
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#crop" },
+                "south": { "texture": "#crop" }
+            }
+        },
+        {   
+            "from": [ 0, 0, 9 ],
+            "to": [ 16, 16, 9 ],
+            "shade": false,
+            "faces": {
+                "north": { "texture": "#crop" },
+                "south": { "texture": "#crop" }
+            }
+        },
+        {
+            "from": [ 0, 1, 0 ],
+            "to": [ 16, 1, 16 ],
+            "shade": false,
+            "faces": {
+                "up": { "texture": "#top" }
+            }
+        }
+    ]
+}

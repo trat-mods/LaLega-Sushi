@@ -10,17 +10,20 @@ import net.la.lega.mod.block.LauncherBlock;
 import net.la.lega.mod.block.PoweredLauncherBlock;
 import net.la.lega.mod.block.SushiCrafterBlock;
 import net.la.lega.mod.block.ThreadCutterBlock;
+import net.la.lega.mod.block.AvocadoBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.gui.controller.BlastChillerBlockController;
 import net.la.lega.mod.gui.controller.SushiCrafterBlockController;
 import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
+import net.la.lega.mod.item.Avocado;
 import net.la.lega.mod.item.HosomakiSake;
 import net.la.lega.mod.item.NigiriSake;
 import net.la.lega.mod.item.Rice;
 import net.la.lega.mod.item.SalmonFillet;
 import net.la.lega.mod.item.SashimiSake;
+import net.la.lega.mod.item.UramakiSake;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
@@ -75,6 +78,7 @@ import net.minecraft.world.gen.stateprovider.SimpleStateProvider;
 // SugarCane
 // SugarcaneFeature
 // DefaultBiomeFeatures
+// BeehiveBlock
 
 public class LaLegaLoader implements ModInitializer 
 {
@@ -88,6 +92,7 @@ public class LaLegaLoader implements ModInitializer
         // SOUND EVENTS
         public static SoundEvent THREAD_CUTTER_CUT_SOUNDEVENT = new SoundEvent(ThreadCutterBlock.CUT_SOUND);
         public static SoundEvent BLAST_CHILLER_HUM_SOUNDEVENT = new SoundEvent(BlastChillerBlock.HUM_SOUND);
+        public static SoundEvent AVOCADO_HARVEST_SOUNDEVENT = new SoundEvent(AvocadoBlock.HARVEST_SOUND);
 
         // #region ITEMS
         // Items
@@ -96,7 +101,11 @@ public class LaLegaLoader implements ModInitializer
         public static final Item RICE_ITEM = new Rice();
         public static final Item NIGIRI_SAKE_ITEM = new NigiriSake();
         public static final Item HOSOMAKI_SAKE_ITEM = new HosomakiSake();
+        public static final Item URAMAKI_SAKE = new UramakiSake();
         public static Item RICE_SEEDS;
+
+        public static Item AVOCADO = new Avocado();
+        public static Item AVOCADO_SEED;
         // #endregion
 
         // Blocks
@@ -108,7 +117,10 @@ public class LaLegaLoader implements ModInitializer
         public static final Block SUSHI_CRAFTER_BLOCK = new SushiCrafterBlock();
         public static final Block RICE_BLOCK = new RiceBlock();
 
+        public static final Block AVOCADO_BLOCK = new AvocadoBlock();
+
         public static RandomPatchFeatureConfig RICE_CONFIG;
+        public static RandomPatchFeatureConfig AVOCADO_CONFIG;
 
         // Entities
         public static BlockEntityType<BlastChillerBlockEntity> BLAST_CHILLER_BLOCK_ENTITY;
@@ -135,6 +147,8 @@ public class LaLegaLoader implements ModInitializer
                 Registry.register(Registry.ITEM, Rice.ID, RICE_ITEM);
                 Registry.register(Registry.ITEM, NigiriSake.ID, NIGIRI_SAKE_ITEM);
                 Registry.register(Registry.ITEM, HosomakiSake.ID, HOSOMAKI_SAKE_ITEM);
+                Registry.register(Registry.ITEM, Avocado.ID, AVOCADO);
+                Registry.register(Registry.ITEM, UramakiSake.ID, URAMAKI_SAKE);
         }
 
         private void registerBlocks() 
@@ -159,6 +173,9 @@ public class LaLegaLoader implements ModInitializer
 
                 Registry.register(Registry.BLOCK, RiceBlock.ID, RICE_BLOCK);
                 RICE_SEEDS = Registry.register(Registry.ITEM, RiceBlock.ID, new BlockItem(RICE_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
+
+                Registry.register(Registry.BLOCK, AvocadoBlock.ID, AVOCADO_BLOCK);
+                AVOCADO_SEED = Registry.register(Registry.ITEM, AvocadoBlock.ID, new BlockItem(AVOCADO_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
         }
 
         private void registerEntities() 
@@ -211,6 +228,7 @@ public class LaLegaLoader implements ModInitializer
         {
                 Registry.register(Registry.SOUND_EVENT, ThreadCutterBlock.CUT_SOUND, THREAD_CUTTER_CUT_SOUNDEVENT);
                 Registry.register(Registry.SOUND_EVENT, BlastChillerBlock.HUM_SOUND, BLAST_CHILLER_HUM_SOUNDEVENT);
+                Registry.register(Registry.SOUND_EVENT, AvocadoBlock.HARVEST_SOUND, AVOCADO_HARVEST_SOUNDEVENT);
         }
 
         private void registerTags() 
@@ -229,5 +247,14 @@ public class LaLegaLoader implements ModInitializer
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.RIVER)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(RICE_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(8, 0.275F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.BIRCH_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(RICE_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(5, 0.15F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.DARK_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(RICE_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(5, 0.1F))));
+
+                BlockState AVOCADO_STATE = AVOCADO_BLOCK.getDefaultState();
+                AVOCADO_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleStateProvider(AVOCADO_STATE), new SimpleBlockPlacer())).tries(15).spreadX(6).spreadY(0).spreadZ(6).cannotProject().needsWater().build();
+                Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(2, 0.6F))));
+                Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(3, 0.5F))));
+                Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(8, 0.75F))));
+                Registry.BIOME.get(Registry.BIOME.getId(Biomes.RIVER)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(6, 0.25F))));
+                Registry.BIOME.get(Registry.BIOME.getId(Biomes.BIRCH_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(3, 0.25F))));
+                Registry.BIOME.get(Registry.BIOME.getId(Biomes.DARK_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(3, 0.187F))));
         }
 }

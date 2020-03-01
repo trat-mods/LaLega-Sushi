@@ -33,14 +33,14 @@ public class RiceBlock extends CropBlock
     }
     
     private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D), 
-        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D)};
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D), 
+        Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
  
     @Environment(EnvType.CLIENT)
     protected ItemConvertible getSeedsItem() 
@@ -56,7 +56,7 @@ public class RiceBlock extends CropBlock
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) 
     {
         Block block = world.getBlockState(pos.down()).getBlock();
-        if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT) 
+        if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.PODZOL) 
         {
             BlockPos blockPos = pos.down();
             Iterator<Direction> horizontalIterator = Direction.Type.HORIZONTAL.iterator();

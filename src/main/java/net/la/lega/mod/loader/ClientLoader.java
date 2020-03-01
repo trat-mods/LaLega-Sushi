@@ -41,6 +41,8 @@ public class ClientLoader implements ClientModInitializer
                 player)
         );
 
-        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.RICE_BLOCK, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.RICE_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.AVOCADO_BLOCK, RenderLayer.getCutout());
     }
+
 }

@@ -1,0 +1,29 @@
+{
+    "variants": 
+    {
+        "age=0": 
+        {
+            "model": "lalegamod:crop/avocado_stage0"
+        },
+        "age=1": 
+        {
+            "model": "lalegamod:crop/avocado_stage1"
+        },
+        "age=2": 
+        {
+            "model": "lalegamod:crop/avocado_stage2"
+        },
+        "age=3": 
+        {
+            "model": "lalegamod:crop/avocado_stage3"
+        },
+        "age=4": 
+        {
+            "model": "lalegamod:crop/avocado_stage4"
+        },
+        "age=5": 
+        {
+            "model": "lalegamod:crop/avocado_stage5"
+        }
+    }
+}
