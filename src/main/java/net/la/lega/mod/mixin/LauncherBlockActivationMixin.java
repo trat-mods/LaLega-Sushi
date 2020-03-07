@@ -13,14 +13,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(LivingEntity.class)
-public abstract class LauncherBlockActivationMixin extends Entity 
+public abstract class LauncherBlockActivationMixin extends Entity
 {
     public LauncherBlockActivationMixin(EntityType<?> type, World world) 
     {
         super(type, world);
     }
 
-    @Inject(at = @At("TAIL"), method = "jump")
+    @Inject(at = @At("HEAD"), method = "jump", cancellable = true)
     private void jump(CallbackInfo info)
     {  
         BlockPos pos = new BlockPos(getX(), getY() - 1, getZ());
@@ -29,6 +29,7 @@ public abstract class LauncherBlockActivationMixin extends Entity
             LauncherBlock launcherBlock = (LauncherBlock) world.getBlockState(pos).getBlock();         
             LivingEntity instance = (LivingEntity) (Object) this;
             launcherBlock.launchLivingEntity(world, pos, instance);
+            info.cancel();
         }
     }
 }

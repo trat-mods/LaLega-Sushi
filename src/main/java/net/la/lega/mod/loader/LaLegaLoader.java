@@ -10,6 +10,7 @@ import net.la.lega.mod.block.LauncherBlock;
 import net.la.lega.mod.block.PoweredLauncherBlock;
 import net.la.lega.mod.block.SushiCrafterBlock;
 import net.la.lega.mod.block.ThreadCutterBlock;
+import net.la.lega.mod.dispense_behaviour.AvocadoDispenserBehavior;
 import net.la.lega.mod.block.AvocadoBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
@@ -32,11 +33,13 @@ import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.container.BlockContext;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
@@ -80,6 +83,7 @@ import net.minecraft.world.gen.stateprovider.SimpleStateProvider;
 // DefaultBiomeFeatures
 // BeehiveBlock
 // DispenserBlock
+// VillagerEntity
 
 public class LaLegaLoader implements ModInitializer 
 {
@@ -139,6 +143,7 @@ public class LaLegaLoader implements ModInitializer
                 registerSounds();
                 registerTags();
                 registerFeatures();
+                registerBehaviors();
         }
 
         private void registerItems() 
@@ -246,12 +251,17 @@ public class LaLegaLoader implements ModInitializer
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.DARK_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(RICE_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(5, 0.1F))));
 
                 BlockState AVOCADO_STATE = AVOCADO_BLOCK.getDefaultState();
-                AVOCADO_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleStateProvider(AVOCADO_STATE), new SimpleBlockPlacer())).tries(15).spreadX(6).spreadY(0).spreadZ(6).cannotProject().needsWater().build();
+                AVOCADO_CONFIG = (new RandomPatchFeatureConfig.Builder(new SimpleStateProvider(AVOCADO_STATE), new SimpleBlockPlacer())).tries(16).spreadX(10).spreadY(0).spreadZ(10).cannotProject().build();
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(2, 0.6F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(3, 0.5F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(8, 0.75F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.RIVER)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(6, 0.25F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.BIRCH_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(3, 0.25F))));
                 Registry.BIOME.get(Registry.BIOME.getId(Biomes.DARK_FOREST_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_PATCH.configure(AVOCADO_CONFIG).createDecoratedFeature(Decorator.COUNT_CHANCE_HEIGHTMAP.configure(new CountChanceDecoratorConfig(3, 0.187F))));
+        }
+
+        private void registerBehaviors()
+        {
+                DispenserBlock.registerBehavior(Items.SHEARS, new AvocadoDispenserBehavior());
         }
 }

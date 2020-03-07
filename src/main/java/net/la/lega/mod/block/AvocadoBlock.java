@@ -51,7 +51,15 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
     public AvocadoBlock() 
     {
         super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().build());
-        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(this.getAgeProperty(), 0));
+        Random random = new Random();
+        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(this.getAgeProperty(), random.nextInt(getMaxAge())));
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) 
+    {
+        world.setBlockState(pos, (BlockState)state.with(AGE, 0), 3);
+        super.onPlaced(world, pos, state, placer, itemStack);
     }
 
     public IntProperty getAgeProperty() 
@@ -71,12 +79,12 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
 
     public BlockState withAge(final int age) 
     {
-    return (BlockState)this.getDefaultState().with(this.getAgeProperty(), age);
+        return (BlockState)this.getDefaultState().with(this.getAgeProperty(), age);
     }
 
     public boolean isMature(final BlockState state) 
     {
-    return (Integer)state.get(this.getAgeProperty()) >= this.getMaxAge();
+        return (Integer)state.get(this.getAgeProperty()) >= this.getMaxAge();
     }
 
     @Override
@@ -89,6 +97,11 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
     protected void appendProperties(final StateManager.Builder<Block, BlockState> builder) 
     {
         builder.add(AGE);
+    }
+
+    public void setAge(World world, BlockState state, BlockPos pos, int newAge) 
+    {
+        world.setBlockState(pos, (BlockState)state.with(AGE, newAge), 3);
     }
 
     @Override
@@ -114,7 +127,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         return 1;
     }
 
-    private int dropAvocadoes(final BlockState state, final World world, final BlockPos pos)
+    public int dropAvocadoes(final BlockState state, final World world, final BlockPos pos)
     {
         final int currentAge = (Integer)state.get(AGE);
         int avocadoesAmount = (currentAge == getMaxAge()) ? 4 : (currentAge == getMaxAge() - 1 ? 2 : 0);
@@ -128,7 +141,6 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
     public ActionResult onUse(final BlockState state, final World world, final BlockPos pos, final PlayerEntity player, final Hand hand, final BlockHitResult hit) 
     {
         final ItemStack itemStack = player.getStackInHand(hand);
-        final int currentAge = (Integer)state.get(AGE);
         boolean hasBeenHarvested = false;
         if (isHarvestable(state)) 
         {
@@ -143,8 +155,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
 
         if (hasBeenHarvested) 
         {
-            int newAge = currentAge == getMaxAge() ? currentAge - 2 : currentAge - 1;
-            world.setBlockState(pos, (BlockState)state.with(AGE, newAge), 3);
+            world.setBlockState(pos, (BlockState)state.with(AGE, 3), 0X11);
             return ActionResult.SUCCESS;
         } 
         else 
@@ -165,13 +176,6 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
               }
            }
      }
-
-    @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) 
-    {
-        Block block = floor.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.PODZOL;
-    }
 
     private boolean isHarvestable(BlockState state)
     {

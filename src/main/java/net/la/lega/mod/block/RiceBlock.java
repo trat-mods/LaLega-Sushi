@@ -13,8 +13,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.FluidTags;
@@ -33,6 +35,8 @@ public class RiceBlock extends CropBlock
     public RiceBlock()
     {
         super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().build());
+        Random random = new Random();
+        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(this.getAgeProperty(), random.nextInt(getMaxAge())));
     }
     
     private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
@@ -53,6 +57,13 @@ public class RiceBlock extends CropBlock
  
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
        return AGE_TO_SHAPE[(Integer)state.get(this.getAgeProperty())];
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) 
+    {
+        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(this.getAgeProperty(), 0));
+        super.onPlaced(world, pos, state, placer, itemStack);
     }
 
     @Override
@@ -78,7 +89,7 @@ public class RiceBlock extends CropBlock
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) 
     {
         Block block = world.getBlockState(pos.down()).getBlock();
-        if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.PODZOL) 
+        if (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.PODZOL || block == Blocks.FARMLAND)
         {
             BlockPos blockPos = pos.down();
             Iterator<Direction> horizontalIterator = Direction.Type.HORIZONTAL.iterator();
