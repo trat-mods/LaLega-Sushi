@@ -106,7 +106,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
             i = j;
         }
 
-        world.setBlockState(pos, this.withAge(i), 2);
+        world.setBlockState(pos, this.withAge(i), 0X11);
     }
 
     protected int getGrowthAmount(final World world) 
@@ -114,18 +114,28 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         return 1;
     }
 
+    private int dropAvocadoes(final BlockState state, final World world, final BlockPos pos)
+    {
+        final int currentAge = (Integer)state.get(AGE);
+        int avocadoesAmount = (currentAge == getMaxAge()) ? 4 : (currentAge == getMaxAge() - 1 ? 2 : 0);
+        if(avocadoesAmount > 0)
+        {  
+            dropStack(world, pos, new ItemStack(LaLegaLoader.AVOCADO, avocadoesAmount));
+        }
+        return avocadoesAmount;
+    }
+
     public ActionResult onUse(final BlockState state, final World world, final BlockPos pos, final PlayerEntity player, final Hand hand, final BlockHitResult hit) 
     {
         final ItemStack itemStack = player.getStackInHand(hand);
         final int currentAge = (Integer)state.get(AGE);
         boolean hasBeenHarvested = false;
-        int avocadoesAmount = (currentAge == getMaxAge()) ? 3 : (currentAge == getMaxAge() - 1 ? 2 : 0);
         if (isHarvestable(state)) 
         {
             if (itemStack.getItem() == Items.SHEARS) 
             {
                 world.playSound(player, player.getX(), player.getY(), player.getZ(), LaLegaLoader.AVOCADO_HARVEST_SOUNDEVENT, SoundCategory.NEUTRAL, 0.8F, 1.15F);
-                dropStack(world, pos, new ItemStack(LaLegaLoader.AVOCADO, avocadoesAmount));
+                dropAvocadoes(state, world, pos);
                 itemStack.damage(1, (LivingEntity)player, (Consumer<LivingEntity>)((playerx) -> { ((LivingEntity) playerx).sendToolBreakStatus(hand); }));
                 hasBeenHarvested = true;
             }
@@ -171,6 +181,27 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
         return AGE_TO_SHAPE[(Integer)state.get(this.getAgeProperty())];
      }
+
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) 
+    {
+        if(getAge(state) > 3) 
+        {
+            dropAvocadoes(state, world, pos);
+        }
+
+        super.onBreak(world, pos, state, player);
+        return;
+    }
+
+    public boolean hasComparatorOutput(BlockState state)
+    {
+        return true;
+    }
+  
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos)
+    {
+        return state.get(AGE);
+    }
 
     static
     {

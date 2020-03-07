@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 public class RiceBlock extends CropBlock
@@ -94,5 +95,27 @@ public class RiceBlock extends CropBlock
             }
         }
         return false;
+    }
+
+    @Override
+    public void applyGrowth(World world, BlockPos pos, BlockState state) 
+    {
+        int i = this.getAge(state) + this.getGrowthAmount(world);
+        int j = this.getMaxAge();
+        if (i > j) {
+           i = j;
+        }
+  
+        world.setBlockState(pos, this.withAge(i), 0X11);
+    }
+
+    public boolean hasComparatorOutput(BlockState state)
+    {
+        return true;
+    }
+  
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos)
+    {
+        return state.get(AGE);
     }
 }
