@@ -143,6 +143,19 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         }
     }
     
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) 
+    {
+        super.scheduledTick(state, world, pos, random);
+           int i = this.getAge(state);
+           if (i < this.getMaxAge()) 
+           {
+              if (random.nextInt((int)8) == 0) 
+              {
+                 world.setBlockState(pos, this.withAge(i + 1), 2);
+              }
+           }
+     }
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) 
     {

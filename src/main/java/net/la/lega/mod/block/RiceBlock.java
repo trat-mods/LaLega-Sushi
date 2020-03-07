@@ -1,6 +1,7 @@
 package net.la.lega.mod.block;
 
 import java.util.Iterator;
+import java.util.Random;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,6 +15,7 @@ import net.minecraft.block.Material;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
@@ -51,6 +53,25 @@ public class RiceBlock extends CropBlock
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
        return AGE_TO_SHAPE[(Integer)state.get(this.getAgeProperty())];
     }
+
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) 
+    {
+        super.scheduledTick(state, world, pos, random);
+        if (world.getBaseLightLevel(pos, 0) >= 9) 
+        {
+           int i = this.getAge(state);
+           if (i < this.getMaxAge()) 
+           {
+              float f = getAvailableMoisture(this, world, pos);
+              if (random.nextInt((int)(18.0F / f) + 1) == 0) 
+              {
+                 world.setBlockState(pos, this.withAge(i + 1), 2);
+              }
+           }
+        }
+  
+     }
 
     @Override 
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) 
