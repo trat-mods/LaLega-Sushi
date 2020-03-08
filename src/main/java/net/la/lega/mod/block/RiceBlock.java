@@ -76,7 +76,7 @@ public class RiceBlock extends CropBlock
            if (i < this.getMaxAge()) 
            {
               float f = getAvailableMoisture(this, world, pos);
-              if (random.nextInt((int)(18.0F / f) + 1) == 0) 
+              if (random.nextInt((int)(20.0F / f) + 1) == 0) 
               {
                  world.setBlockState(pos, this.withAge(i + 1), 2);
               }

@@ -56,6 +56,13 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
     }
 
     @Override
+    protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) 
+    {
+        Block block = floor.getBlock();
+        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL;
+     }
+
+    @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) 
     {
         world.setBlockState(pos, (BlockState)state.with(AGE, 0), 3);

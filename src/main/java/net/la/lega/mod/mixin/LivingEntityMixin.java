@@ -13,9 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 @Mixin(LivingEntity.class)
-public abstract class LauncherBlockActivationMixin extends Entity
+public abstract class LivingEntityMixin extends Entity
 {
-    public LauncherBlockActivationMixin(EntityType<?> type, World world) 
+    public LivingEntityMixin(EntityType<?> type, World world) 
     {
         super(type, world);
     }

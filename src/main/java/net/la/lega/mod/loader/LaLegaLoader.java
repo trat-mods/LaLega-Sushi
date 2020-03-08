@@ -84,6 +84,8 @@ import net.minecraft.world.gen.stateprovider.SimpleStateProvider;
 // BeehiveBlock
 // DispenserBlock
 // VillagerEntity
+//VillagerProfession
+// FarmerVillagerTask
 
 public class LaLegaLoader implements ModInitializer 
 {
