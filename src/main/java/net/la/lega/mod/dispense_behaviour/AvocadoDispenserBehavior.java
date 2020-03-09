@@ -34,7 +34,7 @@ public class AvocadoDispenserBehavior extends ItemDispenserBehavior
                 }
 
                 avocadoBlock.dropAvocadoes(blockState, world, blockPos);
-                avocadoBlock.setAge(world, blockState, blockPos, 3);
+                avocadoBlock.setAgeState(world, blockPos, 3);
             }
             return stack;
         }

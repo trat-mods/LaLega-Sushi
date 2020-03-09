@@ -1,32 +1,32 @@
 package net.la.lega.mod.recipe.serializer;
 
-import net.la.lega.mod.loader.LaLegaLoader;
-import net.la.lega.mod.recipe.ThreadCuttingRecipe;
-import net.minecraft.util.Identifier;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
-import net.la.lega.mod.recipe.jsonformat.AbstractMonoInputRecipeJsonFormat;
+import net.la.lega.mod.loader.LLoader;
+import net.la.lega.mod.recipe.InjectiveProcessingRecipe;
+import net.la.lega.mod.recipe.jsonformat.InjectiveProcessingRecipeJsonFormat;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.registry.Registry;
 
-public class ThreadCuttingRecipeSerializer implements RecipeSerializer<ThreadCuttingRecipe> 
+public class InjectiveProcessingRecipeSerializer implements RecipeSerializer<InjectiveProcessingRecipe> 
 {
-    private ThreadCuttingRecipeSerializer() {}
-    
-    public static final ThreadCuttingRecipeSerializer INSTANCE = new ThreadCuttingRecipeSerializer();
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID + ":" + ThreadCuttingRecipe.recipeID);
+    private InjectiveProcessingRecipeSerializer() {}
+
+    public static final InjectiveProcessingRecipeSerializer INSTANCE = new InjectiveProcessingRecipeSerializer();
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID + ":" + InjectiveProcessingRecipe.recipeID);
 
     @Override
-    public ThreadCuttingRecipe read(Identifier id, JsonObject json) 
+    public InjectiveProcessingRecipe read(Identifier id, JsonObject json) 
     {
-        AbstractMonoInputRecipeJsonFormat recipeJson = new Gson().fromJson(json, AbstractMonoInputRecipeJsonFormat.class);
+        InjectiveProcessingRecipeJsonFormat recipeJson = new Gson().fromJson(json, InjectiveProcessingRecipeJsonFormat.class);
 
         if (recipeJson.getInput() == null || recipeJson.getOutput() == null) {
             throw new JsonSyntaxException("A required attribute is missing!");
@@ -50,21 +50,20 @@ public class ThreadCuttingRecipeSerializer implements RecipeSerializer<ThreadCut
 
         ItemStack output = new ItemStack(outputItem, recipeJson.getOutputAmount());
 
-        return new ThreadCuttingRecipe(input, output, processingTime, id);
+        return new InjectiveProcessingRecipe(input, output, processingTime, id);
     }
 
     @Override
-    public ThreadCuttingRecipe read(Identifier id, PacketByteBuf buf) 
+    public InjectiveProcessingRecipe read(Identifier id, PacketByteBuf buf) 
     {
         // Make sure the read in the same order you have written!
         Ingredient input = Ingredient.fromPacket(buf);
         int processingTime = buf.readVarInt();
         ItemStack output = buf.readItemStack();
-        return new ThreadCuttingRecipe(input, output, processingTime, id);
+        return new InjectiveProcessingRecipe(input, output, processingTime, id);
     }
-
     @Override
-    public void write(PacketByteBuf buf, ThreadCuttingRecipe recipe) 
+    public void write(PacketByteBuf buf, InjectiveProcessingRecipe recipe) 
     {
         recipe.getInput().write(buf);
         buf.writeVarInt(recipe.getProcessingTime());

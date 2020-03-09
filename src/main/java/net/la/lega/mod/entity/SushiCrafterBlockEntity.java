@@ -1,8 +1,12 @@
 package net.la.lega.mod.entity;
 
+import java.util.List;
+
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
+import net.la.lega.mod.initializer.LEntities;
+import net.la.lega.mod.initializer.LTags;
+import net.la.lega.mod.initializer.LVillagerProfessions;
 import net.la.lega.mod.item.Rice;
-import net.la.lega.mod.loader.LaLegaLoader;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.inventory.BasicInventory;
@@ -26,7 +30,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 
     public SushiCrafterBlockEntity() 
     {
-        super(LaLegaLoader.SUSHI_CRAFTER_BLOCK_ENTITY, 5);
+        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 5);
     }
 
     @Override
@@ -57,11 +61,11 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
         }
         else if(slot == FISH_SLOT)
         {
-            return stackItem.isIn(LaLegaLoader.SUSHI_FISH);
+            return stackItem.isIn(LTags.SUSHI_FISH);
         }
         else if(slot == ING_SLOT || slot == ING2_SLOT)
         {
-            return stackItem.isIn(LaLegaLoader.SUSHI_INGREDIENT);
+            return stackItem.isIn(LTags.SUSHI_INGREDIENT);
         }
         else
         {
@@ -196,6 +200,14 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 
     private boolean isSushiVillagerNear()
     {
-        return world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(2D, 2D, 2D)).size() > 0;
+        List<VillagerEntity> villagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(3D, 3D, 3D));
+        for (VillagerEntity villager : villagers) 
+        {
+            if(villager.getVillagerData().getProfession() == LVillagerProfessions.SUSHI_MAN_PROFESSION)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -7,7 +7,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.initializer.LBlocks;
+import net.la.lega.mod.initializer.LItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -55,7 +56,7 @@ public abstract class FarmerVillagerTaskMixin
            {
               serverWorld.breakBlock(this.currentTarget, true, villagerEntity);
            }
-           if (blockState.isAir() && block2 instanceof FarmlandBlock && this.ableToPlant) 
+           if (blockState.isAir() && (block2 instanceof FarmlandBlock) && this.ableToPlant) 
            {
                 BasicInventory basicInventory = villagerEntity.getInventory();
   
@@ -67,26 +68,26 @@ public abstract class FarmerVillagerTaskMixin
                     {
                         if (itemStack.getItem() == Items.WHEAT_SEEDS) 
                         {
-                        serverWorld.setBlockState(this.currentTarget, Blocks.WHEAT.getDefaultState(), 3);
-                        bl = true;
+                            serverWorld.setBlockState(this.currentTarget, Blocks.WHEAT.getDefaultState(), 3);
+                            bl = true;
                         } else if (itemStack.getItem() == Items.POTATO) 
                         {
-                        serverWorld.setBlockState(this.currentTarget, Blocks.POTATOES.getDefaultState(), 3);
-                        bl = true;
+                            serverWorld.setBlockState(this.currentTarget, Blocks.POTATOES.getDefaultState(), 3);
+                            bl = true;
                         } 
                         else if (itemStack.getItem() == Items.CARROT) 
                         {
-                        serverWorld.setBlockState(this.currentTarget, Blocks.CARROTS.getDefaultState(), 3);
-                        bl = true;
+                            serverWorld.setBlockState(this.currentTarget, Blocks.CARROTS.getDefaultState(), 3);
+                            bl = true;
                         } 
                         else if (itemStack.getItem() == Items.BEETROOT_SEEDS) 
                         {
-                        serverWorld.setBlockState(this.currentTarget, Blocks.BEETROOTS.getDefaultState(), 3);
-                        bl = true;
+                            serverWorld.setBlockState(this.currentTarget, Blocks.BEETROOTS.getDefaultState(), 3);
+                            bl = true;
                         }
-                        else if(itemStack.getItem() == LaLegaLoader.RICE_SEEDS)
+                        else if(itemStack.getItem() == LItems.RICE_SEEDS)
                         {
-                            serverWorld.setBlockState(this.currentTarget, LaLegaLoader.RICE_BLOCK.getDefaultState(), 3);
+                            serverWorld.setBlockState(this.currentTarget, LBlocks.RICE_BLOCK.getDefaultState(), 3);
                             bl = true;
                         }
                     }

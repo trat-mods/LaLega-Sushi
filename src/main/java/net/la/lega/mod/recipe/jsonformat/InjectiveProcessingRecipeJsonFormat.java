@@ -2,7 +2,7 @@ package net.la.lega.mod.recipe.jsonformat;
 
 import com.google.gson.JsonObject;
 
-public class AbstractMonoInputRecipeJsonFormat 
+public class InjectiveProcessingRecipeJsonFormat 
 {
     private JsonObject input;
     private String output;

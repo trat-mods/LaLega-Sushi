@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.la.lega.mod.block.abstraction.AbstractProcessingOutputterBlock;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.loader.LLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 public class SushiCrafterBlock extends AbstractProcessingOutputterBlock
 {
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "sushi_crafter"); 
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "sushi_crafter"); 
     public static final DirectionProperty FACING;
     static
     {

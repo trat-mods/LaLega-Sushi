@@ -2,8 +2,9 @@ package net.la.lega.mod.entity;
 
 import net.la.lega.mod.block.ThreadCutterBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
-import net.la.lega.mod.loader.LaLegaLoader;
-import net.la.lega.mod.recipe.ThreadCuttingRecipe;
+import net.la.lega.mod.initializer.LEntities;
+import net.la.lega.mod.initializer.LSounds;
+import net.la.lega.mod.recipe.InjectiveProcessingRecipe;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -22,7 +23,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
 
     public ThreadCutterBlockEntity() 
     {
-        super(LaLegaLoader.THREAD_CUTTER_BLOCK_ENTITY, 1);
+        super(LEntities.THREAD_CUTTER_BLOCK_ENTITY, 1);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
-            ThreadCuttingRecipe recipe = this.world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, this, world).orElse(null);
+            InjectiveProcessingRecipe recipe = this.world.getRecipeManager().getFirstMatch(InjectiveProcessingRecipe.Type.INSTANCE, this, world).orElse(null);
             if (!this.isProcessing())
             {        
                 if(this.canAcceptRecipeOutput(recipe)) 
@@ -106,7 +107,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected void craftRecipe(Recipe<?> recipe) 
     {
-        ThreadCuttingRecipe tCRecipe = (ThreadCuttingRecipe) recipe;
+        InjectiveProcessingRecipe tCRecipe = (InjectiveProcessingRecipe) recipe;
         if (tCRecipe != null && this.canAcceptRecipeOutput(tCRecipe)) 
         {
             ItemStack inputSlot = (ItemStack)this.items.get(0);
@@ -118,7 +119,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
             inputSlot.decrement(1);
             
             spawnItem(blockPointerImpl.getWorld(), output.copy(), 6, direction, position);
-            world.playSound(null, getPos(), LaLegaLoader.THREAD_CUTTER_CUT_SOUNDEVENT, SoundCategory.BLOCKS, 0.045F, 0.85F);
+            world.playSound(null, getPos(), LSounds.THREAD_CUTTER_CUT_SOUNDEVENT, SoundCategory.BLOCKS, 0.045F, 0.85F);
         }
     }   
 

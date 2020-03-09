@@ -8,7 +8,8 @@ import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.la.lega.mod.block.abstraction.AbstractProcessingOutputterBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.initializer.LSounds;
+import net.la.lega.mod.loader.LLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,8 +33,8 @@ import net.minecraft.world.World;
 
 public class BlastChillerBlock extends AbstractProcessingOutputterBlock
 {
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "blast_chiller");
-    public static final Identifier HUM_SOUND = new Identifier(LaLegaLoader.MOD_ID, "blast_chiller_hum");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "blast_chiller");
+    public static final Identifier HUM_SOUND = new Identifier(LLoader.MOD_ID, "blast_chiller_hum");
 
     public static final BooleanProperty ON;    
     public static final DirectionProperty FACING;
@@ -101,7 +102,7 @@ public class BlastChillerBlock extends AbstractProcessingOutputterBlock
             double f = (double)pos.getZ() + 0.5D;
             if (random.nextDouble() < 0.15D) 
             {
-               world.playSound(d, e, f, LaLegaLoader.BLAST_CHILLER_HUM_SOUNDEVENT, SoundCategory.BLOCKS, 0.75F, 1.1F, false);
+               world.playSound(d, e, f, LSounds.BLAST_CHILLER_HUM_SOUNDEVENT, SoundCategory.BLOCKS, 0.75F, 1.1F, false);
             }
         }
     }

@@ -12,6 +12,7 @@ import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
 import net.la.lega.mod.gui.screen.BlastChillerBlockScreen;
 import net.la.lega.mod.gui.screen.SushiCrafterBlockScreen;
 import net.la.lega.mod.gui.screen.ThreadCutterBlockScreen;
+import net.la.lega.mod.initializer.LBlocks;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.container.BlockContext;
 
@@ -41,8 +42,8 @@ public class ClientLoader implements ClientModInitializer
                 player)
         );
 
-        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.RICE_BLOCK, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(LaLegaLoader.AVOCADO_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.RICE_BLOCK, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.AVOCADO_BLOCK, RenderLayer.getCutout());
     }
 
 }

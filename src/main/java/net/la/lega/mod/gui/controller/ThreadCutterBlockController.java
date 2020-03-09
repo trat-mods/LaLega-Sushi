@@ -5,7 +5,7 @@ import io.github.cottonmc.cotton.gui.widget.WItemSlot;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
-import net.la.lega.mod.recipe.ThreadCuttingRecipe;
+import net.la.lega.mod.recipe.InjectiveProcessingRecipe;
 import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Identifier;
@@ -14,7 +14,7 @@ public class ThreadCutterBlockController extends AbstractBlockController
 {
     public ThreadCutterBlockController(int syncId, PlayerInventory playerInventory, BlockContext context) 
     {
-        super(ThreadCuttingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
+        super(InjectiveProcessingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
 
         WPlainPanel root = new WPlainPanel();
         root.setSize(160, 65);

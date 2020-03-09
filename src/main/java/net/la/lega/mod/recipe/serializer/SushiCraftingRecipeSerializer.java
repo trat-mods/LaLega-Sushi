@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.loader.LLoader;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ public class SushiCraftingRecipeSerializer implements RecipeSerializer<SushiCraf
     private SushiCraftingRecipeSerializer() {}
     
     public static final SushiCraftingRecipeSerializer INSTANCE = new SushiCraftingRecipeSerializer();
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, SushiCraftingRecipe.recipeID);
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, SushiCraftingRecipe.recipeID);
 
     @Override
     public SushiCraftingRecipe read(Identifier id, JsonObject json) 

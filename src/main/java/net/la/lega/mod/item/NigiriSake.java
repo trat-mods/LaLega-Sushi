@@ -1,6 +1,6 @@
 package net.la.lega.mod.item;
 
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.loader.LLoader;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class NigiriSake extends Item
 {
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "nigiri_sake");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "nigiri_sake");
     
     public static final float saturation = 1.8F;
     public static final int hunger = 5;

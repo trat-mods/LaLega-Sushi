@@ -7,7 +7,7 @@ import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.WSprite;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
-import net.la.lega.mod.recipe.BlastChillingRecipe;
+import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Identifier;
@@ -19,7 +19,7 @@ public class SushiCrafterBlockController extends AbstractBlockController
 
     public SushiCrafterBlockController(int syncId, PlayerInventory playerInventory, BlockContext context) 
     {
-        super(BlastChillingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
+        super(SushiCraftingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
 
         WPlainPanel root = new WPlainPanel();
         root.setSize(160, 160);

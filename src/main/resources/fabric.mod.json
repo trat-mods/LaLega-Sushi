@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.la.lega.mod.loader.LaLegaLoader"
+      "net.la.lega.mod.loader.LLoader"
     ],
     "client": [
       "net.la.lega.mod.loader.ClientLoader"

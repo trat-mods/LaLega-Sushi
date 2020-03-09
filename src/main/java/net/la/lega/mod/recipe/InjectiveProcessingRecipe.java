@@ -1,5 +1,6 @@
-package net.la.lega.mod.recipe.abstraction;
+package net.la.lega.mod.recipe;
 
+import net.la.lega.mod.recipe.serializer.InjectiveProcessingRecipeSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -10,14 +11,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 
-public abstract class AbstractMonoRecipe implements Recipe<Inventory> 
+public class InjectiveProcessingRecipe implements Recipe<Inventory> 
 {
+    public static final String recipeID = "injective_processing";
+
     private final Ingredient input;
     private final ItemStack outputStack;
     private final int processingTime;
     private final Identifier id;
 
-    public AbstractMonoRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
+    public InjectiveProcessingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
     {
         this.input = input;
         this.outputStack = outputStack;
@@ -60,7 +63,22 @@ public abstract class AbstractMonoRecipe implements Recipe<Inventory>
         return id;
     }
 
-    public abstract RecipeSerializer<?> getSerializer();
+    @Override
+    public RecipeSerializer<?> getSerializer() 
+    {
+        return InjectiveProcessingRecipeSerializer.INSTANCE;
+    }
 
-    public abstract RecipeType<?> getType();
+    @Override
+    public RecipeType<?> getType() 
+    {
+        return Type.INSTANCE;
+    }
+
+    public static class Type implements RecipeType<InjectiveProcessingRecipe>
+    {
+       private Type() {}
+       public static final Type INSTANCE = new Type();
+       public static final String ID = "injective_processing_recipe";
+    }
 }

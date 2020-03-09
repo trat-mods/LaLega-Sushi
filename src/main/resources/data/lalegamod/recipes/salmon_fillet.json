@@ -1,5 +1,5 @@
 {
-    "type": "lalegamod:thread_cutting",
+    "type": "lalegamod:injective_processing",
     "input" : 
     {
       "item": "minecraft:salmon"

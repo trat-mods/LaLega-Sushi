@@ -1,11 +1,11 @@
 package net.la.lega.mod.block;
 
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.loader.LLoader;
 import net.minecraft.util.Identifier;
 
 public class PoweredLauncherBlock extends LauncherBlock
 {
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "powered_launcher_block");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "powered_launcher_block");
 
     public PoweredLauncherBlock()
     {

@@ -4,13 +4,14 @@
     "compatibilityLevel": "JAVA_8",
     "mixins":
     [
-        "LauncherBlockActivationMixin",
+        "LivingEntityMixin",
         "VillagerEntityMixin",
-        "FarmerVillagerTaskMixin"
+        "FarmerVillagerTaskMixin",
+        "PointOfInterestTypeAccessor",
+        "VillagerProfessionAccessor"
     ],
     "client":
     [
-
     ],
     "injectors": 
     {

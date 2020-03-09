@@ -1,6 +1,6 @@
 package net.la.lega.mod.item;
 
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.loader.LLoader;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class SalmonFillet extends Item
 {
-    public static final Identifier ID = new Identifier(LaLegaLoader.MOD_ID, "salmon_fillet");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "salmon_fillet");
     
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 25;

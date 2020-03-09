@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import net.la.lega.mod.loader.LaLegaLoader;
+import net.la.lega.mod.initializer.LItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AbstractTraderEntity;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -34,14 +34,14 @@ public abstract class VillagerEntityMixin extends AbstractTraderEntity
     private void hasSeedToPlant(CallbackInfoReturnable<Boolean> info)
     {  
         BasicInventory basicInventory = this.getInventory();
-        info.setReturnValue(basicInventory.containsAnyInInv(ImmutableSet.of(Items.WHEAT_SEEDS, Items.POTATO, Items.CARROT, Items.BEETROOT_SEEDS, LaLegaLoader.RICE_SEEDS)));
+        info.setReturnValue(basicInventory.containsAnyInInv(ImmutableSet.of(Items.WHEAT_SEEDS, Items.POTATO, Items.CARROT, Items.BEETROOT_SEEDS, LItems.RICE_SEEDS)));
         info.cancel();
     }
 
     @Inject(at = @At("HEAD"), method = "canGather", cancellable = true)
     private void canGather(Item item, CallbackInfoReturnable<Boolean> info)
     {  
-        info.setReturnValue(GATHERABLE_ITEMS.contains(item) || this.getVillagerData().getProfession().getGatherableItems().contains(item) || item.equals(LaLegaLoader.RICE_SEEDS));
+        info.setReturnValue(GATHERABLE_ITEMS.contains(item) || this.getVillagerData().getProfession().getGatherableItems().contains(item) || item.equals(LItems.RICE_SEEDS));
         info.cancel();
     }
 }
