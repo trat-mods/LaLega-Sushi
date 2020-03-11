@@ -1,40 +1,36 @@
 {
-  "schemaVersion": 1,
-  "id": "lalegamod",
-  "version": "${version}",
-
-  "name": "La Lega Mod",
-  "description": "Open the website to check the mod wiki",
-  "authors": [
-    "t_r_a_t"
-  ],
-  "contact": {
-    "homepage": "https://github.com/IdentityError/LaLegaMod/wiki",
-    "sources": "https://github.com/IdentityError/LaLegaMod"
-  },
-
-  "license": "CC0-1.0",
-  "icon": "assets/lalegamod/icon.png",
-
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "net.la.lega.mod.loader.LLoader"
+    "schemaVersion": 1,
+    "id": "lalegamod",
+    "version": "${version}",
+    "name": "LaLega Sushi",
+    "description": "Open the website to check the mod wiki",
+    "authors": [
+        "t_r_a_t"
     ],
-    "client": [
-      "net.la.lega.mod.loader.ClientLoader"
-    ]
-  },
-  "mixins": [
-    "lalegamod.mixins.json"
-  ],
-
-  "depends": {
-    "fabricloader": ">=0.7.2",
-    "fabric": "*",
-    "minecraft": "1.15.x"
-  },
-  "suggests": {
-    "flamingo": "*"
-  }
+    "contact": {
+        "homepage": "https://github.com/IdentityError/LaLegaMod/wiki",
+        "sources": "https://github.com/IdentityError/LaLegaMod"
+    },
+    "license": "CC0-1.0",
+    "icon": "assets/lalegamod/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "net.la.lega.mod.loader.LLoader"
+        ],
+        "client": [
+            "net.la.lega.mod.loader.ClientLoader"
+        ]
+    },
+    "mixins": [
+        "lalegamod.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.7.2",
+        "fabric": "*",
+        "minecraft": "1.15.x"
+    },
+    "suggests": {
+        "flamingo": "*"
+    }
 }
