@@ -22,28 +22,27 @@ public class ClientLoader implements ClientModInitializer
     public void onInitializeClient()
     {
         ScreenProviderRegistry.INSTANCE.registerFactory(
-            BlastChillerBlock.ID, 
-            (syncId, id, player, buf) -> new BlastChillerBlockScreen( 
-                new BlastChillerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), 
-                player)
+              BlastChillerBlock.ID,
+              (syncId, id, player, buf) -> new BlastChillerBlockScreen(
+                    new BlastChillerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
+                    player)
         );
-
+        
         ScreenProviderRegistry.INSTANCE.registerFactory(
-            ThreadCutterBlock.ID,
-            (syncId, id, player, buf) -> new ThreadCutterBlockScreen( 
-                new ThreadCutterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), 
-                player)
+              ThreadCutterBlock.ID,
+              (syncId, id, player, buf) -> new ThreadCutterBlockScreen(
+                    new ThreadCutterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
+                    player)
         );
-
+        
         ScreenProviderRegistry.INSTANCE.registerFactory(
-            SushiCrafterBlock.ID,
-            (syncId, id, player, buf) -> new SushiCrafterBlockScreen( 
-                new SushiCrafterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), 
-                player)
+              SushiCrafterBlock.ID,
+              (syncId, id, player, buf) -> new SushiCrafterBlockScreen(
+                    new SushiCrafterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
+                    player)
         );
-
+        
         BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.RICE_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.AVOCADO_BLOCK, RenderLayer.getCutout());
     }
-
 }

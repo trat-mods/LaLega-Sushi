@@ -18,15 +18,15 @@ public class SashimiSake extends Item
     public static final float effectChance = 0.175F;
     public static final float saturation = 0.95F;
     public static final int hunger = 2;
-
-    public SashimiSake() 
+    
+    public SashimiSake()
     {
         super(new Item.Settings().group(ItemGroup.FOOD)
-                .food(new FoodComponent.Builder()
-                .hunger(hunger)
-                .saturationModifier(saturation).snack().alwaysEdible()
-                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                .build())
-            );
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation).snack().alwaysEdible()
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .build())
+        );
     }
 }

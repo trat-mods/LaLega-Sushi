@@ -49,4 +49,6 @@ public abstract class AbstractProcessingOutputterBlock extends BlockWithEntity
     {
         return BlockRenderType.MODEL;
     }
+    
+    
 }
