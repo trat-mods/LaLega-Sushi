@@ -1,27 +1,24 @@
 package net.la.lega.mod.recipe;
 
 import it.unimi.dsi.fastutil.ints.IntList;
+import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeFinder;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.*;
 import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class SushiCraftingRecipe implements Recipe<Inventory> 
+public class SushiCraftingRecipe implements Recipe<Inventory>
 {
     public static final String recipeID = "sushi_crafting";
-
+    
     private final DefaultedList<Ingredient> input;
     private final int processingTime;
     private final Identifier id;
     private final ItemStack outputStack;
-
+    
     public SushiCraftingRecipe(DefaultedList<Ingredient> input, ItemStack outputStack, int processingTime, Identifier id)
     {
         this.input = input;
@@ -29,69 +26,88 @@ public class SushiCraftingRecipe implements Recipe<Inventory>
         this.processingTime = processingTime;
         this.id = id;
     }
-
-    public DefaultedList<Ingredient> getInput() { return input; }
-    public int getProcessingTime() { return processingTime; }
-    public int getOutputAmount() { return outputStack.getCount(); }
-
+    
     @Override
-    public ItemStack craft(Inventory inv) 
+    public DefaultedList<Ingredient> getPreviewInputs()
+    {
+        return input;
+    }
+    
+    public int getProcessingTime()
+    {
+        return processingTime;
+    }
+    
+    public int getOutputAmount()
+    {
+        return outputStack.getCount();
+    }
+    
+    @Override
+    public ItemStack craft(Inventory inv)
     {
         return this.outputStack.copy();
     }
-
+    
     @Override
-    public boolean fits(int arg0, int arg1) 
+    public boolean fits(int arg0, int arg1)
     {
         return false;
     }
-
+    
     @Override
-    public Identifier getId() 
+    public Identifier getId()
     {
         return id;
     }
-
+    
     @Override
-    public ItemStack getOutput() 
+    public ItemStack getOutput()
     {
         return outputStack;
     }
-
+    
     @Override
-    public RecipeSerializer<?> getSerializer() 
+    public RecipeSerializer<?> getSerializer()
     {
         return SushiCraftingRecipeSerializer.INSTANCE;
     }
-
+    
     @Override
-    public boolean matches(Inventory inv, World world) 
+    public boolean matches(Inventory inv, World world)
     {
+        if(inv.getInvStack(SushiCrafterBlockEntity.FISH_SLOT).isEmpty() || inv.getInvStack(SushiCrafterBlockEntity.RICE_SLOT).isEmpty())
+        {
+            return false;
+        }
         RecipeFinder recipeFinder = new RecipeFinder();
         int i = 0;
-  
-        for(int j = 0; j < inv.getInvSize(); j++) 
+        
+        for(int j = 0; j < inv.getInvSize(); j++)
         {
-           ItemStack itemStack = inv.getInvStack(j);
-           if (!itemStack.isEmpty()) {
-              ++i;
-              recipeFinder.method_20478(itemStack, 1);
-           }
+            ItemStack itemStack = inv.getInvStack(j);
+            if(!itemStack.isEmpty())
+            {
+                ++i;
+                recipeFinder.method_20478(itemStack, 1);
+            }
         }
-        return i == this.input.size() && recipeFinder.findRecipe(this, (IntList)null);
+        return i == this.input.size() && recipeFinder.findRecipe(this, (IntList) null);
     }
-
+    
     @Override
-    public RecipeType<?> getType() 
+    public RecipeType<?> getType()
     {
         return Type.INSTANCE;
     }
-
+    
     public static class Type implements RecipeType<SushiCraftingRecipe>
     {
-       private Type() {}
-       public static final Type INSTANCE = new Type();
-       public static final String ID = "sushi_crafting_recipe";
+        private Type()
+        {
+        }
+        
+        public static final Type INSTANCE = new Type();
+        public static final String ID = "sushi_crafting_recipe";
     }
-
 }

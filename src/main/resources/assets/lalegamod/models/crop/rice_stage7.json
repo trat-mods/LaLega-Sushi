@@ -1,5 +1,5 @@
 {
-    "parent": "lalegamod:supermodel/narrow_crop_farmland",
+    "parent": "lalegamod:template/narrow_crop_farmland",
     "textures": {
         "crop": "lalegamod:crop/rice_stage7"
     }

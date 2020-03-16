@@ -28,6 +28,8 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     private static final int[] BOTTOM_SLOTS = new int[]{4};
     private static final int[] SIDE_SLOTS = new int[]{0, 1, 2, 3};
     
+    private SushiCraftingRecipe currentRecipe;
+    
     public SushiCrafterBlockEntity()
     {
         super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 5);
@@ -63,9 +65,13 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
         {
             return stackItem.isIn(LTags.SUSHI_FISH);
         }
-        else if(slot == ING_SLOT || slot == ING2_SLOT)
+        if(slot == ING_SLOT)
         {
-            return stackItem.isIn(LTags.SUSHI_INGREDIENT);
+            return stackItem.isIn(LTags.SUSHI_INGREDIENT) && (items.get(ING2_SLOT).isEmpty() || items.get(ING2_SLOT).getItem() != stackItem);
+        }
+        else if(slot == ING2_SLOT)
+        {
+            return stackItem.isIn(LTags.SUSHI_INGREDIENT) && (items.get(ING_SLOT).isEmpty() || items.get(ING_SLOT).getItem() != stackItem);
         }
         else
         {
@@ -94,7 +100,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
             ItemStack outputStack = bcRecipe.getOutput();
             if(outputStack.isEmpty())
             {
-                
                 return false;
             }
             else
@@ -164,15 +169,27 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
-            if(isSushiVillagerNear())
+            if(isSushiManNear())
             {
-                BasicInventory craftingInventory = new BasicInventory(items.get(RICE_SLOT), items.get(FISH_SLOT), items.get(ING_SLOT), items.get(ING2_SLOT));
+                BasicInventory craftingInventory = new BasicInventory(items.get(FISH_SLOT), items.get(ING_SLOT), items.get(ING2_SLOT), items.get(RICE_SLOT));
                 SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, craftingInventory, world).orElse(null);
+                if(currentRecipe == null)
+                {
+                    currentRecipe = match;
+                }
+                else
+                {
+                    if(currentRecipe != match)
+                    {
+                        resetProcessing();
+                        currentRecipe = match;
+                    }
+                }
                 if(!this.isProcessing())
                 {
-                    if(this.canAcceptRecipeOutput(match))
+                    if(this.canAcceptRecipeOutput(currentRecipe))
                     {
-                        initializeProcessing(match.getProcessingTime());
+                        initializeProcessing(currentRecipe.getProcessingTime());
                     }
                 }
                 
@@ -181,7 +198,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
                     processStep();
                     if(isProcessingCompleted())
                     {
-                        this.craftRecipe(match);
+                        this.craftRecipe(currentRecipe);
                         resetProcessing();
                     }
                 }
@@ -198,7 +215,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
         return !((ItemStack) items.get(FISH_SLOT)).isEmpty() && !((ItemStack) items.get(RICE_SLOT)).isEmpty();
     }
     
-    private boolean isSushiVillagerNear()
+    private boolean isSushiManNear()
     {
         List<VillagerEntity> villagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(3D, 3D, 3D));
         for(VillagerEntity villager : villagers)

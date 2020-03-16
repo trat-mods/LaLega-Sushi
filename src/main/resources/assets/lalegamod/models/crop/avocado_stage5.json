@@ -1,5 +1,5 @@
 {
-    "parent": "lalegamod:supermodel/narrow_crop",
+    "parent": "lalegamod:template/narrow_crop",
     "textures": {
         "crop": "lalegamod:crop/avocado_stage3",
         "extern": "lalegamod:crop/avocado_extern"

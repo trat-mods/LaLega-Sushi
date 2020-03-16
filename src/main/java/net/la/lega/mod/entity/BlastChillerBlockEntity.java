@@ -4,6 +4,7 @@ import blue.endless.jankson.annotation.Nullable;
 import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.initializer.LEntities;
+import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.la.lega.mod.recipe.InjectiveProcessingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -61,7 +62,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
-            InjectiveProcessingRecipe match = world.getRecipeManager().getFirstMatch(InjectiveProcessingRecipe.Type.INSTANCE, this, world).orElse(null);
+            BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
             if(!this.isProcessing())
             {
                 if(this.canAcceptRecipeOutput(match))
@@ -108,7 +109,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
                     return false;
                 }
                 else if(itemStack2.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount()
-                        && itemStack2.getCount() + bcRecipe.getOutputAmount() <= itemStack2.getMaxCount())
+                      && itemStack2.getCount() + bcRecipe.getOutputAmount() <= itemStack2.getMaxCount())
                 {
                     return true;
                 }

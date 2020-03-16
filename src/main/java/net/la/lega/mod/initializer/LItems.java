@@ -11,9 +11,12 @@ public abstract class LItems
 {
     public static final Item SASHIMI_SAKE_ITEM = new SashimiSake();
     public static final Item SALMON_FILLET_ITEM = new SalmonFillet();
+    
     public static final Item NIGIRI_SAKE_ITEM = new NigiriSake();
     public static final Item HOSOMAKI_SAKE_ITEM = new HosomakiSake();
     public static final Item URAMAKI_SAKE = new UramakiSake();
+    public static final Item FUTOMAKI_SAKE = new FutomakiSake();
+    
     public static final Item RICE_ITEM = new Rice();
     public static Item RICE_SEEDS;
     public static Item AVOCADO = new Avocado();
@@ -26,8 +29,10 @@ public abstract class LItems
         Registry.register(Registry.ITEM, Rice.ID, RICE_ITEM);
         Registry.register(Registry.ITEM, NigiriSake.ID, NIGIRI_SAKE_ITEM);
         Registry.register(Registry.ITEM, HosomakiSake.ID, HOSOMAKI_SAKE_ITEM);
-        Registry.register(Registry.ITEM, Avocado.ID, AVOCADO);
         Registry.register(Registry.ITEM, UramakiSake.ID, URAMAKI_SAKE);
+        Registry.register(Registry.ITEM, FutomakiSake.ID, FUTOMAKI_SAKE);
+        
+        Registry.register(Registry.ITEM, Avocado.ID, AVOCADO);
         
         AVOCADO_SEED = Registry.register(Registry.ITEM, AvocadoBlock.ID, new BlockItem(LBlocks.AVOCADO_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
         RICE_SEEDS = Registry.register(Registry.ITEM, RiceBlock.ID, new BlockItem(LBlocks.RICE_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));

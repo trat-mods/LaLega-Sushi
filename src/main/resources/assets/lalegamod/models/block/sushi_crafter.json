@@ -1,7 +1,6 @@
 {
     "parent": "block/orientable",
-    "textures": 
-    {
+    "textures": {
         "top": "lalegamod:block/sushi_crafter_top",
         "front": "lalegamod:block/sushi_crafter_front",
         "side": "lalegamod:block/sushi_crafter_side",
@@ -9,123 +8,113 @@
         "heart": "minecraft:item/heart_of_the_sea",
         "border": "lalegamod:block/sushi_crafter_border"
     },
-    "elements":
-    [
+    "elements": [
         {
-            "from": [ 0, 0, 0 ],
-            "to": [ 16, 13, 16 ],
-            "faces": 
-            {
-                "down":  { "texture": "#bottom", "cullface": "down" },
-                "up":    { "texture": "#top" },
-                "north": { "texture": "#front" },
-                "south": { "texture": "#side" },
-                "west":  { "texture": "#side" },
-                "east":  { "texture": "#side" }
+            "from": [0, 0, 0],
+            "to": [16, 13, 16],
+            "faces": {
+                "down": {"texture": "#bottom", "cullface": "down"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#front"},
+                "south": {"texture": "#side"},
+                "west": {"texture": "#side"},
+                "east": {"texture": "#side"}
             }
         },
         {
-            "from": [ 1, 15, 1 ],
-            "to": [ 15, 16, 15 ],
-            "faces": 
-            {
-                "down":  { "texture": "#top" },
-                "up":    { "texture": "#top" },
-                "north": { "texture": "#top" },
-                "south": { "texture": "#top" },
-                "west":  { "texture": "#top" },
-                "east":  { "texture": "#top" }
+            "from": [1, 15, 1],
+            "to": [15, 16, 15],
+            "faces": {
+                "down": {"texture": "#top"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#top"},
+                "south": {"texture": "#top"},
+                "west": {"texture": "#top"},
+                "east": {"texture": "#top"}
             }
         },
         {
-            "from": [ 2, 13, 2 ],
-            "to": [ 4, 15, 4 ],
-            "faces": 
-            {
-                "down":  { "texture": "#border", "cullface": "down" },
-                "up":    { "texture": "#border", "cullface": "up" },
-                "north": { "texture": "#border" },
-                "south": { "texture": "#border" },
-                "west":  { "texture": "#border" },
-                "east":  { "texture": "#border" }
+            "from": [2, 13, 2],
+            "to": [4, 15, 4],
+            "faces": {
+                "down": {"texture": "#border", "cullface": "down"},
+                "up": {"texture": "#border", "cullface": "up"},
+                "north": {"texture": "#border"},
+                "south": {"texture": "#border"},
+                "west": {"texture": "#border"},
+                "east": {"texture": "#border"}
             }
         },
         {
-            "from": [ 12, 13, 2 ],
-            "to": [ 14, 15, 4 ],
-            "faces": 
-            {
-                "down":  { "texture": "#border", "cullface": "down" },
-                "up":    { "texture": "#border", "cullface": "up" },
-                "north": { "texture": "#border" },
-                "south": { "texture": "#border" },
-                "west":  { "texture": "#border" },
-                "east":  { "texture": "#border" }
+            "from": [12, 13, 2],
+            "to": [14, 15, 4],
+            "faces": {
+                "down": {"texture": "#border", "cullface": "down"},
+                "up": {"texture": "#border", "cullface": "up"},
+                "north": {"texture": "#border"},
+                "south": {"texture": "#border"},
+                "west": {"texture": "#border"},
+                "east": {"texture": "#border"}
             }
         },
         {
-            "from": [ 2, 13, 12 ],
-            "to": [ 4, 15, 14 ],
-            "faces": 
-            {
-                "down":  { "texture": "#border", "cullface": "down" },
-                "up":    { "texture": "#border", "cullface": "up" },
-                "north": { "texture": "#border" },
-                "south": { "texture": "#border" },
-                "west":  { "texture": "#border" },
-                "east":  { "texture": "#border" }
+            "from": [2, 13, 12],
+            "to": [4, 15, 14],
+            "faces": {
+                "down": {"texture": "#border", "cullface": "down"},
+                "up": {"texture": "#border", "cullface": "up"},
+                "north": {"texture": "#border"},
+                "south": {"texture": "#border"},
+                "west": {"texture": "#border"},
+                "east": {"texture": "#border"}
             }
         },
         {
-            "from": [ 12, 13, 12 ],
-            "to": [ 14, 15, 14 ],
-            "faces": 
-            {
-                "down":  { "texture": "#border", "cullface": "down" },
-                "up":    { "texture": "#border", "cullface": "up" },
-                "north": { "texture": "#border" },
-                "south": { "texture": "#border" },
-                "west":  { "texture": "#border" },
-                "east":  { "texture": "#border" }
+            "from": [12, 13, 12],
+            "to": [14, 15, 14],
+            "faces": {
+                "down": {"texture": "#border", "cullface": "down"},
+                "up": {"texture": "#border", "cullface": "up"},
+                "north": {"texture": "#border"},
+                "south": {"texture": "#border"},
+                "west": {"texture": "#border"},
+                "east": {"texture": "#border"}
             }
         },
         {
-            "from": [ 5, 6, -1 ],
-            "to": [ 11, 8, 0 ],
-            "faces": 
-            {
-                "down":  { "texture": "#heart"},
-                "up":    { "texture": "#heart"},
-                "north": { "texture": "#heart"},
-                "south": { "texture": "#heart", "cullface": "south"},
-                "west":  { "texture": "#heart"},
-                "east":  { "texture": "#heart"}
+            "from": [5, 7, -1],
+            "to": [11, 9, 0],
+            "faces": {
+                "down": {"texture": "#heart"},
+                "up": {"texture": "#heart"},
+                "north": {"texture": "#heart"},
+                "south": {"texture": "#heart", "cullface": "south"},
+                "west": {"texture": "#heart"},
+                "east": {"texture": "#heart"}
             }
         },
         {
-            "from": [ 6, 5, -1 ],
-            "to": [ 10, 9, 0 ],
-            "faces": 
-            {
-                "down":  { "texture": "#heart"},
-                "up":    { "texture": "#heart"},
-                "north": { "texture": "#heart"},
-                "south": { "texture": "#heart", "cullface": "south"},
-                "west":  { "texture": "#heart"},
-                "east":  { "texture": "#heart"}
+            "from": [6, 6, -1],
+            "to": [10, 10, 0],
+            "faces": {
+                "down": {"texture": "#heart"},
+                "up": {"texture": "#heart"},
+                "north": {"texture": "#heart"},
+                "south": {"texture": "#heart", "cullface": "south"},
+                "west": {"texture": "#heart"},
+                "east": {"texture": "#heart"}
             }
         },
         {
-            "from": [ 7, 4, -1 ],
-            "to": [ 9, 10, 0 ],
-            "faces": 
-            {
-                "down":  { "texture": "#heart"},
-                "up":    { "texture": "#heart"},
-                "north": { "texture": "#heart"},
-                "south": { "texture": "#heart", "cullface": "south"},
-                "west":  { "texture": "#heart"},
-                "east":  { "texture": "#heart"}
+            "from": [7, 5, -1],
+            "to": [9, 11, 0],
+            "faces": {
+                "down": {"texture": "#heart"},
+                "up": {"texture": "#heart"},
+                "north": {"texture": "#heart"},
+                "south": {"texture": "#heart", "cullface": "south"},
+                "west": {"texture": "#heart"},
+                "east": {"texture": "#heart"}
             }
         }
     ]
