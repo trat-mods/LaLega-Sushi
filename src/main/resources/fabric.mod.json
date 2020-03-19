@@ -3,13 +3,13 @@
     "id": "lalegamod",
     "version": "${version}",
     "name": "LaLega Sushi",
-    "description": "Open the website to check the mod wiki",
+    "description": "All You Can Eat Sushi in Minecraft. Open the website to check the mod wiki in detail.",
     "authors": [
         "t_r_a_t"
     ],
     "contact": {
-        "homepage": "https://github.com/IdentityError/LaLegaMod/wiki",
-        "sources": "https://github.com/IdentityError/LaLegaMod"
+        "homepage": "https://github.com/tratteo/LaLegaMod/wiki",
+        "sources": "https://github.com/tratteo/LaLegaMod"
     },
     "license": "CC0-1.0",
     "icon": "assets/lalegamod/icon.png",

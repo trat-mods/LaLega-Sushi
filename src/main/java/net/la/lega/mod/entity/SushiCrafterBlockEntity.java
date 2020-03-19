@@ -24,9 +24,9 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     public static final int RICE_SLOT = 3;
     public static final int OUTPUT_SLOT = 4;
     
-    private static final int[] TOP_SLOTS = new int[]{0, 1, 2, 3};
-    private static final int[] BOTTOM_SLOTS = new int[]{4};
-    private static final int[] SIDE_SLOTS = new int[]{0, 1, 2, 3};
+    private static final int[] TOP_SLOTS = new int[]{FISH_SLOT, ING_SLOT, ING2_SLOT, RICE_SLOT};
+    private static final int[] BOTTOM_SLOTS = new int[]{OUTPUT_SLOT};
+    private static final int[] SIDE_SLOTS = new int[]{FISH_SLOT, ING_SLOT, ING2_SLOT, RICE_SLOT};
     
     private SushiCraftingRecipe currentRecipe;
     
