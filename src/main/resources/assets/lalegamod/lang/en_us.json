@@ -12,5 +12,7 @@
     "item.lalegamod.avocado": "Avocado",
     "item.lalegamod.uramaki_sake": "Uramaki Sake",
     "entity.minecraft.villager.sushi_man": "Sushi Man",
-    "item.lalegamod.futomaki_sake": "Futomaki Sake"
+    "item.lalegamod.futomaki_sake": "Futomaki Sake",
+    "block.lalegamod.wasabi_block": "Wasabi Root",
+    "item.lalegamod.wasabi": "Wasabi"
 }

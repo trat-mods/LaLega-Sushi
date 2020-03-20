@@ -1,0 +1,6 @@
+{
+    "parent": "lalegamod:template/narrow_crop_farmland",
+    "textures": {
+        "crop": "lalegamod:crop/wasabi_stage4"
+    }
+}

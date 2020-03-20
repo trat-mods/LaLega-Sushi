@@ -13,9 +13,6 @@ import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -24,13 +21,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 import java.util.Random;
 import java.util.function.Consumer;
 
-public class AvocadoBlock extends PlantBlock implements Fertilizable
+public class AvocadoBlock extends CropBlock
 {
-    public static final IntProperty AGE;
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "avocado_block");
     public static final Identifier HARVEST_SOUND = new Identifier(LLoader.MOD_ID, "avocado_harvest");
     
@@ -45,69 +42,26 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
     public AvocadoBlock()
     {
         super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().build());
-        Random random = new Random();
-        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(AGE, random.nextInt(getMaxAge())));
+        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(AGE, 0));
     }
     
     @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos)
+    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
     {
-        Block block = floor.getBlock();
-        return block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL;
+        Block block = world.getBlockState(pos.down()).getBlock();
+        return (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL) && (world.getBlockState(pos.up()).getBlock() == Blocks.AIR);
     }
     
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack)
-    {
-        setAgeState(world, pos, 0);
-        super.onPlaced(world, pos, state, placer, itemStack);
-    }
-    
     public int getMaxAge()
     {
         return 5;
     }
     
-    protected int getAge(final BlockState state)
-    {
-        return (Integer) state.get(AGE);
-    }
-    
-    public BlockState withAge(final int age)
-    {
-        return (BlockState) this.getDefaultState().with(AGE, age);
-    }
-    
-    public boolean isMature(final BlockState state)
-    {
-        return (Integer) state.get(AGE) >= this.getMaxAge();
-    }
-    
-    public boolean isFertilizable(final BlockView world, final BlockPos pos, final BlockState state, final boolean isClient)
-    {
-        return !this.isMature(state);
-    }
-    
     @Override
-    protected void appendProperties(final StateManager.Builder<Block, BlockState> builder)
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos)
     {
-        builder.add(AGE);
-    }
-    
-    public boolean canGrow(final World world, final Random random, final BlockPos pos, final BlockState state)
-    {
-        return !this.isMature(state);
-    }
-    
-    public void grow(final ServerWorld world, final Random random, final BlockPos pos, final BlockState state)
-    {
-        int i = this.getAge(state) + this.getGrowthAmount(world);
-        final int j = this.getMaxAge();
-        if(i > j)
-        {
-            i = j;
-        }
-        setAgeState(world, pos, i);
+        return AGE_TO_SHAPE[(Integer) state.get(this.getAgeProperty())];
     }
     
     public void setAgeState(World world, BlockPos pos, int age)
@@ -118,7 +72,8 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         }
     }
     
-    protected int getGrowthAmount(final World world)
+    @Override
+    public int getGrowthAmount(final World world)
     {
         return 1;
     }
@@ -134,6 +89,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         return avocadoesAmount;
     }
     
+    @Override
     public ActionResult onUse(final BlockState state, final World world, final BlockPos pos, final PlayerEntity player, final Hand hand, final BlockHitResult hit)
     {
         final ItemStack itemStack = player.getStackInHand(hand);
@@ -163,6 +119,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         }
     }
     
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         super.scheduledTick(state, world, pos, random);
@@ -181,11 +138,7 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         return (Integer) state.get(AGE) >= getMaxAge() - 1;
     }
     
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos)
-    {
-        return AGE_TO_SHAPE[(Integer) state.get(AGE)];
-    }
-    
+    @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {
         if(getAge(state) > 3)
@@ -197,18 +150,15 @@ public class AvocadoBlock extends PlantBlock implements Fertilizable
         return;
     }
     
+    @Override
     public boolean hasComparatorOutput(BlockState state)
     {
         return true;
     }
     
+    @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos)
     {
         return state.get(AGE);
-    }
-    
-    static
-    {
-        AGE = Properties.AGE_5;
     }
 }

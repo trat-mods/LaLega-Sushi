@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "age=0": {
+            "model": "lalegamod:crop/wasabi_stage0"
+        },
+        "age=1": {
+            "model": "lalegamod:crop/wasabi_stage1"
+        },
+        "age=2": {
+            "model": "lalegamod:crop/wasabi_stage2"
+        },
+        "age=3": {
+            "model": "lalegamod:crop/wasabi_stage3"
+        },
+        "age=4": {
+            "model": "lalegamod:crop/wasabi_stage4"
+        },
+        "age=5": {
+            "model": "lalegamod:crop/wasabi_stage5"
+        },
+        "age=6": {
+            "model": "lalegamod:crop/wasabi_stage5"
+        },
+        "age=7": {
+            "model": "lalegamod:crop/wasabi_stage5"
+        }
+    }
+}

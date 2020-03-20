@@ -1,7 +1,6 @@
 package net.la.lega.mod.recipe;
 
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -76,10 +75,6 @@ public class SushiCraftingRecipe implements Recipe<Inventory>
     @Override
     public boolean matches(Inventory inv, World world)
     {
-        if(inv.getInvStack(SushiCrafterBlockEntity.FISH_SLOT).isEmpty() || inv.getInvStack(SushiCrafterBlockEntity.RICE_SLOT).isEmpty())
-        {
-            return false;
-        }
         RecipeFinder recipeFinder = new RecipeFinder();
         int i = 0;
         

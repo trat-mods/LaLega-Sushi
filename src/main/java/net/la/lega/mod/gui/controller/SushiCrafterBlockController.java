@@ -1,10 +1,6 @@
 package net.la.lega.mod.gui.controller;
 
-import io.github.cottonmc.cotton.gui.widget.WBar;
-import io.github.cottonmc.cotton.gui.widget.WItemSlot;
-import io.github.cottonmc.cotton.gui.widget.WLabel;
-import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
-import io.github.cottonmc.cotton.gui.widget.WSprite;
+import io.github.cottonmc.cotton.gui.widget.*;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
@@ -12,51 +8,47 @@ import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Identifier;
 
-public class SushiCrafterBlockController extends AbstractBlockController 
-{
-    protected int currentProcessTime = -1;
-    protected int unitProcessTime = -1;
+import java.util.ArrayList;
+import java.util.List;
 
-    public SushiCrafterBlockController(int syncId, PlayerInventory playerInventory, BlockContext context) 
+public class SushiCrafterBlockController extends AbstractBlockController
+{
+    public SushiCrafterBlockController(int syncId, PlayerInventory playerInventory, BlockContext context)
     {
         super(SushiCraftingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
-
         WPlainPanel root = new WPlainPanel();
-        root.setSize(160, 160);
         setRootPanel(root);
-
-        WItemSlot ing2Slot = WItemSlot.of(blockInventory, SushiCrafterBlockEntity.ING2_SLOT);
-        WItemSlot ingSlot = WItemSlot.of(blockInventory, SushiCrafterBlockEntity.ING_SLOT);
-        WItemSlot riceSlot = WItemSlot.of(blockInventory, SushiCrafterBlockEntity.RICE_SLOT);
-        WItemSlot fishSlot = WItemSlot.of(blockInventory, SushiCrafterBlockEntity.FISH_SLOT);
+        
+        List<WItemSlot> ingredientSlots = new ArrayList<>();
+        for(int i = 0; i < SushiCrafterBlockEntity.INGREDIENTS_SLOTS.length; i++)
+        {
+            ingredientSlots.add(WItemSlot.of(blockInventory, SushiCrafterBlockEntity.INGREDIENTS_SLOTS[i]));
+        }
+        List<WItemSlot> requiredSlots = new ArrayList<>();
+        for(int i = 0; i < SushiCrafterBlockEntity.REQUIRED_SLOTS.length; i++)
+        {
+            requiredSlots.add(WItemSlot.of(blockInventory, SushiCrafterBlockEntity.REQUIRED_SLOTS[i]));
+        }
         WItemSlot outputSlot = WItemSlot.outputOf(blockInventory, SushiCrafterBlockEntity.OUTPUT_SLOT);
-
         WLabel title = new WLabel("Sushi Crafter", WLabel.DEFAULT_TEXT_COLOR);
-
         WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"), 0, 1, WBar.Direction.RIGHT);
-
         WSprite heartIcon = new WSprite(new Identifier("minecraft:textures/item/heart_of_the_sea.png"));
-        WSprite fishIcon = new WSprite(new Identifier("lalegamod:textures/ui/sashimi_transparent.png"));
-        fishIcon.setSize(16, 16);
-
-        WSprite riceIcon = new WSprite(new Identifier("lalegamod:textures/ui/rice_transparent.png"));
-        riceIcon.setSize(16, 16);
-
-        root.add(fishIcon, 31, 21);
-        root.add(riceIcon, 31, 63);
-        root.add(heartIcon, 31, 41);
-
+        
+        for(int i = 0; i < SushiCrafterBlockEntity.INGREDIENTS_SLOTS.length; i++)
+        {
+            root.add(ingredientSlots.get(i), 10 + (i * 23), 75);
+        }
+        
+        for(int i = 0; i < SushiCrafterBlockEntity.REQUIRED_SLOTS.length; i++)
+        {
+            root.add(requiredSlots.get(i), 38 + (i * 36), 26);
+        }
+        
+        root.add(heartIcon, 55, 48);
         root.add(title, 10, 2);
-
-        root.add(ing2Slot, 52, 43);
-        root.add(ingSlot, 10, 43);
-        root.add(riceSlot, 32, 64);
-        root.add(fishSlot, 32, 22);
-        root.add(outputSlot, 130, 44);
-
-        root.add(progressBar, 85, 43, 26, 17);
-
-        root.add(this.createPlayerInventoryPanel(), 0, 92);
+        root.add(outputSlot, 140, 48);
+        root.add(progressBar, 104, 48, 26, 17);
+        root.add(this.createPlayerInventoryPanel(), 0, 110);
         root.validate(this);
     }
 }

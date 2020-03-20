@@ -20,5 +20,6 @@ public class LLoader implements ModInitializer
         LTags.intialize();
         LFeatures.initialize();
         LBehaviors.initialize();
+        LLootTablesInjector.initialize();
     }
 }

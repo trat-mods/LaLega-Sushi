@@ -4,7 +4,6 @@ import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.initializer.LTags;
 import net.la.lega.mod.initializer.LVillagerProfessions;
-import net.la.lega.mod.item.Rice;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.inventory.BasicInventory;
@@ -14,25 +13,71 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 {
-    public static final int FISH_SLOT = 0;
-    public static final int ING_SLOT = 1;
-    public static final int ING2_SLOT = 2;
-    public static final int RICE_SLOT = 3;
-    public static final int OUTPUT_SLOT = 4;
+    public static final int OUTPUT_SLOT = 0;
+    public static final int[] REQUIRED_SLOTS = new int[]{1, 2};
+    public static final int[] INGREDIENTS_SLOTS = new int[]{3, 4, 5, 6, 7};
     
-    private static final int[] TOP_SLOTS = new int[]{FISH_SLOT, ING_SLOT, ING2_SLOT, RICE_SLOT};
-    private static final int[] BOTTOM_SLOTS = new int[]{OUTPUT_SLOT};
-    private static final int[] SIDE_SLOTS = new int[]{FISH_SLOT, ING_SLOT, ING2_SLOT, RICE_SLOT};
+    private boolean isRequiredSlot(int slot)
+    {
+        return Arrays.stream(REQUIRED_SLOTS).anyMatch(p -> p == slot);
+    }
+    
+    private boolean isRequiredTypeItem(Item item)
+    {
+        return item.isIn(LTags.SUSHI_REQUIRED);
+    }
+    
+    private boolean isItemAlreadyPresent(Item item, int interestedSlot)
+    {
+        for(int i = 0; i < REQUIRED_SLOTS.length; i++)
+        {
+            if(i != interestedSlot && item == items.get(i).getItem())
+            {
+                return true;
+            }
+        }
+        for(int i = 0; i < INGREDIENTS_SLOTS.length; i++)
+        {
+            if(i != interestedSlot && item == items.get(i).getItem())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isIngredientSlot(int slot)
+    {
+        return Arrays.stream(INGREDIENTS_SLOTS).anyMatch(p -> p == slot);
+    }
+    
+    private boolean isIngredient(Item item)
+    {
+        return item.isIn(LTags.SUSHI_INGREDIENT);
+    }
+    
+    private int[] TOP_SLOTS;
+    private int[] BOTTOM_SLOTS = new int[]{OUTPUT_SLOT};
+    private int[] SIDE_SLOTS;
     
     private SushiCraftingRecipe currentRecipe;
     
     public SushiCrafterBlockEntity()
     {
-        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 5);
+        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 8);
+        calculateSlots();
+    }
+    
+    private void calculateSlots()
+    {
+        TOP_SLOTS = Arrays.copyOf(REQUIRED_SLOTS, REQUIRED_SLOTS.length + INGREDIENTS_SLOTS.length);
+        System.arraycopy(INGREDIENTS_SLOTS, 0, TOP_SLOTS, REQUIRED_SLOTS.length, INGREDIENTS_SLOTS.length);
+        SIDE_SLOTS = TOP_SLOTS;
     }
     
     @Override
@@ -57,21 +102,13 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
         {
             return false;
         }
-        else if(slot == RICE_SLOT)
+        else if(isRequiredSlot(slot) && isRequiredTypeItem(stackItem))
         {
-            return stackItem.asItem() instanceof Rice;
+            return !isItemAlreadyPresent(stackItem, slot);
         }
-        else if(slot == FISH_SLOT)
+        else if(isIngredientSlot(slot) && isIngredient(stackItem))
         {
-            return stackItem.isIn(LTags.SUSHI_FISH);
-        }
-        if(slot == ING_SLOT)
-        {
-            return stackItem.isIn(LTags.SUSHI_INGREDIENT) && (items.get(ING2_SLOT).isEmpty() || items.get(ING2_SLOT).getItem() != stackItem);
-        }
-        else if(slot == ING2_SLOT)
-        {
-            return stackItem.isIn(LTags.SUSHI_INGREDIENT) && (items.get(ING_SLOT).isEmpty() || items.get(ING_SLOT).getItem() != stackItem);
+            return !isItemAlreadyPresent(stackItem, slot);
         }
         else
         {
@@ -113,7 +150,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
                 {
                     return false;
                 }
-                else if(currentOutputStack.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount() && currentOutputStack.getCount() + bcRecipe.getOutputAmount() <= currentOutputStack.getMaxCount())
+                else if(currentOutputStack.getCount() + bcRecipe.getOutputAmount() <= this.getInvMaxStackAmount())
                 {
                     return true;
                 }
@@ -135,11 +172,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
         SushiCraftingRecipe bcRecipe = (SushiCraftingRecipe) recipe;
         if(bcRecipe != null && this.canAcceptRecipeOutput(bcRecipe))
         {
-            ItemStack ing2Slot = (ItemStack) this.items.get(ING2_SLOT);
-            ItemStack ingSlot = (ItemStack) this.items.get(ING_SLOT);
-            ItemStack fishSlot = (ItemStack) this.items.get(FISH_SLOT);
-            ItemStack riceSlot = (ItemStack) this.items.get(RICE_SLOT);
-            
             ItemStack output = bcRecipe.craft(this);
             ItemStack outputSlot = (ItemStack) this.items.get(OUTPUT_SLOT);
             
@@ -151,16 +183,23 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
             {
                 outputSlot.increment(bcRecipe.getOutputAmount());
             }
-            if(!ingSlot.isEmpty())
+            
+            for(int i = 0; i < INGREDIENTS_SLOTS.length; i++)
             {
-                ingSlot.decrement(1);
+                ItemStack current = items.get(INGREDIENTS_SLOTS[i]);
+                if(!current.isEmpty())
+                {
+                    current.decrement(1);
+                }
             }
-            if(!ing2Slot.isEmpty())
+            for(int i = 0; i < REQUIRED_SLOTS.length; i++)
             {
-                ing2Slot.decrement(1);
+                ItemStack current = items.get(REQUIRED_SLOTS[i]);
+                if(!current.isEmpty())
+                {
+                    current.decrement(1);
+                }
             }
-            fishSlot.decrement(1);
-            riceSlot.decrement(1);
         }
     }
     
@@ -169,10 +208,10 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
+            System.out.println(getCurrentProcessingTime() + ", " + getCurrentUnitProcessingTime());
             if(isSushiManNear())
             {
-                BasicInventory craftingInventory = new BasicInventory(items.get(FISH_SLOT), items.get(ING_SLOT), items.get(ING2_SLOT), items.get(RICE_SLOT));
-                SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, craftingInventory, world).orElse(null);
+                SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, calculateCurrentInventory(), world).orElse(null);
                 if(currentRecipe == null)
                 {
                     currentRecipe = match;
@@ -203,16 +242,33 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
                     }
                 }
             }
-            else
-            {
-                resetProcessing();
-            }
         }
+    }
+    
+    private BasicInventory calculateCurrentInventory()
+    {
+        BasicInventory inv = new BasicInventory(items.size() - 1);
+        for(int i = 0; i < REQUIRED_SLOTS.length; i++)
+        {
+            inv.add(items.get(REQUIRED_SLOTS[i]));
+        }
+        for(int i = 0; i < INGREDIENTS_SLOTS.length; i++)
+        {
+            inv.add(items.get(INGREDIENTS_SLOTS[i]));
+        }
+        return inv;
     }
     
     private boolean areRequiredSlotNotEmpty()
     {
-        return !((ItemStack) items.get(FISH_SLOT)).isEmpty() && !((ItemStack) items.get(RICE_SLOT)).isEmpty();
+        for(int i = 0; i < REQUIRED_SLOTS.length; i++)
+        {
+            if(items.get(REQUIRED_SLOTS[i]).isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
     
     private boolean isSushiManNear()
