@@ -27,9 +27,20 @@ public class RandomAgeCropFeature extends Feature<DefaultFeatureConfig>
     {
         if(cropBlock.canPlaceAt(null, world, pos))
         {
+            //if(cropBlock instanceof WasabiBlock)
+            //{
+            //    System.out.println("WASABI at: " + pos.toString());
+            //}
+            //if(cropBlock instanceof RiceBlock)
+            //{
+            //    System.out.println("RICE at: " + pos.toString());
+            //}
+            //if(cropBlock instanceof AvocadoBlock)
+            //{
+            //    System.out.println("AVOCADO at: " + pos.toString());
+            //}
             int age = random.nextInt(cropBlock.getMaxAge());
             world.setBlockState(pos, cropBlock.getDefaultState().with(CropBlock.AGE, age), 4);
-            
             return true;
         }
         return false;

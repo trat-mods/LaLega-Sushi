@@ -23,27 +23,27 @@ public abstract class LFeatures
         AVOCADO_FEATURE = Registry.register(Registry.FEATURE, new Identifier(LLoader.MOD_ID, "avocado_feature"), new RandomAgeCropFeature(DefaultFeatureConfig::deserialize, LBlocks.AVOCADO_BLOCK));
         WASABI_FEATURE = Registry.register(Registry.FEATURE, new Identifier(LLoader.MOD_ID, "wasabi_feature"), new RandomAgeCropFeature(DefaultFeatureConfig::deserialize, LBlocks.WASABI_BLOCK));
         
-        ConfiguredFeature configuredRiceFeature = configureFeature(RICE_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(25, 0.5F));
-        ConfiguredFeature configuredAvocadoFeature = configureFeature(AVOCADO_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(3, 0.175F));
-        ConfiguredFeature configuredWasabiFeature = configureFeature(WASABI_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(16, 0.2F));
+        ConfiguredFeature configuredRiceFeature = configureFeature(RICE_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(36, 0.85F));
+        ConfiguredFeature configuredAvocadoFeature = configureFeature(AVOCADO_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(5, 0.2F));
+        ConfiguredFeature configuredWasabiFeature = configureFeature(WASABI_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(22, 0.68F));
         
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredRiceFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredRiceFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_HILLS)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredRiceFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredRiceFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredRiceFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);
         
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredAvocadoFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredAvocadoFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_HILLS)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredAvocadoFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredAvocadoFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredAvocadoFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredAvocadoFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredAvocadoFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredAvocadoFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredAvocadoFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredAvocadoFeature);
         
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredWasabiFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredWasabiFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_HILLS)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredWasabiFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredWasabiFeature);
-        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.RAW_GENERATION, configuredWasabiFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredWasabiFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredWasabiFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredWasabiFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredWasabiFeature);
+        Registry.BIOME.get(Registry.BIOME.getId(Biomes.BAMBOO_JUNGLE_HILLS)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredWasabiFeature);
     }
     
     public static <F extends FeatureConfig, D extends DecoratorConfig> ConfiguredFeature<?, ?> configureFeature(Feature<F> feature, F featureConfig, Decorator<D> decorator, D decoratorConfig)

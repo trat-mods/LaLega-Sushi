@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "lalegamod:raw_squid"
+    },
+    "result": "lalegamod:cooked_squid",
+    "experience": 0.1,
+    "cookingtime": 120
+}

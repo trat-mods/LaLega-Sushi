@@ -5,7 +5,7 @@ import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
-import net.la.lega.mod.recipe.InjectiveProcessingRecipe;
+import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -89,7 +89,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected boolean canAcceptRecipeOutput(Recipe<?> recipe)
     {
-        InjectiveProcessingRecipe bcRecipe = (InjectiveProcessingRecipe) recipe;
+        AbstractInjectiveProcessingRecipe bcRecipe = (AbstractInjectiveProcessingRecipe) recipe;
         if(!((ItemStack) this.items.get(0)).isEmpty() && recipe != null)
         {
             ItemStack itemStack = bcRecipe.getOutput();
@@ -128,7 +128,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected void craftRecipe(@Nullable Recipe<?> recipe)
     {
-        InjectiveProcessingRecipe bcRecipe = (InjectiveProcessingRecipe) recipe;
+        AbstractInjectiveProcessingRecipe bcRecipe = (AbstractInjectiveProcessingRecipe) recipe;
         if(recipe != null && this.canAcceptRecipeOutput(recipe))
         {
             ItemStack inputSlot = (ItemStack) this.items.get(0);

@@ -1,0 +1,14 @@
+{
+    "type": "lalegamod:sushi_crafting",
+    "ingredients": [
+        {
+            "item": "minecraft:stick"
+        },
+        {
+            "item": "lalegamod:cooked_squid"
+        }
+    ],
+    "output": "lalegamod:squid_skewer",
+    "processingTime": 220,
+    "outputAmount": 1
+}

@@ -1,4 +1,4 @@
-package net.la.lega.mod.recipe;
+package net.la.lega.mod.recipe.abstraction;
 
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -9,14 +9,14 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public abstract class InjectiveProcessingRecipe implements Recipe<Inventory>
+public abstract class AbstractInjectiveProcessingRecipe implements Recipe<Inventory>
 {
     private final Ingredient input;
     private final ItemStack outputStack;
     private final int processingTime;
     private final Identifier id;
     
-    public InjectiveProcessingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
+    public AbstractInjectiveProcessingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
     {
         this.input = input;
         this.outputStack = outputStack;

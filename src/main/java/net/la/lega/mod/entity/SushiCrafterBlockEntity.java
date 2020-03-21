@@ -208,7 +208,6 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     {
         if(!this.world.isClient)
         {
-            System.out.println(getCurrentProcessingTime() + ", " + getCurrentUnitProcessingTime());
             if(isSushiManNear())
             {
                 SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, calculateCurrentInventory(), world).orElse(null);
@@ -263,12 +262,12 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     {
         for(int i = 0; i < REQUIRED_SLOTS.length; i++)
         {
-            if(items.get(REQUIRED_SLOTS[i]).isEmpty())
+            if(!items.get(REQUIRED_SLOTS[i]).isEmpty())
             {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
     
     private boolean isSushiManNear()

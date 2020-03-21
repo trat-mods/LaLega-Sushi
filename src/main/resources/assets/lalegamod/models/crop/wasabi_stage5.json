@@ -1,5 +1,5 @@
 {
-    "parent": "lalegamod:template/narrow_crop_farmland",
+    "parent": "block/crop",
     "textures": {
         "crop": "lalegamod:crop/wasabi_stage5"
     }

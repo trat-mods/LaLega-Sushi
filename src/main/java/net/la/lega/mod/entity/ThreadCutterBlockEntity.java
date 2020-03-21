@@ -4,7 +4,7 @@ import net.la.lega.mod.block.ThreadCutterBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.initializer.LSounds;
-import net.la.lega.mod.recipe.InjectiveProcessingRecipe;
+import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -102,7 +102,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected void craftRecipe(Recipe<?> recipe)
     {
-        InjectiveProcessingRecipe tCRecipe = (InjectiveProcessingRecipe) recipe;
+        AbstractInjectiveProcessingRecipe tCRecipe = (AbstractInjectiveProcessingRecipe) recipe;
         if(tCRecipe != null && this.canAcceptRecipeOutput(tCRecipe))
         {
             ItemStack inputSlot = (ItemStack) this.items.get(0);

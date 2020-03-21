@@ -14,5 +14,8 @@
     "entity.minecraft.villager.sushi_man": "Sushi Man",
     "item.lalegamod.futomaki_sake": "Futomaki Sake",
     "block.lalegamod.wasabi_block": "Wasabi Root",
-    "item.lalegamod.wasabi": "Wasabi"
+    "item.lalegamod.wasabi": "Wasabi",
+    "item.lalegamod.raw_squid": "Raw Squid",
+    "item.lalegamod.cooked_squid": "Cooked Squid",
+    "item.lalegamod.squid_skewer": "Squid Skewer"
 }

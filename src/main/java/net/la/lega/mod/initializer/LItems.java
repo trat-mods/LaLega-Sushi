@@ -17,6 +17,9 @@ public abstract class LItems
     public static final Item HOSOMAKI_SAKE = new HosomakiSake();
     public static final Item URAMAKI_SAKE = new UramakiSake();
     public static final Item FUTOMAKI_SAKE = new FutomakiSake();
+    public static final Item RAW_SQUID = new RawSquid();
+    public static final Item COOKED_SQUID = new CookedSquid();
+    public static final Item SQUID_SKEWER = new SquidSkewer();
     
     public static final Item RICE = new Rice();
     public static final Item AVOCADO = new Avocado();
@@ -36,6 +39,9 @@ public abstract class LItems
         Registry.register(Registry.ITEM, FutomakiSake.ID, FUTOMAKI_SAKE);
         Registry.register(Registry.ITEM, Wasabi.ID, WASABI);
         Registry.register(Registry.ITEM, Avocado.ID, AVOCADO);
+        Registry.register(Registry.ITEM, RawSquid.ID, RAW_SQUID);
+        Registry.register(Registry.ITEM, CookedSquid.ID, COOKED_SQUID);
+        Registry.register(Registry.ITEM, SquidSkewer.ID, SQUID_SKEWER);
         
         AVOCADO_SEED = Registry.register(Registry.ITEM, AvocadoBlock.ID, new BlockItem(LBlocks.AVOCADO_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
         RICE_SEEDS = Registry.register(Registry.ITEM, RiceBlock.ID, new BlockItem(LBlocks.RICE_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));

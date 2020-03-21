@@ -1,7 +1,7 @@
 {
-    "values": 
-    [
+    "values": [
         "minecraft:dried_kelp",
-        "lalegamod:avocado"
+        "lalegamod:avocado",
+        "minecraft:stick"
     ]
 }
