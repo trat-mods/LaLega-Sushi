@@ -17,5 +17,10 @@
     "item.lalegamod.wasabi": "Wasabi",
     "item.lalegamod.raw_squid": "Raw Squid",
     "item.lalegamod.cooked_squid": "Cooked Squid",
-    "item.lalegamod.squid_skewer": "Squid Skewer"
+    "item.lalegamod.squid_skewer": "Squid Skewer",
+    "item.lalegamod.nigiri_sake_wasabi": "Nigiri Sake Wasabi",
+    "item.lalegamod.hosomaki_sake_wasabi": "Hosomaki Sake Wasabi",
+    "item.lalegamod.uramaki_sake_wasabi": "Uramaki Sake Wasabi",
+    "item.lalegamod.futomaki_sake_wasabi": "Futomaki Sake Wasabi",
+    "itemGroup.lalegamod.plants": "Japanese Plants"
 }

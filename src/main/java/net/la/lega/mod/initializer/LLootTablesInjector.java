@@ -16,9 +16,7 @@ public abstract class LLootTablesInjector
         {
             if(SQUID_LOOT_TABLE_ID.equals(id))
             {
-                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                      .withRolls(UniformLootTableRange.between(1, 3))
-                      .withEntry(ItemEntry.builder(LItems.RAW_SQUID));
+                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder().withRolls(UniformLootTableRange.between(2, 4)).withEntry(ItemEntry.builder(LItems.RAW_SQUID));
                 supplier.withPool(poolBuilder);
             }
         });

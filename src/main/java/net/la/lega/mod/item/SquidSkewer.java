@@ -2,6 +2,9 @@ package net.la.lega.mod.item;
 
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -11,7 +14,10 @@ public class SquidSkewer extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "squid_skewer");
     
-    public static final float saturation = 1.4F;
+    public static final StatusEffect effect = StatusEffects.LUCK;
+    public static final int effectDuration = 20 * 60;
+    public static final float effectChance = 0.0675F;
+    public static final float saturation = 1.95F;
     public static final int hunger = 4;
     
     public SquidSkewer()
@@ -20,6 +26,7 @@ public class SquidSkewer extends Item
               .food(new FoodComponent.Builder()
                     .hunger(hunger)
                     .saturationModifier(saturation)
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
                     .snack()
                     .alwaysEdible()
                     .build())

@@ -16,7 +16,7 @@ public class Wasabi extends Item
     public static final StatusEffect effect = StatusEffects.SPEED;
     public static final int effectDuration = 20 * 8;
     public static final float effectChance = 0.125F;
-    public static final float saturation = 0.5F;
+    public static final float saturation = 0.85F;
     public static final int hunger = 1;
     
     public Wasabi()

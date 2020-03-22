@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.loader.LLoader;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.item.Item;
@@ -35,7 +36,7 @@ public class SushiCraftingRecipeSerializer implements RecipeSerializer<SushiCraf
         {
             throw new JsonParseException("No ingredients for sushi crafting recipe");
         }
-        else if(defaultedList.size() > 4)
+        else if(defaultedList.size() > SushiCrafterBlockEntity.INGREDIENTS_SLOTS.length + SushiCrafterBlockEntity.REQUIRED_SLOTS.length)
         {
             throw new JsonParseException("Too many ingredients for sushi crafting recipe");
         }

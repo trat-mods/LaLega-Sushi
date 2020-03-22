@@ -189,7 +189,6 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
      */
     protected void resetProcessing()
     {
-        System.out.println("RESETTING ABSTRACT");
         this.currentProcessingTime = -1;
         this.unitProcessingTime = 0;
     }

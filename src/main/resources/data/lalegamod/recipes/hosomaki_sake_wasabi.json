@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "lalegamod:hosomaki_sake"
+        },
+        {
+            "item": "lalegamod:wasabi"
+        }
+    ],
+    "result": {
+        "item": "lalegamod:hosomaki_sake_wasabi",
+        "count": 1
+    }
+}

@@ -16,16 +16,16 @@ public class SalmonFillet extends Item
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 25;
     public static final float effectChance = 0.225F;
-    public static final float saturation = 0.95F;
+    public static final float saturation = 1.45F;
     public static final int hunger = 2;
-
-    public SalmonFillet() 
+    
+    public SalmonFillet()
     {
         super(new Item.Settings().group(ItemGroup.FOOD)
-                .food(new FoodComponent.Builder().hunger(hunger)
-                .saturationModifier(saturation).alwaysEdible()
-                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                .build())
-            );
+              .food(new FoodComponent.Builder().hunger(hunger)
+                    .saturationModifier(saturation).alwaysEdible()
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .build())
+        );
     }
 }
