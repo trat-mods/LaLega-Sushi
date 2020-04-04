@@ -24,7 +24,7 @@ public class SalmonFillet extends Item
         super(new Item.Settings().group(ItemGroup.FOOD)
               .food(new FoodComponent.Builder().hunger(hunger)
                     .saturationModifier(saturation).alwaysEdible()
-                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                          .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
                     .build())
         );
     }

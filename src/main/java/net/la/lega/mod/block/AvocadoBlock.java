@@ -37,6 +37,8 @@ public class AvocadoBlock extends CropBlock
           Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
           Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
           Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+          Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+          Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
           Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
     
     public AvocadoBlock()
@@ -66,9 +68,10 @@ public class AvocadoBlock extends CropBlock
     
     public void setAgeState(World world, BlockPos pos, int age)
     {
+        if(age < 0) return;
         if(!world.isClient)
         {
-            world.setBlockState(pos, this.withAge(age), 0B1011);
+            world.setBlockState(pos, this.withAge(age > getMaxAge() ? getMaxAge() : age), 0B1011);
         }
     }
     
@@ -126,9 +129,9 @@ public class AvocadoBlock extends CropBlock
         int i = this.getAge(state);
         if(i < this.getMaxAge())
         {
-            if(random.nextInt((int) 8) == 0)
+            if(random.nextInt((int) 14) == 0)
             {
-                setAgeState(world, pos, i + 1);
+                setAgeState(world, pos, i + getGrowthAmount(world));
             }
         }
     }

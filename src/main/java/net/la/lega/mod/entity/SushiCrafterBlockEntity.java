@@ -20,7 +20,7 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
 {
     public static final int OUTPUT_SLOT = 0;
     public static final int[] REQUIRED_SLOTS = new int[]{1, 2};
-    public static final int[] INGREDIENTS_SLOTS = new int[]{3, 4, 5, 6, 7};
+    public static final int[] INGREDIENTS_SLOTS = new int[]{3, 4, 5};
     
     private boolean isRequiredSlot(int slot)
     {
@@ -65,11 +65,9 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
     private int[] BOTTOM_SLOTS = new int[]{OUTPUT_SLOT};
     private int[] SIDE_SLOTS;
     
-    private SushiCraftingRecipe currentRecipe;
-    
     public SushiCrafterBlockEntity()
     {
-        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 8);
+        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 6);
         calculateSlots();
     }
     
@@ -211,35 +209,8 @@ public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
             if(isSushiManNear())
             {
                 SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, calculateCurrentInventory(), world).orElse(null);
-                if(currentRecipe == null)
-                {
-                    currentRecipe = match;
-                }
-                else
-                {
-                    if(currentRecipe != match)
-                    {
-                        resetProcessing();
-                        currentRecipe = match;
-                    }
-                }
-                if(!this.isProcessing())
-                {
-                    if(this.canAcceptRecipeOutput(currentRecipe))
-                    {
-                        initializeProcessing(currentRecipe.getProcessingTime());
-                    }
-                }
-                
-                if(this.isProcessing())
-                {
-                    processStep();
-                    if(isProcessingCompleted())
-                    {
-                        this.craftRecipe(currentRecipe);
-                        resetProcessing();
-                    }
-                }
+                checkCurrentRecipe(match);
+                processCurrentRecipe();
             }
         }
     }

@@ -1,4 +1,4 @@
-package net.la.lega.mod;
+package net.la.lega.mod.api;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;

@@ -2,7 +2,8 @@ package net.la.lega.mod.entity.abstraction;
 
 import blue.endless.jankson.annotation.Nullable;
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import net.la.lega.mod.ImplementedInventory;
+import net.la.lega.mod.api.ImplementedInventory;
+import net.la.lega.mod.recipe.abstraction.AbstractProcessingRecipe;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.container.PropertyDelegate;
@@ -27,6 +28,7 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
     
     protected DefaultedList<ItemStack> items;
     
+    protected AbstractProcessingRecipe currentRecipe = null;
     private int currentProcessingTime = -1;
     private int unitProcessingTime = 0;
     
@@ -157,6 +159,22 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
         return this.currentProcessingTime > 0;
     }
     
+    protected void checkCurrentRecipe(AbstractProcessingRecipe match)
+    {
+        if(currentRecipe == null)
+        {
+            currentRecipe = match;
+        }
+        else
+        {
+            if(currentRecipe != match)
+            {
+                resetProcessing();
+                currentRecipe = match;
+            }
+        }
+    }
+    
     /**
      * initialize a new processing
      *
@@ -191,6 +209,27 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
     {
         this.currentProcessingTime = -1;
         this.unitProcessingTime = 0;
+    }
+    
+    protected void processCurrentRecipe()
+    {
+        if(!this.isProcessing())
+        {
+            if(this.canAcceptRecipeOutput(currentRecipe))
+            {
+                initializeProcessing(currentRecipe.getProcessingTime());
+            }
+        }
+        
+        if(this.isProcessing())
+        {
+            processStep();
+            if(isProcessingCompleted())
+            {
+                this.craftRecipe(currentRecipe);
+                resetProcessing();
+            }
+        }
     }
     
     protected int getCurrentProcessingTime()

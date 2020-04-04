@@ -2,6 +2,7 @@ package net.la.lega.mod.gui.controller;
 
 import io.github.cottonmc.cotton.gui.widget.*;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
+import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.container.BlockContext;
@@ -31,23 +32,25 @@ public class SushiCrafterBlockController extends AbstractBlockController
         }
         WItemSlot outputSlot = WItemSlot.outputOf(blockInventory, SushiCrafterBlockEntity.OUTPUT_SLOT);
         WLabel title = new WLabel("Sushi Crafter", WLabel.DEFAULT_TEXT_COLOR);
-        WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"), 0, 1, WBar.Direction.RIGHT);
+        WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"),
+                                    AbstractProcessingOutputterEntity.PROCESS_TIME, AbstractProcessingOutputterEntity.UNIT_PROCESS_TIME, WBar.Direction.RIGHT);
+        
         WSprite heartIcon = new WSprite(new Identifier("minecraft:textures/item/heart_of_the_sea.png"));
         
         for(int i = 0; i < SushiCrafterBlockEntity.INGREDIENTS_SLOTS.length; i++)
         {
-            root.add(ingredientSlots.get(i), 10 + (i * 23), 75);
+            root.add(ingredientSlots.get(i), 20 + (i * 27), 75);
         }
         
         for(int i = 0; i < SushiCrafterBlockEntity.REQUIRED_SLOTS.length; i++)
         {
-            root.add(requiredSlots.get(i), 38 + (i * 36), 26);
+            root.add(requiredSlots.get(i), 29 + (i * 36), 26);
         }
         
-        root.add(heartIcon, 55, 48);
+        root.add(heartIcon, 46, 48);
         root.add(title, 10, 2);
-        root.add(outputSlot, 140, 48);
-        root.add(progressBar, 104, 48, 26, 17);
+        root.add(outputSlot, 132, 48);
+        root.add(progressBar, 96, 48, 26, 17);
         root.add(this.createPlayerInventoryPanel(), 0, 110);
         root.validate(this);
     }

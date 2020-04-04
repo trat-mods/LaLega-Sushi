@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
 import java.util.Iterator;
@@ -53,6 +54,11 @@ public class RiceBlock extends CropBlock
         return AGE_TO_SHAPE[(Integer) state.get(this.getAgeProperty())];
     }
     
+    @Override protected int getGrowthAmount(World world)
+    {
+        return 1;
+    }
+    
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
@@ -64,7 +70,7 @@ public class RiceBlock extends CropBlock
                 float f = getAvailableMoisture(this, world, pos);
                 if(random.nextInt((int) (20.0F / f) + 1) == 0)
                 {
-                    world.setBlockState(pos, this.withAge(i + 1), 2);
+                    world.setBlockState(pos, this.withAge(i + getGrowthAmount(world)), 2);
                 }
             }
         }

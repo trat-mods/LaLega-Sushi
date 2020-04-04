@@ -4,8 +4,8 @@ import net.la.lega.mod.block.ThreadCutterBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.initializer.LSounds;
-import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
+import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -29,25 +29,9 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
         if(!this.world.isClient)
         {
             ThreadCuttingRecipe recipe = this.world.getRecipeManager().getFirstMatch(ThreadCuttingRecipe.Type.INSTANCE, this, world).orElse(null);
-            if(!this.isProcessing())
-            {
-                if(this.canAcceptRecipeOutput(recipe))
-                {
-                    initializeProcessing(recipe.getProcessingTime());
-                }
-            }
-            
-            if(this.isProcessing())
-            {
-                processStep();
-                if(isProcessingCompleted())
-                {
-                    this.craftRecipe(recipe);
-                    resetProcessing();
-                }
-            }
+            checkCurrentRecipe(recipe);
+            processCurrentRecipe();
         }
-        this.markDirty();
     }
     
     @Override

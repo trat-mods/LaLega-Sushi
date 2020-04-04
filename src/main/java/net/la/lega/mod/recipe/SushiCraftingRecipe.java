@@ -1,29 +1,28 @@
 package net.la.lega.mod.recipe;
 
 import it.unimi.dsi.fastutil.ints.IntList;
+import net.la.lega.mod.recipe.abstraction.AbstractProcessingRecipe;
 import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.*;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeFinder;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class SushiCraftingRecipe implements Recipe<Inventory>
+public class SushiCraftingRecipe extends AbstractProcessingRecipe
 {
     public static final String recipeID = "sushi_crafting";
     
     private final DefaultedList<Ingredient> input;
-    private final int processingTime;
-    private final Identifier id;
-    private final ItemStack outputStack;
     
     public SushiCraftingRecipe(DefaultedList<Ingredient> input, ItemStack outputStack, int processingTime, Identifier id)
     {
+        super(outputStack, processingTime, id);
         this.input = input;
-        this.outputStack = outputStack;
-        this.processingTime = processingTime;
-        this.id = id;
     }
     
     @Override
@@ -32,38 +31,10 @@ public class SushiCraftingRecipe implements Recipe<Inventory>
         return input;
     }
     
-    public int getProcessingTime()
-    {
-        return processingTime;
-    }
-    
-    public int getOutputAmount()
-    {
-        return outputStack.getCount();
-    }
-    
-    @Override
-    public ItemStack craft(Inventory inv)
-    {
-        return this.outputStack.copy();
-    }
-    
     @Override
     public boolean fits(int arg0, int arg1)
     {
         return false;
-    }
-    
-    @Override
-    public Identifier getId()
-    {
-        return id;
-    }
-    
-    @Override
-    public ItemStack getOutput()
-    {
-        return outputStack;
     }
     
     @Override

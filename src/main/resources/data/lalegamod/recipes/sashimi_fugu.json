@@ -1,0 +1,9 @@
+{
+    "type": "lalegamod:blast_chilling",
+    "input": {
+        "item": "lalegamod:pufferfish_fillet"
+    },
+    "output": "lalegamod:sashimi_fugu",
+    "processingTime": 245,
+    "outputAmount": 1
+}

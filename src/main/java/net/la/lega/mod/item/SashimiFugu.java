@@ -6,16 +6,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 
-public class SashimiSake extends Item
+public class SashimiFugu extends Item
 {
-    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "sashimi_sake");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "sashimi_fugu");
     
     public static final float saturation = 1F;
-    public static final int hunger = 3;
+    public static final int hunger = 2;
     
-    public SashimiSake()
+    public SashimiFugu()
     {
-        super(new Item.Settings().group(ItemGroup.FOOD)
+        super(new Settings().group(ItemGroup.FOOD)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation).snack().alwaysEdible()

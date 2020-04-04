@@ -1,0 +1,11 @@
+{
+    "type": "lalegamod:sushi_crafting",
+    "ingredients": [
+        {
+            "item": "minecraft:pufferfish"
+        }
+    ],
+    "output": "lalegamod:pufferfish_fillet",
+    "processingTime": 125,
+    "outputAmount": 2
+}

@@ -1,12 +1,10 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
-import net.la.lega.mod.block.BlastChillerBlock;
 import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
@@ -63,26 +61,8 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
         if(!this.world.isClient)
         {
             BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
-            if(!this.isProcessing())
-            {
-                if(this.canAcceptRecipeOutput(match))
-                {
-                    initializeProcessing(match.getProcessingTime());
-                }
-            }
-            
-            this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, isProcessing()), 3);
-            
-            if(this.isProcessing())
-            {
-                processStep();
-                
-                if(isProcessingCompleted())
-                {
-                    this.craftRecipe(match);
-                    resetProcessing();
-                }
-            }
+            checkCurrentRecipe(match);
+            processCurrentRecipe();
         }
     }
     

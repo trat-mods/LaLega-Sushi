@@ -1,0 +1,9 @@
+{
+    "type": "lalegamod:thread_cutting",
+    "input": {
+        "item": "minecraft:wheat"
+    },
+    "output": "lalegamod:wheat_flour",
+    "processingTime": 100,
+    "outputAmount": 1
+}

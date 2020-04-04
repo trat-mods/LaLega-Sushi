@@ -1,0 +1,9 @@
+{
+    "type": "lalegamod:thread_cutting",
+    "input": {
+        "item": "minecraft:sunflower"
+    },
+    "output": "lalegamod:sunflower_flour",
+    "processingTime": 120,
+    "outputAmount": 1
+}

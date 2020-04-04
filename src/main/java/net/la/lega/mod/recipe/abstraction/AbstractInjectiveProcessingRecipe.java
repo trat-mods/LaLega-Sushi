@@ -3,40 +3,24 @@ package net.la.lega.mod.recipe.abstraction;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public abstract class AbstractInjectiveProcessingRecipe implements Recipe<Inventory>
+public abstract class AbstractInjectiveProcessingRecipe extends AbstractProcessingRecipe
 {
     private final Ingredient input;
-    private final ItemStack outputStack;
-    private final int processingTime;
-    private final Identifier id;
     
     public AbstractInjectiveProcessingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
     {
+        super(outputStack, processingTime, id);
         this.input = input;
-        this.outputStack = outputStack;
-        this.processingTime = processingTime;
-        this.id = id;
     }
     
     public Ingredient getInput()
     {
         return input;
-    }
-    
-    public int getProcessingTime()
-    {
-        return processingTime;
-    }
-    
-    public int getOutputAmount()
-    {
-        return outputStack.getCount();
     }
     
     @Override
@@ -47,27 +31,9 @@ public abstract class AbstractInjectiveProcessingRecipe implements Recipe<Invent
     }
     
     @Override
-    public ItemStack craft(Inventory inv)
-    {
-        return this.outputStack.copy();
-    }
-    
-    @Override
     public boolean fits(int width, int height)
     {
         return false;
-    }
-    
-    @Override
-    public ItemStack getOutput()
-    {
-        return outputStack;
-    }
-    
-    @Override
-    public Identifier getId()
-    {
-        return id;
     }
     
     @Override

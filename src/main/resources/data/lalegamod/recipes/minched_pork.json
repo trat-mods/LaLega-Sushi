@@ -1,0 +1,9 @@
+{
+    "type": "lalegamod:thread_cutting",
+    "input": {
+        "item": "minecraft:porkchop"
+    },
+    "output": "lalegamod:minched_pork",
+    "processingTime": 140,
+    "outputAmount": 2
+}

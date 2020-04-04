@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures":
     {
-        "layer0": "lalegamod:item/avocado"
+        "layer0": "lalegamod:item/sunflower_flour"
     }
 }
