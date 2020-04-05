@@ -1,34 +1,23 @@
 package net.la.lega.mod.entity.abstraction;
 
-import blue.endless.jankson.annotation.Nullable;
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import net.la.lega.mod.api.ImplementedInventory;
-import net.la.lega.mod.recipe.abstraction.AbstractProcessingRecipe;
-import net.minecraft.block.entity.BlockEntity;
+import net.la.lega.mod.recipe.abstraction.AProcessingRecipe;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.container.PropertyDelegate;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Tickable;
-import net.minecraft.util.math.Direction;
 
 /**
  * Represent an abstract outputter block that can process items (similar to furnaces or even droppers)
  *
  * @author t_r_a_t
  */
-public abstract class AbstractProcessingOutputterEntity extends BlockEntity implements ImplementedInventory, Tickable, PropertyDelegateHolder
+public abstract class AProcessingEntity extends AInventoryEntity implements Tickable, PropertyDelegateHolder
 {
     public static final int PROCESS_TIME = 0;
     public static final int UNIT_PROCESS_TIME = 1;
     
-    protected DefaultedList<ItemStack> items;
-    
-    protected AbstractProcessingRecipe currentRecipe = null;
+    protected AProcessingRecipe currentRecipe = null;
     private int currentProcessingTime = -1;
     private int unitProcessingTime = 0;
     
@@ -72,70 +61,15 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
      * @param entity the entity type
      * @param itemStackNumber the number of item stacks in this container
      */
-    public AbstractProcessingOutputterEntity(BlockEntityType<?> entity, int itemStackNumber)
+    public AProcessingEntity(BlockEntityType<?> entity, int itemStackNumber)
     {
-        super(entity);
-        items = DefaultedList.ofSize(itemStackNumber, ItemStack.EMPTY);
+        super(entity, itemStackNumber);
     }
-    
-    @Override
-    public DefaultedList<ItemStack> getItems()
-    {
-        return items;
-    }
-    
-    /**
-     * @apiNote override to change the accessibility of the inventory
-     */
-    @Override
-    public boolean canPlayerUseInv(PlayerEntity player)
-    {
-        if(this.world.getBlockEntity(this.pos) != this)
-        {
-            return false;
-        }
-        else
-        {
-            return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-        }
-    }
-    
-    @Override
-    public void setInvStack(int slot, ItemStack stack)
-    {
-        ImplementedInventory.super.setInvStack(slot, stack);
-        ItemStack itemStack = (ItemStack) this.getItems().get(slot);
-        boolean bl = !stack.isEmpty() && stack.isItemEqualIgnoreDamage(itemStack) && ItemStack.areTagsEqual(stack, itemStack);
-        if(slot == 0 && !bl)
-        {
-            this.markDirty();
-        }
-    }
-    
-    @Override
-    public abstract int[] getInvAvailableSlots(Direction side);
-    
-    /**
-     * @apiNote is the slot valid for extract/insert
-     */
-    @Override
-    public abstract boolean isValidInvStack(int slot, ItemStack stack);
-    
-    @Override
-    public abstract boolean canInsertInvStack(int slot, ItemStack stack, Direction dir);
-    
-    @Override
-    public abstract boolean canExtractInvStack(int slot, ItemStack stack, Direction dir);
-    
-    protected abstract boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe);
-    
-    protected abstract void craftRecipe(@Nullable Recipe<?> recipe);
     
     @Override
     public void fromTag(CompoundTag tag)
     {
         super.fromTag(tag);
-        Inventories.fromTag(tag, items);
         this.currentProcessingTime = tag.getShort("currentProcessingTime");
         this.unitProcessingTime = tag.getShort("unitProcessingTime");
     }
@@ -143,10 +77,20 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
     @Override
     public CompoundTag toTag(CompoundTag tag)
     {
-        Inventories.toTag(tag, items);
         tag.putShort("currentProcessingTime", (short) this.currentProcessingTime);
         tag.putShort("unitProcessingTime", (short) this.unitProcessingTime);
         return super.toTag(tag);
+    }
+    
+    @Override
+    public PropertyDelegate getPropertyDelegate()
+    {
+        return this.propertyDelegate;
+    }
+    
+    @Override
+    public void tick()
+    {
     }
     
     //#region Processing
@@ -159,7 +103,7 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
         return this.currentProcessingTime > 0;
     }
     
-    protected void checkCurrentRecipe(AbstractProcessingRecipe match)
+    protected void checkCurrentRecipe(AProcessingRecipe match)
     {
         if(currentRecipe == null)
         {
@@ -243,15 +187,4 @@ public abstract class AbstractProcessingOutputterEntity extends BlockEntity impl
     }
     
     //#endregion
-    
-    @Override
-    public PropertyDelegate getPropertyDelegate()
-    {
-        return this.propertyDelegate;
-    }
-    
-    @Override
-    public void tick()
-    {
-    }
 }

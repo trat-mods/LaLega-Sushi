@@ -1,11 +1,11 @@
 package net.la.lega.mod.entity;
 
 import net.la.lega.mod.block.ThreadCutterBlock;
-import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
+import net.la.lega.mod.entity.abstraction.AProcessingEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.initializer.LSounds;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
-import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
+import net.la.lega.mod.recipe.abstraction.AInjectiveProcessingRecipe;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -13,10 +13,10 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 
-public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
+public class ThreadCutterBlockEntity extends AProcessingEntity
 {
-    public static int[] NONE = {};
-    public static int[] IN_SLOTS = {0};
+    public static final int[] NONE = {};
+    public static final int[] IN_SLOTS = {0};
     
     public ThreadCutterBlockEntity()
     {
@@ -86,7 +86,7 @@ public class ThreadCutterBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected void craftRecipe(Recipe<?> recipe)
     {
-        AbstractInjectiveProcessingRecipe tCRecipe = (AbstractInjectiveProcessingRecipe) recipe;
+        AInjectiveProcessingRecipe tCRecipe = (AInjectiveProcessingRecipe) recipe;
         if(tCRecipe != null && this.canAcceptRecipeOutput(tCRecipe))
         {
             ItemStack inputSlot = (ItemStack) this.items.get(0);

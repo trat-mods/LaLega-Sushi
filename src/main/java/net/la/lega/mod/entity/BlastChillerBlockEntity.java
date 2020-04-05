@@ -1,15 +1,17 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
-import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
+import net.la.lega.mod.block.BlastChillerBlock;
+import net.la.lega.mod.entity.abstraction.AProcessingEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
-import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
+import net.la.lega.mod.recipe.abstraction.AInjectiveProcessingRecipe;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
 
-public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
+public class BlastChillerBlockEntity extends AProcessingEntity
 {
     private static final int[] TOP_SLOTS = new int[]{0};
     private static final int[] BOTTOM_SLOTS = new int[]{1};
@@ -63,13 +65,31 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
             BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
             checkCurrentRecipe(match);
             processCurrentRecipe();
+            if(isProcessing() && !isOn())
+            {
+                setOn(true);
+            }
+            else if(!isProcessing() && isOn())
+            {
+                setOn(false);
+            }
         }
+    }
+    
+    private void setOn(boolean state)
+    {
+        this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(BlastChillerBlock.ON, state), 3);
+    }
+    
+    private boolean isOn()
+    {
+        return this.world.getBlockState(this.pos).get(BlastChillerBlock.ON);
     }
     
     @Override
     protected boolean canAcceptRecipeOutput(Recipe<?> recipe)
     {
-        AbstractInjectiveProcessingRecipe bcRecipe = (AbstractInjectiveProcessingRecipe) recipe;
+        AInjectiveProcessingRecipe bcRecipe = (AInjectiveProcessingRecipe) recipe;
         if(!((ItemStack) this.items.get(0)).isEmpty() && recipe != null)
         {
             ItemStack itemStack = bcRecipe.getOutput();
@@ -108,7 +128,7 @@ public class BlastChillerBlockEntity extends AbstractProcessingOutputterEntity
     @Override
     protected void craftRecipe(@Nullable Recipe<?> recipe)
     {
-        AbstractInjectiveProcessingRecipe bcRecipe = (AbstractInjectiveProcessingRecipe) recipe;
+        AInjectiveProcessingRecipe bcRecipe = (AInjectiveProcessingRecipe) recipe;
         if(recipe != null && this.canAcceptRecipeOutput(recipe))
         {
             ItemStack inputSlot = (ItemStack) this.items.get(0);

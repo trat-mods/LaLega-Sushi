@@ -1,9 +1,9 @@
 package net.la.lega.mod.item;
 
+import net.la.lega.mod.initializer.LItemGroups;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 
 public class SashimiFugu extends Item
@@ -15,7 +15,7 @@ public class SashimiFugu extends Item
     
     public SashimiFugu()
     {
-        super(new Settings().group(ItemGroup.FOOD)
+        super(new Settings().group(LItemGroups.JAPANESE_INGREDIENTS)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation).snack().alwaysEdible()

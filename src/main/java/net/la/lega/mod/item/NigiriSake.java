@@ -1,9 +1,9 @@
 package net.la.lega.mod.item;
 
+import net.la.lega.mod.initializer.LItemGroups;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 
 public class NigiriSake extends Item
@@ -15,12 +15,12 @@ public class NigiriSake extends Item
     
     public NigiriSake()
     {
-        super(new Item.Settings().group(ItemGroup.FOOD)
-              .food(new FoodComponent.Builder()
-                    .hunger(hunger)
-                    .saturationModifier(saturation)
-                    .alwaysEdible()
-                    .build())
-        );
+        super(new Item.Settings().group(LItemGroups.SUSHI)
+                    .food(new FoodComponent.Builder()
+                                .hunger(hunger)
+                                .saturationModifier(saturation)
+                                .alwaysEdible()
+                                .build())
+             );
     }
 }

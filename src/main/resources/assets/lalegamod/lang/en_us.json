@@ -22,7 +22,10 @@
     "item.lalegamod.hosomaki_sake_wasabi": "Hosomaki Sake Wasabi",
     "item.lalegamod.uramaki_sake_wasabi": "Uramaki Sake Wasabi",
     "item.lalegamod.futomaki_sake_wasabi": "Futomaki Sake Wasabi",
-    "itemGroup.lalegamod.japan_related": "Japan Related",
+    "itemGroup.lalegamod.japanese_plants": "Japanese Plants",
+    "itemGroup.lalegamod.japanese_ingredients": "Japanese Ingredients",
+    "itemGroup.lalegamod.japanese_food": "Japanese Food",
+    "itemGroup.lalegamod.sushi": "Sushi",
     "item.lalegamod.sunflower_flour": "Sunflower Flour",
     "item.lalegamod.wheat_flour": "Wheat Flour",
     "item.lalegamod.rice_flour": "Rice Flour",
@@ -30,5 +33,7 @@
     "item.lalegamod.sunflower_oil_bottle": "Sunflower Oil Bottle",
     "item.lalegamod.rice_oil_bottle": "Rice Oil Bottle",
     "item.lalegamod.pufferfish_fillet": "Puffer Fish Fillet",
-    "item.lalegamod.sashimi_fugu": "Sashimi Fugu"
+    "item.lalegamod.sashimi_fugu": "Sashimi Fugu",
+    "item.lalegamod.raw_gyoza": "Raw Gyoza",
+    "item.lalegamod.gyoza": "Gyoza"
 }

@@ -1,0 +1,9 @@
+{
+    "type": "lalegamod:frying",
+    "input": {
+        "item": "lalegamod:sashimi_fugu"
+    },
+    "output": "lalegamod:pufferfish_fillet",
+    "processingTime": 25,
+    "outputAmount": 1
+}

@@ -1,0 +1,135 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "sides": "lalegamod:block/fryer_handle",
+        "bottom": "lalegamod:block/fryer_handle",
+        "chamber": "lalegamod:block/fryer_handle",
+        "handle": "lalegamod:block/fryer_handle",
+        "basket": "lalegamod:block/fryer_basket",
+        "front": "lalegamod:block/fryer_handle",
+        "oil": "lalegamod:block/fryer_basket",
+        "top": "lalegamod:block/blast_chiller_top"
+    },
+    "elements": [
+        {
+            "from": [0, 0, 0],
+            "to": [16, 14, 4],
+            "faces": {
+                "down": {"texture": "#top"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#top"},
+                "south": {"texture": "#top"},
+                "west": {"texture": "#top"},
+                "east": {"texture": "#top"}
+            }
+        },
+        {
+            "from": [0, 0, 0],
+            "to": [4, 14, 16],
+            "faces": {
+                "down": {"texture": "#top"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#top"},
+                "south": {"texture": "#top"},
+                "west": {"texture": "#top"},
+                "east": {"texture": "#top"}
+            }
+        },
+        {
+            "from": [0, 0, 13],
+            "to": [16, 14, 16],
+            "faces": {
+                "down": {"texture": "#top"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#top"},
+                "south": {"texture": "#top"},
+                "west": {"texture": "#top"},
+                "east": {"texture": "#top"}
+            }
+        },
+        {
+            "from": [12, 0, 0],
+            "to": [16, 14, 16],
+            "faces": {
+                "down": {"texture": "#top"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#top"},
+                "south": {"texture": "#top"},
+                "west": {"texture": "#top"},
+                "east": {"texture": "#top"}
+            }
+        },
+        {
+            "from": [4, 12, 4],
+            "to": [12, 12, 13],
+            "faces": {
+                "down": {"texture": "#oil"},
+                "up": {"texture": "#oil"},
+                "north": {"texture": "#oil", "cullface": "north"},
+                "south": {"texture": "#oil", "cullface": "south"},
+                "west": {"texture": "#oil", "cullface": "west"},
+                "east": {"texture": "#oil", "cullface": "east"}
+            }
+        },
+        {
+            "from": [5, 11, 4],
+            "to": [6, 15, 5],
+            "faces": {
+                "down": {"texture": "#basket", "cullface": "down"},
+                "up": {"texture": "#basket", "cullface": "up"},
+                "north": {"texture": "#basket"},
+                "south": {"texture": "#basket"},
+                "west": {"texture": "#basket"},
+                "east": {"texture": "#basket"}
+            }
+        },
+        {
+            "from": [10, 11, 4],
+            "to": [11, 15, 5],
+            "faces": {
+                "down": {"texture": "#basket", "cullface": "down"},
+                "up": {"texture": "#basket", "cullface": "up"},
+                "north": {"texture": "#basket"},
+                "south": {"texture": "#basket"},
+                "west": {"texture": "#basket"},
+                "east": {"texture": "#basket"}
+            }
+        },
+        {
+            "from": [5, 15, 1],
+            "to": [6, 16, 5],
+            "faces": {
+                "down": {"texture": "#handle"},
+                "up": {"texture": "#handle"},
+                "north": {"texture": "#handle"},
+                "south": {"texture": "#handle"},
+                "west": {"texture": "#handle"},
+                "east": {"texture": "#handle"}
+            }
+        },
+        {
+            "from": [10, 15, 1],
+            "to": [11, 16, 5],
+            "faces": {
+                "down": {"texture": "#handle"},
+                "up": {"texture": "#handle"},
+                "north": {"texture": "#handle"},
+                "south": {"texture": "#handle"},
+                "west": {"texture": "#handle"},
+                "east": {"texture": "#handle"}
+            }
+        },
+        {
+            "from": [4, 0, 4],
+            "to": [12, 9, 13],
+            "faces": {
+                "down": {"texture": "#basket"},
+                "up": {"texture": "#basket", "cullface": "up"},
+                "north": {"texture": "#basket"},
+                "south": {"texture": "#basket"},
+                "west": {"texture": "#basket"},
+                "east": {"texture": "#basket"}
+            }
+        }
+    ]
+}

@@ -7,13 +7,13 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 
-public abstract class AbstractProcessingRecipe implements Recipe<Inventory>
+public abstract class AProcessingRecipe implements Recipe<Inventory>
 {
     private final int processingTime;
     private final ItemStack outputStack;
     private final Identifier id;
     
-    public AbstractProcessingRecipe(ItemStack outputStack, int processingTime, Identifier id)
+    public AProcessingRecipe(ItemStack outputStack, int processingTime, Identifier id)
     {
         this.outputStack = outputStack;
         this.processingTime = processingTime;

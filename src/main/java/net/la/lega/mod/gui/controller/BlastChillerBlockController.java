@@ -1,23 +1,21 @@
 package net.la.lega.mod.gui.controller;
 
+import io.github.cottonmc.cotton.gui.CottonCraftingController;
 import io.github.cottonmc.cotton.gui.widget.WBar;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
-import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
+import net.la.lega.mod.entity.abstraction.AProcessingEntity;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.Identifier;
 
-public class BlastChillerBlockController extends AbstractBlockController
+public class BlastChillerBlockController extends CottonCraftingController
 {
-    protected int currentProcessTime = -1;
-    protected int unitProcessTime = -1;
-    
     public BlastChillerBlockController(int syncId, PlayerInventory playerInventory, BlockContext context)
     {
-        super(BlastChillingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
+        super(BlastChillingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context));
         
         WPlainPanel root = new WPlainPanel();
         root.setSize(158, 140);
@@ -26,7 +24,7 @@ public class BlastChillerBlockController extends AbstractBlockController
         WItemSlot outputSlot = WItemSlot.outputOf(blockInventory, 1);
         WLabel title = new WLabel("Blast Chiller", WLabel.DEFAULT_TEXT_COLOR);
         
-        WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"), 0, 1, WBar.Direction.RIGHT);
+        WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"), AProcessingEntity.PROCESS_TIME, AProcessingEntity.UNIT_PROCESS_TIME, WBar.Direction.RIGHT);
         
         root.add(title, 10, 2);
         root.add(inputSlot, 34, 32);

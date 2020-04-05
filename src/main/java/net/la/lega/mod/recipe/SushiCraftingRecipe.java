@@ -1,7 +1,7 @@
 package net.la.lega.mod.recipe;
 
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.la.lega.mod.recipe.abstraction.AbstractProcessingRecipe;
+import net.la.lega.mod.recipe.abstraction.AProcessingRecipe;
 import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,7 @@ import net.minecraft.util.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class SushiCraftingRecipe extends AbstractProcessingRecipe
+public class SushiCraftingRecipe extends AProcessingRecipe
 {
     public static final String recipeID = "sushi_crafting";
     

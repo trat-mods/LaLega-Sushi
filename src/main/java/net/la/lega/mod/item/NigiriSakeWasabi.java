@@ -1,12 +1,12 @@
 package net.la.lega.mod.item;
 
+import net.la.lega.mod.initializer.LItemGroups;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 
 public class NigiriSakeWasabi extends Item
@@ -21,13 +21,13 @@ public class NigiriSakeWasabi extends Item
     
     public NigiriSakeWasabi()
     {
-        super(new Item.Settings().group(ItemGroup.FOOD)
-              .food(new FoodComponent.Builder()
-                    .hunger(hunger)
-                    .saturationModifier(saturation)
-                    .alwaysEdible()
-                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                    .build())
-        );
+        super(new Item.Settings().group(LItemGroups.SUSHI)
+                    .food(new FoodComponent.Builder()
+                                .hunger(hunger)
+                                .saturationModifier(saturation)
+                                .alwaysEdible()
+                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                                .build())
+             );
     }
 }

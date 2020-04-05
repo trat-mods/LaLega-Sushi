@@ -1,5 +1,6 @@
 package net.la.lega.mod.item;
 
+import net.la.lega.mod.initializer.LItemGroups;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -21,7 +22,7 @@ public class FutomakiSakeWasabi extends Item
     
     public FutomakiSakeWasabi()
     {
-        super(new Item.Settings().group(ItemGroup.FOOD)
+        super(new Item.Settings().group(LItemGroups.SUSHI)
               .food(new FoodComponent.Builder()
                     .hunger(hunger)
                     .saturationModifier(saturation)

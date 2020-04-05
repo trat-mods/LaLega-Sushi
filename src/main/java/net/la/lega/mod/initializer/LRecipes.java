@@ -2,9 +2,11 @@ package net.la.lega.mod.initializer;
 
 import net.la.lega.mod.loader.LLoader;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
+import net.la.lega.mod.recipe.FryingRecipe;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.la.lega.mod.recipe.ThreadCuttingRecipe;
 import net.la.lega.mod.recipe.serializer.BlastChillingRecipeSerializer;
+import net.la.lega.mod.recipe.serializer.FryingRecipeSerializer;
 import net.la.lega.mod.recipe.serializer.SushiCraftingRecipeSerializer;
 import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.util.Identifier;
@@ -22,5 +24,8 @@ public abstract class LRecipes
         
         Registry.register(Registry.RECIPE_SERIALIZER, SushiCraftingRecipeSerializer.ID, SushiCraftingRecipeSerializer.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, new Identifier(LLoader.MOD_ID, SushiCraftingRecipe.Type.ID), SushiCraftingRecipe.Type.INSTANCE);
+        
+        Registry.register(Registry.RECIPE_SERIALIZER, FryingRecipeSerializer.ID, FryingRecipeSerializer.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, new Identifier(LLoader.MOD_ID, FryingRecipe.Type.ID), FryingRecipe.Type.INSTANCE);
     }
 }

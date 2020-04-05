@@ -1,0 +1,6 @@
+{
+    "parent": "lalegamod:template/fryer_oil_template",
+    "textures": {
+        "oil": "lalegamod:block/sunflower_oil_frying"
+    }
+}

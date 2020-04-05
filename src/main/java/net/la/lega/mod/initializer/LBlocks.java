@@ -11,6 +11,7 @@ public abstract class LBlocks
     public static final RiceBlock RICE_BLOCK = new RiceBlock();
     public static final AvocadoBlock AVOCADO_BLOCK = new AvocadoBlock();
     public static final WasabiBlock WASABI_BLOCK = new WasabiBlock();
+    public static final FryerBlock FRYER_BLOCK = new FryerBlock();
     
     public static void initialize()
     {
@@ -20,5 +21,6 @@ public abstract class LBlocks
         Registry.register(Registry.BLOCK, RiceBlock.ID, RICE_BLOCK);
         Registry.register(Registry.BLOCK, AvocadoBlock.ID, AVOCADO_BLOCK);
         Registry.register(Registry.BLOCK, WasabiBlock.ID, WASABI_BLOCK);
+        Registry.register(Registry.BLOCK, FryerBlock.ID, FRYER_BLOCK);
     }
 }

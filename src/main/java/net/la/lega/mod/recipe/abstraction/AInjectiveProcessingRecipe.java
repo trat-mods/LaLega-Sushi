@@ -8,11 +8,11 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public abstract class AbstractInjectiveProcessingRecipe extends AbstractProcessingRecipe
+public abstract class AInjectiveProcessingRecipe extends AProcessingRecipe
 {
     private final Ingredient input;
     
-    public AbstractInjectiveProcessingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
+    public AInjectiveProcessingRecipe(Ingredient input, ItemStack outputStack, int processingTime, Identifier id)
     {
         super(outputStack, processingTime, id);
         this.input = input;

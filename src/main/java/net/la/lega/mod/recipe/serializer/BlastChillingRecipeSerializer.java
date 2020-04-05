@@ -48,7 +48,7 @@ public class BlastChillingRecipeSerializer implements RecipeSerializer<BlastChil
         // The json will specify the item ID. We can get the Item instance based off of that from the Item registry.
         Item outputItem = Registry.ITEM.getOrEmpty(new Identifier(recipeJson.getOutput())).orElseThrow(
               () -> new JsonSyntaxException("No such item " + recipeJson.getOutput())
-        );
+                                                                                                      );
         
         ItemStack output = new ItemStack(outputItem, recipeJson.getOutputAmount());
         

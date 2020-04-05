@@ -1,6 +1,6 @@
 package net.la.lega.mod.recipe;
 
-import net.la.lega.mod.recipe.abstraction.AbstractInjectiveProcessingRecipe;
+import net.la.lega.mod.recipe.abstraction.AInjectiveProcessingRecipe;
 import net.la.lega.mod.recipe.serializer.ThreadCuttingRecipeSerializer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -8,7 +8,7 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 
-public class ThreadCuttingRecipe extends AbstractInjectiveProcessingRecipe
+public class ThreadCuttingRecipe extends AInjectiveProcessingRecipe
 {
     public static final String recipeID = "thread_cutting";
     

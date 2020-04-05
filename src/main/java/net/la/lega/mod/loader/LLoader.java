@@ -5,6 +5,7 @@ import net.la.lega.mod.initializer.*;
 
 public class LLoader implements ModInitializer
 {
+    
     public static final String MOD_ID = "lalegamod";
     
     @Override

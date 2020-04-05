@@ -1,6 +1,6 @@
 package net.la.lega.mod.entity;
 
-import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
+import net.la.lega.mod.entity.abstraction.AProcessingEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.initializer.LTags;
 import net.la.lega.mod.initializer.LVillagerProfessions;
@@ -16,7 +16,7 @@ import net.minecraft.util.math.Direction;
 import java.util.Arrays;
 import java.util.List;
 
-public class SushiCrafterBlockEntity extends AbstractProcessingOutputterEntity
+public class SushiCrafterBlockEntity extends AProcessingEntity
 {
     public static final int OUTPUT_SLOT = 0;
     public static final int[] REQUIRED_SLOTS = new int[]{1, 2};

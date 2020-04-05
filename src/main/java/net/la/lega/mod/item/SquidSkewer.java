@@ -1,11 +1,15 @@
 package net.la.lega.mod.item;
 
+import net.la.lega.mod.initializer.LItemGroups;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.*;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -22,15 +26,15 @@ public class SquidSkewer extends Item
     
     public SquidSkewer()
     {
-        super(new Item.Settings().group(ItemGroup.FOOD)
-              .food(new FoodComponent.Builder()
-                    .hunger(hunger)
-                    .saturationModifier(saturation)
-                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                    .snack()
-                    .alwaysEdible()
-                    .build())
-        );
+        super(new Item.Settings().group(LItemGroups.JAPANESE_FOOD)
+                    .food(new FoodComponent.Builder()
+                                .hunger(hunger)
+                                .saturationModifier(saturation)
+                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                                .snack()
+                                .alwaysEdible()
+                                .build())
+             );
     }
     
     @Override public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user)

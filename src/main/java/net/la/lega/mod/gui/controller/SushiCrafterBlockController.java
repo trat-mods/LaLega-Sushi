@@ -1,9 +1,9 @@
 package net.la.lega.mod.gui.controller;
 
+import io.github.cottonmc.cotton.gui.CottonCraftingController;
 import io.github.cottonmc.cotton.gui.widget.*;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
-import net.la.lega.mod.entity.abstraction.AbstractProcessingOutputterEntity;
-import net.la.lega.mod.gui.controller.abstraction.AbstractBlockController;
+import net.la.lega.mod.entity.abstraction.AProcessingEntity;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
 import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,11 +12,11 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SushiCrafterBlockController extends AbstractBlockController
+public class SushiCrafterBlockController extends CottonCraftingController
 {
     public SushiCrafterBlockController(int syncId, PlayerInventory playerInventory, BlockContext context)
     {
-        super(SushiCraftingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context), context);
+        super(SushiCraftingRecipe.Type.INSTANCE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context));
         WPlainPanel root = new WPlainPanel();
         setRootPanel(root);
         
@@ -33,7 +33,7 @@ public class SushiCrafterBlockController extends AbstractBlockController
         WItemSlot outputSlot = WItemSlot.outputOf(blockInventory, SushiCrafterBlockEntity.OUTPUT_SLOT);
         WLabel title = new WLabel("Sushi Crafter", WLabel.DEFAULT_TEXT_COLOR);
         WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/progress_bg.png"), new Identifier("lalegamod:textures/ui/progress_bar.png"),
-                                    AbstractProcessingOutputterEntity.PROCESS_TIME, AbstractProcessingOutputterEntity.UNIT_PROCESS_TIME, WBar.Direction.RIGHT);
+                                    AProcessingEntity.PROCESS_TIME, AProcessingEntity.UNIT_PROCESS_TIME, WBar.Direction.RIGHT);
         
         WSprite heartIcon = new WSprite(new Identifier("minecraft:textures/item/heart_of_the_sea.png"));
         
