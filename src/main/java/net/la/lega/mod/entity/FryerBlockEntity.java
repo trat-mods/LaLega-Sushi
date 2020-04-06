@@ -41,6 +41,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
             switch(key)
             {
                 case CURRENT_OIL_USAGE:
+                    if(getOilType() == OilType.NONE) return 0;
                     return inverseOilUsage;
                 case MAX_USAGE:
                     return maxOilUsage;
@@ -250,7 +251,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
         if(!world.isClient)
         {
             setOilType(OilType.NONE);
-            currentOilUsage = 0;
+            currentOilUsage = MAX_OIL_USAGE;
         }
     }
     
