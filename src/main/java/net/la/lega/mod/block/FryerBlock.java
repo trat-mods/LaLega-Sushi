@@ -4,9 +4,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.la.lega.mod.block.abstraction.AHorizontalFacingProcessingBlock;
+import net.la.lega.mod.block.abstraction.AHorizontalFacingInventoryBlock;
 import net.la.lega.mod.entity.FryerBlockEntity;
 import net.la.lega.mod.initializer.LItems;
+import net.la.lega.mod.initializer.LSounds;
 import net.la.lega.mod.loader.LLoader;
 import net.la.lega.mod.model_enum.OilType;
 import net.minecraft.block.Block;
@@ -19,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -32,23 +34,24 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class FryerBlock extends AHorizontalFacingProcessingBlock
+public class FryerBlock extends AHorizontalFacingInventoryBlock
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "fryer");
+    public static final Identifier ON_SOUND = new Identifier(LLoader.MOD_ID, "fryer_on");
     
-    public static final BooleanProperty ON;
     public static final EnumProperty<OilType> OIL_TYPE;
+    public static final BooleanProperty ON;
     
     static
     {
-        ON = BooleanProperty.of("on");
         OIL_TYPE = EnumProperty.of("oil_type", OilType.class);
+        ON = BooleanProperty.of("on");
     }
     
     public FryerBlock()
     {
         super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(1F, 1F).nonOpaque().build());
-        this.setDefaultState((BlockState) ((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(ON, false).with(OIL_TYPE, OilType.NONE)));
+        this.setDefaultState(this.stateManager.getDefaultState().with(OIL_TYPE, OilType.NONE).with(ON, false));
     }
     
     @Override public BlockEntity createBlockEntity(BlockView view)
@@ -123,7 +126,7 @@ public class FryerBlock extends AHorizontalFacingProcessingBlock
     protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager)
     {
         super.appendProperties(stateManager);
-        stateManager.add(ON).add(OIL_TYPE);
+        stateManager.add(OIL_TYPE).add(ON);
     }
     
     @Override public int getComparatorOutput(BlockState state, World world, BlockPos pos)
@@ -136,15 +139,20 @@ public class FryerBlock extends AHorizontalFacingProcessingBlock
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random)
     {
-        if((Boolean) state.get(ON))
+        if(world.getBlockState(pos).get(ON))
         {
-            if(random.nextDouble() < 0.525D)
+            if(random.nextDouble() < 0.55D)
             {
                 double x = (double) pos.getX() + 0.3D + (random.nextDouble() * 0.375D);
                 double y = (double) pos.getY() + 0.65D;
                 double z = (double) pos.getZ() + 0.3D + (random.nextDouble() * 0.4375);
                 double vy = random.nextDouble() * 0.1D;
+                System.out.println("adding particles");
                 world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, vy, 0.0D);
+            }
+            if(random.nextDouble() < 0.12D)
+            {
+                world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, LSounds.FRYER_ON_SOUNDEVENT, SoundCategory.BLOCKS, 0.25F, 0.825F, false);
             }
         }
     }

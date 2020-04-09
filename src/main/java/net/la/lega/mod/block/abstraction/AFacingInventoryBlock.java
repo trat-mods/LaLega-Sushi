@@ -2,7 +2,7 @@ package net.la.lega.mod.block.abstraction;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.FacingBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
@@ -12,16 +12,16 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 
-public class AHorizontalFacingProcessingBlock extends AProcessingBlock
+public class AFacingInventoryBlock extends AInventoryBlock
 {
     public static final DirectionProperty FACING;
     
     static
     {
-        FACING = HorizontalFacingBlock.FACING;
+        FACING = FacingBlock.FACING;
     }
     
-    public AHorizontalFacingProcessingBlock(Settings settings)
+    public AFacingInventoryBlock(Settings settings)
     {
         super(settings);
         this.setDefaultState((BlockState) ((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)));
@@ -39,7 +39,7 @@ public class AHorizontalFacingProcessingBlock extends AProcessingBlock
     
     public BlockState getPlacementState(ItemPlacementContext ctx)
     {
-        return (BlockState) this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return (BlockState) this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
     }
     
     public BlockState rotate(BlockState state, BlockRotation rotation)

@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.2.6-SNAPSHOT'
+    id 'fabric-loom' version '0.2.7-SNAPSHOT'
     id 'maven-publish'
 }
 repositories {
@@ -24,8 +24,8 @@ dependencies {
     modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
     modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "io.github.cottonmc:LibGui:1.8.0+1.15.2"
-    include "io.github.cottonmc:LibGui:1.8.0+1.15.2"
+    modImplementation "io.github.cottonmc:LibGui:1.8.1+1.15.2"
+    include "io.github.cottonmc:LibGui:1.8.1+1.15.2"
 }
 
 processResources {

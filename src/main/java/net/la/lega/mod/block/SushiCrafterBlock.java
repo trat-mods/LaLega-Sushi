@@ -2,7 +2,7 @@ package net.la.lega.mod.block;
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.la.lega.mod.block.abstraction.AHorizontalFacingProcessingBlock;
+import net.la.lega.mod.block.abstraction.AHorizontalFacingInventoryBlock;
 import net.la.lega.mod.entity.SushiCrafterBlockEntity;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.block.BlockState;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class SushiCrafterBlock extends AHorizontalFacingProcessingBlock
+public class SushiCrafterBlock extends AHorizontalFacingInventoryBlock
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "sushi_crafter");
     

@@ -25,7 +25,7 @@ public class FryerBlockController extends CottonCraftingController
         label.setAlignment(Alignment.CENTER);
         WItemSlot inputSlot = WItemSlot.of(blockInventory, FryerBlockEntity.INPUT_SLOT);
         WItemSlot processingSlot = WItemSlot.of(blockInventory, FryerBlockEntity.PROCESSING_SLOT);
-        //processingSlot.setModifiable(false);
+        processingSlot.setModifiable(false);
         WItemSlot outputSlot = WItemSlot.outputOf(blockInventory, FryerBlockEntity.OUTPUT_SLOT);
         WBar progressBar = new WBar(new Identifier("lalegamod:textures/ui/rec_progress_bg.png"), new Identifier("lalegamod:textures/ui/rec_progress_bar.png"), FryerBlockEntity.CURRENT_OIL_USAGE, FryerBlockEntity.MAX_USAGE, WBar.Direction.RIGHT);
         WPlayerInvPanel playerInvPanel = this.createPlayerInventoryPanel();
@@ -42,7 +42,7 @@ public class FryerBlockController extends CottonCraftingController
         root.validate(this);
     }
     
-    public void initializeBufferEntity(BlockContext context)
+    private void initializeBufferEntity(BlockContext context)
     {
         FryerBlockEntity[] lambdaBypass = new FryerBlockEntity[1];
         

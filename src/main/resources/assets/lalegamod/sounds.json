@@ -13,5 +13,10 @@
         "sounds": [
             "lalegamod:avocado_harvest"
         ]
+    },
+    "fryer_on": {
+        "sounds": [
+            "lalegamod:fryer_on"
+        ]
     }
 }

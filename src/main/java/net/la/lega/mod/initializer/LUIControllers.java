@@ -1,14 +1,8 @@
 package net.la.lega.mod.initializer;
 
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.la.lega.mod.block.BlastChillerBlock;
-import net.la.lega.mod.block.FryerBlock;
-import net.la.lega.mod.block.SushiCrafterBlock;
-import net.la.lega.mod.block.ThreadCutterBlock;
-import net.la.lega.mod.gui.controller.BlastChillerBlockController;
-import net.la.lega.mod.gui.controller.FryerBlockController;
-import net.la.lega.mod.gui.controller.SushiCrafterBlockController;
-import net.la.lega.mod.gui.controller.ThreadCutterBlockController;
+import net.la.lega.mod.block.*;
+import net.la.lega.mod.gui.controller.*;
 import net.minecraft.container.BlockContext;
 
 public abstract class LUIControllers
@@ -19,5 +13,6 @@ public abstract class LUIControllers
         ContainerProviderRegistry.INSTANCE.registerFactory(ThreadCutterBlock.ID, (syncId, id, player, buf) -> new ThreadCutterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
         ContainerProviderRegistry.INSTANCE.registerFactory(SushiCrafterBlock.ID, (syncId, id, player, buf) -> new SushiCrafterBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
         ContainerProviderRegistry.INSTANCE.registerFactory(FryerBlock.ID, (syncId, id, player, buf) -> new FryerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
+        ContainerProviderRegistry.INSTANCE.registerFactory(SteamCookerBlock.ID, (syncId, id, player, buf) -> new SteamCookerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
     }
 }

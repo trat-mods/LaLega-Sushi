@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.la.lega.mod.block.abstraction.AHorizontalFacingProcessingBlock;
+import net.la.lega.mod.block.abstraction.AHorizontalFacingInventoryBlock;
 import net.la.lega.mod.entity.BlastChillerBlockEntity;
 import net.la.lega.mod.initializer.LSounds;
 import net.la.lega.mod.loader.LLoader;
@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlastChillerBlock extends AHorizontalFacingProcessingBlock
+public class BlastChillerBlock extends AHorizontalFacingInventoryBlock
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "blast_chiller");
     public static final Identifier HUM_SOUND = new Identifier(LLoader.MOD_ID, "blast_chiller_hum");

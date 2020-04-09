@@ -2,7 +2,7 @@ package net.la.lega.mod.block;
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.la.lega.mod.block.abstraction.AFacingProcessingBlock;
+import net.la.lega.mod.block.abstraction.AFacingInventoryBlock;
 import net.la.lega.mod.entity.ThreadCutterBlockEntity;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.block.BlockState;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class ThreadCutterBlock extends AFacingProcessingBlock
+public class ThreadCutterBlock extends AFacingInventoryBlock
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "thread_cutter");
     public static final Identifier CUT_SOUND = new Identifier(LLoader.MOD_ID, "thread_cutter_cut");

@@ -26,6 +26,7 @@
     "itemGroup.lalegamod.japanese_ingredients": "Japanese Ingredients",
     "itemGroup.lalegamod.japanese_food": "Japanese Food",
     "itemGroup.lalegamod.sushi": "Sushi",
+    "itemGroup.lalegamod.blocks": "Japanese Blocks",
     "item.lalegamod.sunflower_flour": "Sunflower Flour",
     "item.lalegamod.wheat_flour": "Wheat Flour",
     "item.lalegamod.rice_flour": "Rice Flour",
@@ -35,5 +36,7 @@
     "item.lalegamod.pufferfish_fillet": "Puffer Fish Fillet",
     "item.lalegamod.sashimi_fugu": "Sashimi Fugu",
     "item.lalegamod.raw_gyoza": "Raw Gyoza",
-    "item.lalegamod.gyoza": "Gyoza"
+    "item.lalegamod.gyoza": "Gyoza",
+    "block.lalegamod.fryer": "Fryer",
+    "block.lalegamod.steam_cooker": "Steam Cooker"
 }

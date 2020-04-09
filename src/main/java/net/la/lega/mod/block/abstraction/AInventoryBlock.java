@@ -12,9 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public abstract class AProcessingBlock extends BlockWithEntity
+public abstract class AInventoryBlock extends BlockWithEntity
 {
-    public AProcessingBlock(Settings settings)
+    public AInventoryBlock(Settings settings)
     {
         super(settings);
     }

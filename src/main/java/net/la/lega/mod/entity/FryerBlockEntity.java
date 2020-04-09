@@ -25,7 +25,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;
     public static final int INPUT_SLOT = 2;
-    private static final int MAX_OIL_USAGE = 30;//256;
+    private static final int MAX_OIL_USAGE = 256;
     
     public static final int CURRENT_OIL_USAGE = 0;
     public static final int MAX_USAGE = 1;
@@ -33,7 +33,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     private int currentOilUsage;
     private int maxOilUsage;
     private int inverseOilUsage;
-    private LimitedQueue<ProcessableRecipeObject<FryingRecipe>> fryingBatch;
+    private LimitedQueue<ProcessableRecipeObject<FryingRecipe>> processingBatch;
     
     //#region Property Delegate
     private final PropertyDelegate propertyDelegate = new PropertyDelegate()
@@ -91,7 +91,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     public FryerBlockEntity()
     {
         super(LEntities.FRYER_BLOCK_ENTITY, 3);
-        fryingBatch = new LimitedQueue<>(4);
+        processingBatch = new LimitedQueue<>(5);
         maxOilUsage = MAX_OIL_USAGE;
     }
     
@@ -145,7 +145,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
                 }
                 else
                 {
-                    return currentOutputStack.getCount() + bcRecipe.getOutputAmount() + fryingBatch.size() <= this.getInvMaxStackAmount();
+                    return currentOutputStack.getCount() + bcRecipe.getOutputAmount() + processingBatch.size() <= this.getInvMaxStackAmount();
                 }
             }
         }
@@ -188,23 +188,23 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
                     Item inputItem = items.get(INPUT_SLOT).getItem();
                     if(canProcessingSlotAcceptInput(inputItem) && canAcceptRecipeOutput(match))
                     {
-                        fryingBatch.enqueue(new ProcessableRecipeObject<>(inputItem, match));
+                        processingBatch.enqueue(new ProcessableRecipeObject<>(inputItem, match));
                         items.get(INPUT_SLOT).decrement(1);
                         addProcessingElement(inputItem);
                     }
                 }
             }
             
-            if(!fryingBatch.isEmpty())
+            if(!processingBatch.isEmpty())
             {
-                int size = fryingBatch.size();
+                int size = processingBatch.size();
                 for(int i = 0; i < size; i++)
                 {
-                    fryingBatch.at(i).processStep();
+                    processingBatch.at(i).processStep();
                 }
-                while(!fryingBatch.isEmpty() && fryingBatch.head().isCompleted())
+                while(!processingBatch.isEmpty() && processingBatch.head().isCompleted())
                 {
-                    craftRecipe(fryingBatch.poll().getRecipe());
+                    craftRecipe(processingBatch.poll().getRecipe());
                     currentOilUsage++;
                 }
                 if(!isOn())
@@ -238,12 +238,12 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
         {
             return true;
         }
-        ProcessableRecipeObject peek = fryingBatch.head();
+        ProcessableRecipeObject peek = processingBatch.head();
         if(peek == null)
         {
             return true;
         }
-        if(fryingBatch.canAdd() && peek.getInputType().equals(item))
+        if(processingBatch.canAdd() && peek.getInputType().equals(item))
         {
             return true;
         }
@@ -302,13 +302,13 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     {
         if(!world.isClient)
         {
-            this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(FryerBlock.ON, state), 3);
+            this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(FryerBlock.ON, state), 0B1011);
         }
     }
     
-    private boolean isOn()
+    public boolean isOn()
     {
-        return this.world.getBlockState(this.pos).get(FryerBlock.ON);
+        return world.getBlockState(pos).get(FryerBlock.ON);
     }
     
     @Override public void fromTag(CompoundTag tag)

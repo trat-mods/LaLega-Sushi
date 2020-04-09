@@ -1,9 +1,9 @@
 {
     "type": "lalegamod:frying",
     "input": {
-        "item": "lalegamod:sashimi_fugu"
+        "item": "minecraft:stone"
     },
-    "output": "lalegamod:pufferfish_fillet",
-    "processingTime": 25,
+    "output": "minecraft:stone",
+    "processingTime": 45,
     "outputAmount": 1
 }
