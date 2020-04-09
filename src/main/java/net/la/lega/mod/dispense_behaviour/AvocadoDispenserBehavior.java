@@ -1,7 +1,5 @@
 package net.la.lega.mod.dispense_behaviour;
 
-import java.util.Random;
-
 import net.la.lega.mod.block.AvocadoBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
@@ -12,6 +10,8 @@ import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class AvocadoDispenserBehavior extends ItemDispenserBehavior
 {

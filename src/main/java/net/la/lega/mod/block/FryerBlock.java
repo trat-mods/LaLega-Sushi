@@ -129,6 +129,7 @@ public class FryerBlock extends AHorizontalFacingProcessingBlock
     @Override public int getComparatorOutput(BlockState state, World world, BlockPos pos)
     {
         FryerBlockEntity fryerEntity = (FryerBlockEntity) world.getBlockEntity(pos);
+        System.out.println(fryerEntity.getComparatorOutput());
         return fryerEntity.getComparatorOutput();
     }
     

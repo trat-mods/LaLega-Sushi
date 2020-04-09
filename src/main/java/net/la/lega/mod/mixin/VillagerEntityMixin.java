@@ -1,14 +1,6 @@
 package net.la.lega.mod.mixin;
 
-import java.util.Set;
-
 import com.google.common.collect.ImmutableSet;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
 import net.la.lega.mod.initializer.LItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AbstractTraderEntity;
@@ -18,6 +10,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.village.VillagerData;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.Set;
 
 @Mixin(VillagerEntity.class)
 public abstract class VillagerEntityMixin extends AbstractTraderEntity 

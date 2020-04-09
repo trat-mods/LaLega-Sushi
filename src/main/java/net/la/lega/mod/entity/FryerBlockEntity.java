@@ -18,12 +18,14 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 
+import java.util.function.Supplier;
+
 public class FryerBlockEntity extends AInventoryEntity implements Tickable, PropertyDelegateHolder
 {
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;
     public static final int INPUT_SLOT = 2;
-    private static final int MAX_OIL_USAGE = 256;
+    private static final int MAX_OIL_USAGE = 30;//256;
     
     public static final int CURRENT_OIL_USAGE = 0;
     public static final int MAX_USAGE = 1;
@@ -66,6 +68,22 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
         public int size()
         {
             return 2;
+        }
+    };
+    
+    public final Supplier<String> oilTypeSupplier = () ->
+    {
+        OilType type = getOilType();
+        switch(type)
+        {
+            case RICE_OIL:
+                return "Rice Oil";
+            case SUNFLOWER_OIL:
+                return "Sunflower Oil";
+            case NONE:
+                return "None";
+            default:
+                return "";
         }
     };
     //#endregion
@@ -234,7 +252,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     
     public int getComparatorOutput()
     {
-        return (currentOilUsage / MAX_OIL_USAGE) * 5;
+        return getOilType() == OilType.NONE ? 6 : (int) (((float) currentOilUsage / MAX_OIL_USAGE) * 5);
     }
     
     public void fillOil(OilType oilType)
@@ -243,6 +261,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
         {
             setOilType(oilType);
             currentOilUsage = 0;
+            world.updateHorizontalAdjacent(pos, world.getBlockState(pos).getBlock());
         }
     }
     
@@ -252,6 +271,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
         {
             setOilType(OilType.NONE);
             currentOilUsage = MAX_OIL_USAGE;
+            world.updateHorizontalAdjacent(pos, world.getBlockState(pos).getBlock());
         }
     }
     
@@ -269,7 +289,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     {
         if(!world.isClient)
         {
-            this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(FryerBlock.OIL_TYPE, oilType), 3);
+            this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(FryerBlock.OIL_TYPE, oilType), 0B1011);
         }
     }
     

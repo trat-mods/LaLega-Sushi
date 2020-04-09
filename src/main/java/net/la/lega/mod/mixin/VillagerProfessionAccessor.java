@@ -1,5 +1,6 @@
 package net.la.lega.mod.mixin;
 
+import blue.endless.jankson.annotation.Nullable;
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -8,8 +9,6 @@ import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
-
-import blue.endless.jankson.annotation.Nullable;
 
 @Mixin(VillagerProfession.class)
 public interface VillagerProfessionAccessor 
