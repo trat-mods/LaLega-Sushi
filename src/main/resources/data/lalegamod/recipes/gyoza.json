@@ -1,0 +1,9 @@
+{
+    "type": "lalegamod:steam_cooking",
+    "input": {
+        "item": "lalegamod:raw_gyoza"
+    },
+    "output": "lalegamod:gyoza",
+    "processingTime": 900,
+    "outputAmount": 1
+}

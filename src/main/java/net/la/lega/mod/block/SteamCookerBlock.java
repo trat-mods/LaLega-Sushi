@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -35,13 +37,19 @@ public class SteamCookerBlock extends AHorizontalFacingInventoryBlock
     static
     {
         ON = BooleanProperty.of("on");
-        WATER_FILL_LEVEL = IntProperty.of("water_fill_level", 0, 5);
+        WATER_FILL_LEVEL = IntProperty.of("water_fill_level", 0, 4);
     }
     
     public SteamCookerBlock()
     {
         super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(1F, 1F).nonOpaque().build());
         this.setDefaultState(this.stateManager.getDefaultState().with(ON, false).with(WATER_FILL_LEVEL, 0));
+    }
+    
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos)
+    {
+        return Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
     }
     
     @Override
@@ -101,7 +109,7 @@ public class SteamCookerBlock extends AHorizontalFacingInventoryBlock
     
     @Override public int getComparatorOutput(BlockState state, World world, BlockPos pos)
     {
-        return 5 - world.getBlockState(pos).get(this.WATER_FILL_LEVEL);
+        return ((SteamCookerBlockEntity) world.getBlockEntity(pos)).getComparatorOutput();
     }
     
     @Override

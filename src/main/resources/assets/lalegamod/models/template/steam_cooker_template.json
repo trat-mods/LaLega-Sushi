@@ -1,0 +1,95 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "side": "lalegamod:block/steam_cooker/side_0_off",
+        "top": "lalegamod:block/steam_cooker/top",
+        "bottom": "lalegamod:block/steam_cooker/bottom",
+        "particle": "#top"
+    },
+    "elements": [
+        {
+            "from": [15, 0, 1],
+            "to": [15, 15, 15],
+            "faces": {
+                "down": {"texture": "#bottom"},
+                "up": {"texture": "#top"},
+                "north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"}
+            }
+        },
+        {
+            "from": [1, 0, 1],
+            "to": [1, 15, 15],
+            "faces": {
+                "down": {"texture": "#bottom"},
+                "up": {"texture": "#top"},
+                "north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"}
+            }
+        },
+        {
+            "from": [1, 0, 1],
+            "to": [15, 15, 1],
+            "faces": {
+                "down": {"texture": "#bottom"},
+                "up": {"texture": "#top"},
+                "north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"}
+            }
+        },
+        {
+            "from": [1, 0, 15],
+            "to": [15, 15, 15],
+            "faces": {
+                "down": {"texture": "#bottom"},
+                "up": {"texture": "#top"},
+                "north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"}
+            }
+        },
+        {
+            "from": [1, 15, 1],
+            "to": [15, 15, 15],
+            "faces": {
+                "down": {"texture": "#bottom"},
+                "up": {"texture": "#top"},
+                "north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+                "south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"}
+            }
+        },
+        {
+            "from": [6, 15, 7],
+            "to": [10, 16, 9],
+            "faces": {
+                "down": {"texture": "#bottom", "cullface": "down"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#bottom"},
+                "south": {"texture": "#bottom"},
+                "west": {"texture": "#bottom"},
+                "east": {"texture": "#bottom"}
+            }
+        },
+        {
+            "from": [1, 9, 1],
+            "to": [15, 9, 15],
+            "faces": {
+                "down": {"texture": "#bottom", "cullface": "down"},
+                "up": {"texture": "#bottom"},
+                "north": {"texture": "#bottom", "cullface": "north"},
+                "south": {"texture": "#bottom", "cullface": "south"},
+                "west": {"texture": "#bottom", "cullface": "west"},
+                "east": {"texture": "#bottom", "cullface": "east"}
+            }
+        }
+    ]
+}

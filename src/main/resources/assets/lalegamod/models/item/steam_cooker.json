@@ -1,3 +1,34 @@
 {
-    "parent": "lalegamod:block/steam_cooker_0"
+    "parent": "block/block",
+    "textures": {
+        "side": "lalegamod:block/steam_cooker/side_item",
+        "top": "lalegamod:block/steam_cooker/top",
+        "bottom": "lalegamod:block/steam_cooker/bottom"
+    },
+    "elements": [
+        {
+            "from": [1, 0, 1],
+            "to": [15, 15, 15],
+            "faces": {
+                "down": {"texture": "#bottom"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#side"},
+                "south": {"texture": "#side"},
+                "west": {"texture": "#side"},
+                "east": {"texture": "#side"}
+            }
+        },
+        {
+            "from": [7, 15, 6],
+            "to": [9, 16, 10],
+            "faces": {
+                "down": {"texture": "#bottom", "cullface": "down"},
+                "up": {"texture": "#top"},
+                "north": {"texture": "#bottom"},
+                "south": {"texture": "#bottom"},
+                "west": {"texture": "#bottom"},
+                "east": {"texture": "#bottom"}
+            }
+        }
+    ]
 }

@@ -1,9 +1,0 @@
-{
-    "type": "lalegamod:frying",
-    "input": {
-        "item": "minecraft:stone"
-    },
-    "output": "minecraft:stone",
-    "processingTime": 45,
-    "outputAmount": 1
-}

@@ -72,7 +72,7 @@ public class SteamCookerBlockEntity extends AInventoryEntity implements Property
     public SteamCookerBlockEntity()
     {
         super(LEntities.STEAM_COOKER_BLOCK_ENTITY, 3);
-        processingBatch = new LimitedQueue<>(3);
+        processingBatch = new LimitedQueue<>(5);
         maxWaterLevel = MAX_WATER_LEVEL;
     }
     
@@ -202,7 +202,7 @@ public class SteamCookerBlockEntity extends AInventoryEntity implements Property
     private void setWaterFilled(int state)
     {
         if(state < 0) state = 0;
-        if(state > 5) state = 5;
+        if(state > 4) state = 4;
         if(!world.isClient)
         {
             this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(SteamCookerBlock.WATER_FILL_LEVEL, state), 0B1011);
@@ -241,7 +241,7 @@ public class SteamCookerBlockEntity extends AInventoryEntity implements Property
     
     public boolean isWaterNew()
     {
-        return currentWaterLevel == 0 && getWaterFillLevel() == 5;
+        return currentWaterLevel == 0 && getWaterFillLevel() == 4;
     }
     
     @Override public void fromTag(CompoundTag tag)
@@ -253,6 +253,14 @@ public class SteamCookerBlockEntity extends AInventoryEntity implements Property
     
     @Override public CompoundTag toTag(CompoundTag tag)
     {
+        ItemStack processingStack = items.get(PROCESSING_SLOT);
+        ItemStack inputStack = items.get(INPUT_SLOT);
+        if(processingStack.getCount() + inputStack.getCount() < getInvMaxStackAmount())
+        {
+            inputStack.increment(processingStack.getCount());
+        }
+        processingStack.setCount(0);
+        processingBatch.clear();
         tag.putInt("waterLevel", currentWaterLevel);
         return super.toTag(tag);
     }
@@ -311,8 +319,14 @@ public class SteamCookerBlockEntity extends AInventoryEntity implements Property
         }
     }
     
+    public int getComparatorOutput()
+    {
+        int waterLevel = getWaterFillLevel();
+        return waterLevel == 4 ? 0 : 5 - waterLevel;
+    }
+    
     private int getWaterFillEquivalent()
     {
-        return 5 - ((int) (((float) currentWaterLevel / MAX_WATER_LEVEL) * 5));
+        return 4 - ((int) (((float) currentWaterLevel / MAX_WATER_LEVEL) * 4));
     }
 }

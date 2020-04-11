@@ -10,8 +10,8 @@ public class Gyoza extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "gyoza");
     
-    public static final float saturation = 4.55F;
-    public static final int hunger = 7;
+    public static final float saturation = 5.5F;
+    public static final int hunger = 8;
     
     public Gyoza()
     {

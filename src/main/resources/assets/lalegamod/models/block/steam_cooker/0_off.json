@@ -1,0 +1,6 @@
+{
+    "parent": "lalegamod:template/steam_cooker_template",
+    "textures": {
+        "side": "lalegamod:block/steam_cooker/side_0_off"
+    }
+}
