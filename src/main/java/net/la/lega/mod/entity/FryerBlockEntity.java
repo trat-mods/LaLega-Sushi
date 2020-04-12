@@ -91,7 +91,7 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     public FryerBlockEntity()
     {
         super(LEntities.FRYER_BLOCK_ENTITY, 3);
-        processingBatch = new LimitedQueue<>(5);
+        processingBatch = new LimitedQueue<>(3);
         maxOilUsage = MAX_OIL_USAGE;
     }
     

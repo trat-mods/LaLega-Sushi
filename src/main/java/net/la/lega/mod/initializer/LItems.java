@@ -34,6 +34,9 @@ public abstract class LItems
     public static final Item SASHIMI_FUGU = new SashimiFugu();
     public static final Item RAW_GYOZA = new RawGyoza();
     public static final Item GYOZA = new Gyoza();
+    public static final Item TORAFUGU_KARAAGE = new TorafuguKaraage();
+    public static final Item FRIED_URAMAKI_SAKE = new FriedUramakiSake();
+    public static final Item FRIED_FUTOMAKI_SAKE = new FriedFutomakiSake();
     
     public static Item AVOCADO_SEED;
     public static Item RICE_SEEDS;
@@ -60,6 +63,9 @@ public abstract class LItems
         Registry.register(Registry.ITEM, PufferFishFillet.ID, PUFFER_FISH_FILLET);
         Registry.register(Registry.ITEM, RawGyoza.ID, RAW_GYOZA);
         Registry.register(Registry.ITEM, Gyoza.ID, GYOZA);
+        Registry.register(Registry.ITEM, TorafuguKaraage.ID, TORAFUGU_KARAAGE);
+        Registry.register(Registry.ITEM, FriedUramakiSake.ID, FRIED_URAMAKI_SAKE);
+        Registry.register(Registry.ITEM, FriedFutomakiSake.ID, FRIED_FUTOMAKI_SAKE);
         
         Registry.register(Registry.ITEM, WheatFlour.ID, WHEAT_FLOUR);
         Registry.register(Registry.ITEM, SunflowerFlour.ID, SUNFLOWER_FLOUR);

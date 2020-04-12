@@ -6,19 +6,20 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
-public class Gyoza extends Item
+public class FriedUramakiSake extends Item
 {
-    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "gyoza");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "fried_uramaki_sake");
     
-    public static final float saturation = 5.65F;
-    public static final int hunger = 8;
+    public static final float saturation = 4.375F;
+    public static final int hunger = 7;
     
-    public Gyoza()
+    public FriedUramakiSake()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_FOOD)
+        super(new Settings().group(LItemGroups.SUSHI)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation)
+                                .alwaysEdible()
                                 .build())
              );
     }

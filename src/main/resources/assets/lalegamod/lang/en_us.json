@@ -38,5 +38,7 @@
     "item.lalegamod.raw_gyoza": "Raw Gyoza",
     "item.lalegamod.gyoza": "Gyoza",
     "block.lalegamod.fryer": "Fryer",
-    "block.lalegamod.steam_cooker": "Steam Cooker"
+    "block.lalegamod.steam_cooker": "Steam Cooker",
+    "item.lalegamod.torafugu_karaage": "Torafugu Karaage",
+    "item.lalegamod.fried_futomaki_sake": "Fried Futomaki Sake"
 }

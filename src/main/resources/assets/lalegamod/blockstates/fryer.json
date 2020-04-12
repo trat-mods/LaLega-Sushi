@@ -1,16 +1,16 @@
 {
     "variants": {
-        "facing=north,oil_type=rice_oil": {"model": "lalegamod:block/fryer_rice_oil"},
-        "facing=south,oil_type=rice_oil": {"model": "lalegamod:block/fryer_rice_oil", "y": 180},
-        "facing=west,oil_type=rice_oil": {"model": "lalegamod:block/fryer_rice_oil", "y": 270},
-        "facing=east,oil_type=rice_oil": {"model": "lalegamod:block/fryer_rice_oil", "y": 90},
-        "facing=north,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer_sunflower_oil"},
-        "facing=south,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer_sunflower_oil", "y": 180},
-        "facing=west,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer_sunflower_oil", "y": 270},
-        "facing=east,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer_sunflower_oil", "y": 90},
-        "facing=north,oil_type=none": {"model": "lalegamod:block/fryer_none_oil"},
-        "facing=south,oil_type=none": {"model": "lalegamod:block/fryer_none_oil", "y": 180},
-        "facing=west,oil_type=none": {"model": "lalegamod:block/fryer_none_oil", "y": 270},
-        "facing=east,oil_type=none": {"model": "lalegamod:block/fryer_none_oil", "y": 90}
+        "facing=north,oil_type=rice_oil": {"model": "lalegamod:block/fryer/rice_oil"},
+        "facing=south,oil_type=rice_oil": {"model": "lalegamod:block/fryer/rice_oil", "y": 180},
+        "facing=west,oil_type=rice_oil": {"model": "lalegamod:block/fryer/rice_oil", "y": 270},
+        "facing=east,oil_type=rice_oil": {"model": "lalegamod:block/fryer/rice_oil", "y": 90},
+        "facing=north,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer/sunflower_oil"},
+        "facing=south,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer/sunflower_oil", "y": 180},
+        "facing=west,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer/sunflower_oil", "y": 270},
+        "facing=east,oil_type=sunflower_oil": {"model": "lalegamod:block/fryer/sunflower_oil", "y": 90},
+        "facing=north,oil_type=none": {"model": "lalegamod:block/fryer/none_oil"},
+        "facing=south,oil_type=none": {"model": "lalegamod:block/fryer/none_oil", "y": 180},
+        "facing=west,oil_type=none": {"model": "lalegamod:block/fryer/none_oil", "y": 270},
+        "facing=east,oil_type=none": {"model": "lalegamod:block/fryer/none_oil", "y": 90}
     }
 }
