@@ -15,6 +15,12 @@ public class ClientLoader implements ClientModInitializer
     @Override
     public void onInitializeClient()
     {
+        initializeScreens();
+        setBlocksRenderLayer();
+    }
+    
+    private void initializeScreens()
+    {
         ScreenProviderRegistry.INSTANCE.registerFactory(
               BlastChillerBlock.ID,
               (syncId, id, player, buf) -> new BlastChillerBlockScreen(
@@ -45,6 +51,15 @@ public class ClientLoader implements ClientModInitializer
                     new SteamCookerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
                     player));
         
+        ScreenProviderRegistry.INSTANCE.registerFactory(
+              PressBlock.ID,
+              (syncId, id, player, buf) -> new PressBlockScreen(
+                    new PressBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
+                    player));
+    }
+    
+    private void setBlocksRenderLayer()
+    {
         BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.RICE_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.AVOCADO_BLOCK, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(LBlocks.WASABI_BLOCK, RenderLayer.getCutout());

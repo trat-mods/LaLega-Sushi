@@ -15,7 +15,7 @@ public class TorafuguKaraage extends Item
     
     public TorafuguKaraage()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_FOOD)
+        super(new Settings().group(LItemGroups.LALEGA_FOOD)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation)

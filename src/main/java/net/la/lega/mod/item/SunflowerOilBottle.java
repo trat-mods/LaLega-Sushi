@@ -11,6 +11,6 @@ public class SunflowerOilBottle extends Item
     
     public SunflowerOilBottle()
     {
-        super(new Item.Settings().group(LItemGroups.JAPANESE_INGREDIENTS).maxCount(16));
+        super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS).maxCount(16));
     }
 }

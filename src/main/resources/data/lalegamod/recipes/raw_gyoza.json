@@ -1,0 +1,14 @@
+{
+    "type": "lalegamod:sushi_crafting",
+    "ingredients": [
+        {
+            "item": "lalegamod:minched_pork"
+        },
+        {
+            "item": "lalegamod:wheat_flour"
+        }
+    ],
+    "output": "lalegamod:raw_gyoza",
+    "processingTime": 240,
+    "outputAmount": 1
+}

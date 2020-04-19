@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 
 public class ThreadCutterBlockEntity extends AProcessingEntity
 {
+    public static final int INPUT_SLOT = 0;
     public static final int[] NONE = {};
     public static final int[] IN_SLOTS = {0};
     
@@ -47,7 +48,7 @@ public class ThreadCutterBlockEntity extends AProcessingEntity
     @Override
     public boolean isValidInvStack(int slot, ItemStack stack)
     {
-        return slot == 0;
+        return slot == INPUT_SLOT;
     }
     
     @Override
@@ -65,7 +66,7 @@ public class ThreadCutterBlockEntity extends AProcessingEntity
     @Override
     protected boolean canAcceptRecipeOutput(Recipe<?> recipe)
     {
-        if(!((ItemStack) this.items.get(0)).isEmpty() && recipe != null)
+        if(!((ItemStack) this.items.get(INPUT_SLOT)).isEmpty() && recipe != null)
         {
             ItemStack itemStack = recipe.getOutput();
             if(itemStack.isEmpty())
@@ -89,7 +90,7 @@ public class ThreadCutterBlockEntity extends AProcessingEntity
         AInjectiveProcessingRecipe tCRecipe = (AInjectiveProcessingRecipe) recipe;
         if(tCRecipe != null && this.canAcceptRecipeOutput(tCRecipe))
         {
-            ItemStack inputSlot = (ItemStack) this.items.get(0);
+            ItemStack inputSlot = (ItemStack) this.items.get(INPUT_SLOT);
             BlockPointerImpl blockPointerImpl = new BlockPointerImpl(world, pos);
             
             Direction direction = (Direction) blockPointerImpl.getBlockState().get(ThreadCutterBlock.FACING);

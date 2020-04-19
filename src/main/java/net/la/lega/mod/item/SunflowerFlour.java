@@ -11,6 +11,6 @@ public class SunflowerFlour extends Item
     
     public SunflowerFlour()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_INGREDIENTS));
+        super(new Settings().group(LItemGroups.LALEGA_INGREDIENTS));
     }
 }

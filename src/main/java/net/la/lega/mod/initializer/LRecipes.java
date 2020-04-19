@@ -24,5 +24,8 @@ public abstract class LRecipes
         
         Registry.register(Registry.RECIPE_SERIALIZER, SteamCookingRecipeSerializer.ID, SteamCookingRecipeSerializer.INSTANCE);
         Registry.register(Registry.RECIPE_TYPE, new Identifier(LLoader.MOD_ID, SteamCookingRecipe.Type.ID), SteamCookingRecipe.Type.INSTANCE);
+        
+        Registry.register(Registry.RECIPE_SERIALIZER, PressingRecipeSerializer.ID, PressingRecipeSerializer.INSTANCE);
+        Registry.register(Registry.RECIPE_TYPE, new Identifier(LLoader.MOD_ID, PressingRecipe.Type.ID), PressingRecipe.Type.INSTANCE);
     }
 }

@@ -11,6 +11,6 @@ public class RawGyoza extends Item
     
     public RawGyoza()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_FOOD));
+        super(new Settings().group(LItemGroups.LALEGA_FOOD));
     }
 }

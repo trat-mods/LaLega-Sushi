@@ -11,6 +11,6 @@ public class RiceFlour extends Item
     
     public RiceFlour()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_INGREDIENTS));
+        super(new Settings().group(LItemGroups.LALEGA_INGREDIENTS));
     }
 }

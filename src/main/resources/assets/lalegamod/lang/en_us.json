@@ -22,11 +22,11 @@
     "item.lalegamod.hosomaki_sake_wasabi": "Hosomaki Sake Wasabi",
     "item.lalegamod.uramaki_sake_wasabi": "Uramaki Sake Wasabi",
     "item.lalegamod.futomaki_sake_wasabi": "Futomaki Sake Wasabi",
-    "itemGroup.lalegamod.japanese_plants": "Japanese Plants",
-    "itemGroup.lalegamod.japanese_ingredients": "Japanese Ingredients",
-    "itemGroup.lalegamod.japanese_food": "Japanese Food",
-    "itemGroup.lalegamod.sushi": "Sushi",
-    "itemGroup.lalegamod.blocks": "Japanese Blocks",
+    "itemGroup.lalegamod.lalega_plants": "LaLega Plants",
+    "itemGroup.lalegamod.lalega_ingredients": "LaLega Ingredients",
+    "itemGroup.lalegamod.lalega_food": "LaLega Food",
+    "itemGroup.lalegamod.lalega_sushi": "Sushi",
+    "itemGroup.lalegamod.lalega_blocks": "LaLega Blocks",
     "item.lalegamod.sunflower_flour": "Sunflower Flour",
     "item.lalegamod.wheat_flour": "Wheat Flour",
     "item.lalegamod.rice_flour": "Rice Flour",
@@ -40,5 +40,6 @@
     "block.lalegamod.fryer": "Fryer",
     "block.lalegamod.steam_cooker": "Steam Cooker",
     "item.lalegamod.torafugu_karaage": "Torafugu Karaage",
-    "item.lalegamod.fried_futomaki_sake": "Fried Futomaki Sake"
+    "item.lalegamod.fried_futomaki_sake": "Fried Futomaki Sake",
+    "item.lalegamod.fried_hosomaki_sake": "Fried Hosomaki Sake"
 }

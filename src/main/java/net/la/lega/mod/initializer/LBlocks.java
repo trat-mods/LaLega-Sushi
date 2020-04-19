@@ -13,6 +13,7 @@ public abstract class LBlocks
     public static final WasabiBlock WASABI_BLOCK = new WasabiBlock();
     public static final FryerBlock FRYER_BLOCK = new FryerBlock();
     public static final SteamCookerBlock STEAM_COOKER_BLOCK = new SteamCookerBlock();
+    public static final PressBlock PRESS_BLOCK = new PressBlock();
     
     public static void initialize()
     {
@@ -24,5 +25,6 @@ public abstract class LBlocks
         Registry.register(Registry.BLOCK, WasabiBlock.ID, WASABI_BLOCK);
         Registry.register(Registry.BLOCK, FryerBlock.ID, FRYER_BLOCK);
         Registry.register(Registry.BLOCK, SteamCookerBlock.ID, STEAM_COOKER_BLOCK);
+        Registry.register(Registry.BLOCK, PressBlock.ID, PRESS_BLOCK);
     }
 }

@@ -320,6 +320,14 @@ public class FryerBlockEntity extends AInventoryEntity implements Tickable, Prop
     
     @Override public CompoundTag toTag(CompoundTag tag)
     {
+        ItemStack processingStack = items.get(PROCESSING_SLOT);
+        ItemStack inputStack = items.get(INPUT_SLOT);
+        if(processingStack.getCount() + inputStack.getCount() < getInvMaxStackAmount())
+        {
+            inputStack.increment(processingStack.getCount());
+        }
+        processingStack.setCount(0);
+        processingBatch.clear();
         tag.putInt("oilUsage", currentOilUsage);
         return super.toTag(tag);
     }

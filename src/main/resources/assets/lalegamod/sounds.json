@@ -18,5 +18,10 @@
         "sounds": [
             "lalegamod:fryer_on"
         ]
+    },
+    "steam_cooker_pressure": {
+        "sounds": [
+            "lalegamod:steam_cooker_pressure"
+        ]
     }
 }

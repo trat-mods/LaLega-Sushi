@@ -37,6 +37,7 @@ public abstract class LItems
     public static final Item TORAFUGU_KARAAGE = new TorafuguKaraage();
     public static final Item FRIED_URAMAKI_SAKE = new FriedUramakiSake();
     public static final Item FRIED_FUTOMAKI_SAKE = new FriedFutomakiSake();
+    public static final Item FRIED_HOSOMAKI_SAKE = new FriedHosomakiSake();
     
     public static Item AVOCADO_SEED;
     public static Item RICE_SEEDS;
@@ -66,6 +67,7 @@ public abstract class LItems
         Registry.register(Registry.ITEM, TorafuguKaraage.ID, TORAFUGU_KARAAGE);
         Registry.register(Registry.ITEM, FriedUramakiSake.ID, FRIED_URAMAKI_SAKE);
         Registry.register(Registry.ITEM, FriedFutomakiSake.ID, FRIED_FUTOMAKI_SAKE);
+        Registry.register(Registry.ITEM, FriedHosomakiSake.ID, FRIED_HOSOMAKI_SAKE);
         
         Registry.register(Registry.ITEM, WheatFlour.ID, WHEAT_FLOUR);
         Registry.register(Registry.ITEM, SunflowerFlour.ID, SUNFLOWER_FLOUR);
@@ -76,14 +78,15 @@ public abstract class LItems
         Registry.register(Registry.ITEM, UramakiSakeWasabi.ID, URAMAKI_SAKE_WASABI);
         Registry.register(Registry.ITEM, FutomakiSakeWasabi.ID, FUTOMAKI_SAKE_WASABI);
         
-        AVOCADO_SEED = Registry.register(Registry.ITEM, AvocadoBlock.ID, new BlockItem(LBlocks.AVOCADO_BLOCK, new Item.Settings().group(LItemGroups.JAPANESE_PLANTS)));
-        RICE_SEEDS = Registry.register(Registry.ITEM, RiceBlock.ID, new BlockItem(LBlocks.RICE_BLOCK, new Item.Settings().group(LItemGroups.JAPANESE_PLANTS)));
-        WASABI_ROOT = Registry.register(Registry.ITEM, WasabiBlock.ID, new BlockItem(LBlocks.WASABI_BLOCK, new Item.Settings().group(LItemGroups.JAPANESE_PLANTS)));
+        AVOCADO_SEED = Registry.register(Registry.ITEM, AvocadoBlock.ID, new BlockItem(LBlocks.AVOCADO_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_PLANTS)));
+        RICE_SEEDS = Registry.register(Registry.ITEM, RiceBlock.ID, new BlockItem(LBlocks.RICE_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_PLANTS)));
+        WASABI_ROOT = Registry.register(Registry.ITEM, WasabiBlock.ID, new BlockItem(LBlocks.WASABI_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_PLANTS)));
         
-        Registry.register(Registry.ITEM, SushiCrafterBlock.ID, new BlockItem(LBlocks.SUSHI_CRAFTER_BLOCK, new Item.Settings().group(LItemGroups.BLOCKS)));
-        Registry.register(Registry.ITEM, ThreadCutterBlock.ID, new BlockItem(LBlocks.THREAD_CUTTER_BLOCK, new Item.Settings().group(LItemGroups.BLOCKS)));
-        Registry.register(Registry.ITEM, BlastChillerBlock.ID, new BlockItem(LBlocks.BLAST_CHILLER_BLOCK, new Item.Settings().group(LItemGroups.BLOCKS)));
-        Registry.register(Registry.ITEM, FryerBlock.ID, new BlockItem(LBlocks.FRYER_BLOCK, new Item.Settings().group(LItemGroups.BLOCKS)));
-        Registry.register(Registry.ITEM, SteamCookerBlock.ID, new BlockItem(LBlocks.STEAM_COOKER_BLOCK, new Item.Settings().group(LItemGroups.BLOCKS)));
+        Registry.register(Registry.ITEM, SushiCrafterBlock.ID, new BlockItem(LBlocks.SUSHI_CRAFTER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
+        Registry.register(Registry.ITEM, ThreadCutterBlock.ID, new BlockItem(LBlocks.THREAD_CUTTER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
+        Registry.register(Registry.ITEM, BlastChillerBlock.ID, new BlockItem(LBlocks.BLAST_CHILLER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
+        Registry.register(Registry.ITEM, FryerBlock.ID, new BlockItem(LBlocks.FRYER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
+        Registry.register(Registry.ITEM, SteamCookerBlock.ID, new BlockItem(LBlocks.STEAM_COOKER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
+        Registry.register(Registry.ITEM, PressBlock.ID, new BlockItem(LBlocks.PRESS_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
     }
 }

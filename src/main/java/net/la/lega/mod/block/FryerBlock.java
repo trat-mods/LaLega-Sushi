@@ -141,16 +141,15 @@ public class FryerBlock extends AHorizontalFacingInventoryBlock
     {
         if(world.getBlockState(pos).get(ON))
         {
-            if(random.nextDouble() < 0.55D)
+            if(random.nextDouble() < 0.45D)
             {
                 double x = (double) pos.getX() + 0.3D + (random.nextDouble() * 0.375D);
-                double y = (double) pos.getY() + 0.65D;
+                double y = (double) pos.getY() + 0.95D;
                 double z = (double) pos.getZ() + 0.3D + (random.nextDouble() * 0.4375);
                 double vy = random.nextDouble() * 0.1D;
-                System.out.println("adding particles");
                 world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, vy, 0.0D);
             }
-            if(random.nextDouble() < 0.12D)
+            if(random.nextDouble() < 0.14D)
             {
                 world.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, LSounds.FRYER_ON_SOUNDEVENT, SoundCategory.BLOCKS, 0.25F, 0.825F, false);
             }

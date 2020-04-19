@@ -21,7 +21,7 @@ public class RawSquid extends Item
     
     public RawSquid()
     {
-        super(new Item.Settings().group(LItemGroups.JAPANESE_INGREDIENTS)
+        super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
                     .food(new FoodComponent.Builder().hunger(hunger)
                                 .saturationModifier(saturation)
                                 .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)

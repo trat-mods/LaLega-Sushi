@@ -11,6 +11,6 @@ public class RiceOilBottle extends Item
     
     public RiceOilBottle()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_INGREDIENTS).maxCount(16));
+        super(new Settings().group(LItemGroups.LALEGA_INGREDIENTS).maxCount(16));
     }
 }

@@ -13,6 +13,7 @@ public abstract class LEntities
     public static BlockEntityType<SushiCrafterBlockEntity> SUSHI_CRAFTER_BLOCK_ENTITY;
     public static BlockEntityType<FryerBlockEntity> FRYER_BLOCK_ENTITY;
     public static BlockEntityType<SteamCookerBlockEntity> STEAM_COOKER_BLOCK_ENTITY;
+    public static BlockEntityType<PressBlockEntity> PRESS_BLOCK_ENTITY;
     
     public static void initialize()
     {
@@ -21,5 +22,6 @@ public abstract class LEntities
         SUSHI_CRAFTER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, LLoader.MOD_ID + ":" + SushiCrafterBlock.ID.getPath(), BlockEntityType.Builder.create(SushiCrafterBlockEntity::new, LBlocks.SUSHI_CRAFTER_BLOCK).build(null));
         FRYER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, LLoader.MOD_ID + ":" + FryerBlock.ID.getPath(), BlockEntityType.Builder.create(FryerBlockEntity::new, LBlocks.FRYER_BLOCK).build(null));
         STEAM_COOKER_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, LLoader.MOD_ID + ":" + SteamCookerBlock.ID.getPath(), BlockEntityType.Builder.create(SteamCookerBlockEntity::new, LBlocks.STEAM_COOKER_BLOCK).build(null));
+        PRESS_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, LLoader.MOD_ID + ":" + PressBlock.ID.getPath(), BlockEntityType.Builder.create(PressBlockEntity::new, LBlocks.PRESS_BLOCK).build(null));
     }
 }

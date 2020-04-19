@@ -26,7 +26,7 @@ public class SquidSkewer extends Item
     
     public SquidSkewer()
     {
-        super(new Item.Settings().group(LItemGroups.JAPANESE_FOOD)
+        super(new Item.Settings().group(LItemGroups.LALEGA_FOOD)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation)

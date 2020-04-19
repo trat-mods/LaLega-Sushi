@@ -15,17 +15,17 @@ public class PufferFishFillet extends Item
     
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 60;
-    public static final float effectChance = 0.25F;
+    public static final float effectChance = 0.50F;
     public static final float saturation = 1.4F;
     public static final int hunger = 2;
-    
+
     public PufferFishFillet()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_INGREDIENTS)
-                    .food(new FoodComponent.Builder().hunger(hunger)
-                                .saturationModifier(saturation).alwaysEdible()
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .build())
+        super(new Settings().group(LItemGroups.LALEGA_INGREDIENTS)
+              .food(new FoodComponent.Builder().hunger(hunger)
+                    .saturationModifier(saturation).alwaysEdible()
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .build())
              );
     }
 }

@@ -21,7 +21,7 @@ public class SalmonFillet extends Item
     
     public SalmonFillet()
     {
-        super(new Item.Settings().group(LItemGroups.JAPANESE_INGREDIENTS)
+        super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
                     .food(new FoodComponent.Builder().hunger(hunger)
                                 .saturationModifier(saturation).alwaysEdible()
                                 .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)

@@ -21,7 +21,7 @@ public class UramakiSakeWasabi extends Item
     
     public UramakiSakeWasabi()
     {
-        super(new Item.Settings().group(LItemGroups.SUSHI)
+        super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation)

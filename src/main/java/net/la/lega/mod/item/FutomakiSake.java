@@ -15,7 +15,7 @@ public class FutomakiSake extends Item
     
     public FutomakiSake()
     {
-        super(new Item.Settings().group(LItemGroups.SUSHI)
+        super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation)

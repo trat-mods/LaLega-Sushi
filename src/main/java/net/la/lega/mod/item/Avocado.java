@@ -15,7 +15,7 @@ public class Avocado extends Item
     
     public Avocado()
     {
-        super(new Item.Settings().group(LItemGroups.JAPANESE_INGREDIENTS)
+        super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation)

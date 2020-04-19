@@ -15,7 +15,7 @@ public class SashimiFugu extends Item
     
     public SashimiFugu()
     {
-        super(new Settings().group(LItemGroups.JAPANESE_INGREDIENTS)
+        super(new Settings().group(LItemGroups.LALEGA_INGREDIENTS)
                     .food(new FoodComponent.Builder()
                                 .hunger(hunger)
                                 .saturationModifier(saturation).snack().alwaysEdible()

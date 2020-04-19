@@ -11,6 +11,6 @@ public class WheatFlour extends Item
     
     public WheatFlour()
     {
-        super(new Item.Settings().group(LItemGroups.JAPANESE_INGREDIENTS));
+        super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS));
     }
 }
