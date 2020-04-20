@@ -5,7 +5,7 @@ import net.la.lega.mod.block.*;
 import net.la.lega.mod.gui.controller.*;
 import net.minecraft.container.BlockContext;
 
-public abstract class LUIControllers
+public final class LUIControllers
 {
     public static void initialize()
     {

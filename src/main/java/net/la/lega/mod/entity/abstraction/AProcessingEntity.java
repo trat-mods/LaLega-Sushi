@@ -1,6 +1,7 @@
 package net.la.lega.mod.entity.abstraction;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.la.lega.mod.recipe.abstraction.AProcessingRecipe;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.container.PropertyDelegate;
@@ -12,7 +13,7 @@ import net.minecraft.util.Tickable;
  *
  * @author t_r_a_t
  */
-public abstract class AProcessingEntity extends AInventoryEntity implements Tickable, PropertyDelegateHolder
+public abstract class AProcessingEntity extends AInventoryEntity implements Tickable, PropertyDelegateHolder, BlockEntityClientSerializable
 {
     public static final int PROCESS_TIME = 0;
     public static final int UNIT_PROCESS_TIME = 1;
@@ -80,6 +81,19 @@ public abstract class AProcessingEntity extends AInventoryEntity implements Tick
         tag.putShort("currentProcessingTime", (short) this.currentProcessingTime);
         tag.putShort("unitProcessingTime", (short) this.unitProcessingTime);
         return super.toTag(tag);
+    }
+    
+    @Override public void fromClientTag(CompoundTag tag)
+    {
+        currentProcessingTime = tag.getShort("currentProcessingTime");
+        unitProcessingTime = tag.getShort("unitProcessingTime");
+    }
+    
+    @Override public CompoundTag toClientTag(CompoundTag tag)
+    {
+        tag.putShort("currentProcessingTime", (short) this.currentProcessingTime);
+        tag.putShort("unitProcessingTime", (short) this.unitProcessingTime);
+        return tag;
     }
     
     @Override

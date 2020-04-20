@@ -1,0 +1,108 @@
+{
+    "parent": "block/block",
+    "textures": {
+        "black": "lalegamod:block/fryer_handle",
+        "metal": "lalegamod:block/press/metal",
+        "back": "lalegamod:block/press/back",
+        "glass": "minecraft:block/glass",
+        "particle": "#back"
+    },
+    "elements": [
+        {
+            "from": [0, 0, 0],
+            "to": [16, 3, 15],
+            "faces": {
+                "down": {"texture": "#metal", "cullface": "down"},
+                "up": {"texture": "#metal"},
+                "north": {"texture": "#metal"},
+                "south": {"texture": "#metal"},
+                "west": {"texture": "#metal"},
+                "east": {"texture": "#metal"}
+            }
+        },
+        {
+            "from": [0, 3, 0],
+            "to": [3, 16, 15],
+            "faces": {
+                "down": {"texture": "#metal", "cullface": "down"},
+                "up": {"texture": "#metal"},
+                "north": {"texture": "#metal"},
+                "south": {"texture": "#metal"},
+                "west": {"texture": "#metal"},
+                "east": {"texture": "#metal"}
+            }
+        },
+        {
+            "from": [13, 3, 0],
+            "to": [16, 16, 15],
+            "faces": {
+                "down": {"texture": "#metal", "cullface": "down"},
+                "up": {"texture": "#metal"},
+                "north": {"texture": "#metal"},
+                "south": {"texture": "#metal"},
+                "west": {"texture": "#metal"},
+                "east": {"texture": "#metal"}
+            }
+        },
+        {
+            "from": [3, 3, 0],
+            "to": [13, 16, 1],
+            "faces": {
+                "down": {"uv": [6, 6, 7, 7], "texture": "#glass", "cullface": "down"},
+                "up": {"uv": [6, 6, 7, 7], "texture": "#glass"},
+                "north": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+                "south": {"uv": [6, 6, 7, 7], "texture": "#glass", "cullface": "south"},
+                "west": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+                "east": {"uv": [0, 0, 16, 16], "texture": "#glass"}
+            }
+        },
+        {
+            "from": [3, 14, 1],
+            "to": [13, 16, 4],
+            "faces": {
+                "down": {"uv": [6, 6, 10, 10], "texture": "#glass", "cullface": "down"},
+                "up": {"uv": [6, 6, 10, 10], "texture": "#glass"},
+                "north": {"uv": [6, 6, 10, 10], "texture": "#glass"},
+                "south": {"uv": [6, 6, 10, 10], "texture": "#glass"},
+                "west": {"uv": [6, 6, 10, 10], "texture": "#glass"},
+                "east": {"uv": [6, 6, 10, 10], "texture": "#glass"}
+            }
+        },
+        {
+            "from": [3, 13, 4],
+            "to": [13, 16, 11],
+            "faces": {
+                "down": {"texture": "#metal", "cullface": "down"},
+                "up": {"texture": "#metal"},
+                "north": {"texture": "#metal"},
+                "south": {"texture": "#metal"},
+                "west": {"texture": "#metal"},
+                "east": {"texture": "#metal"}
+            }
+        },
+        {
+            "from": [6, 9, 5],
+            "to": [10, 13, 9],
+            "faces": {
+                "down": {"uv": [2, 2, 14, 8], "texture": "#black"},
+                "up": {"uv": [2, 2, 14, 8], "texture": "#black"},
+                "north": {"uv": [2, 2, 14, 8], "texture": "#black"},
+                "south": {"uv": [2, 2, 14, 8], "texture": "#black"},
+                "west": {"uv": [2, 2, 14, 8], "texture": "#black"},
+                "east": {"uv": [2, 2, 14, 8], "texture": "#black"}
+            }
+        },
+        {
+            "from": [0, 0, 11],
+            "to": [16, 16, 16],
+            "faces": {
+                "down": {"texture": "#metal"},
+                "up": {"texture": "#metal", "cullface": "up"},
+                "north": {"texture": "#metal"},
+                "south": {"texture": "#back"},
+                "west": {"texture": "#metal"},
+                "east": {"texture": "#metal"}
+            }
+        }
+    ]
+}

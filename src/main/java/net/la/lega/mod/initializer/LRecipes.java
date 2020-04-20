@@ -6,7 +6,7 @@ import net.la.lega.mod.recipe.serializer.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public abstract class LRecipes
+public final class LRecipes
 {
     public static void initialize()
     {

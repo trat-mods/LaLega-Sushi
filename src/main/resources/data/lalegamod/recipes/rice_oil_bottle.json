@@ -1,0 +1,14 @@
+{
+    "type": "lalegamod:pressing",
+    "ingredients": [
+        {
+            "item": "lalegamod:rice_flour"
+        },
+        {
+            "item": "minecraft:glass_bottle"
+        }
+    ],
+    "output": "lalegamod:rice_oil_bottle",
+    "processingTime": 140,
+    "outputAmount": 1
+}

@@ -1,0 +1,31 @@
+{
+    "textures": {
+        "top": "lalegamod:block/blast_chiller_side"
+    },
+    "elements": [
+        {
+            "from": [7, 9, 6],
+            "to": [9, 13, 8],
+            "faces": {
+                "down": {"uv": [2, 2, 6, 10], "texture": "#top", "cullface": "down"},
+                "up": {"uv": [2, 2, 6, 10], "texture": "#top"},
+                "north": {"uv": [2, 2, 6, 10], "texture": "#top"},
+                "south": {"uv": [2, 2, 6, 10], "texture": "#top"},
+                "west": {"uv": [2, 2, 6, 10], "texture": "#top"},
+                "east": {"uv": [2, 2, 6, 10], "texture": "#top"}
+            }
+        },
+        {
+            "from": [5, 7, 4],
+            "to": [11, 9, 10],
+            "faces": {
+                "down": {"uv": [2, 2, 14, 8], "texture": "#top"},
+                "up": {"uv": [2, 2, 14, 8], "texture": "#top"},
+                "north": {"uv": [2, 2, 14, 8], "texture": "#top"},
+                "south": {"uv": [2, 2, 14, 8], "texture": "#top"},
+                "west": {"uv": [2, 2, 14, 8], "texture": "#top"},
+                "east": {"uv": [2, 2, 14, 8], "texture": "#top"}
+            }
+        }
+    ]
+}

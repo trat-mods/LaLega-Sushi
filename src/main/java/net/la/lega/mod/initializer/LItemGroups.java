@@ -6,7 +6,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-public abstract class LItemGroups
+public final class LItemGroups
 {
     public static final ItemGroup LALEGA_PLANTS = FabricItemGroupBuilder.create(new Identifier(LLoader.MOD_ID, "lalega_plants")).icon(() -> new ItemStack(LBlocks.RICE_BLOCK)).build();
     public static final ItemGroup LALEGA_FOOD = FabricItemGroupBuilder.create(new Identifier(LLoader.MOD_ID, "lalega_food")).icon(() -> new ItemStack(LItems.GYOZA)).build();

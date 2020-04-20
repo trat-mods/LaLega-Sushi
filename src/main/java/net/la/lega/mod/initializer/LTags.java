@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 
-public abstract class LTags
+public final class LTags
 {
     public static Tag<Item> SUSHI_REQUIRED;
     private static String sushi_required_id = "sushi_required";

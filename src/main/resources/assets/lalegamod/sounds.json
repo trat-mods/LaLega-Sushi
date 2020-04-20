@@ -23,5 +23,10 @@
         "sounds": [
             "lalegamod:steam_cooker_pressure"
         ]
+    },
+    "press_activate": {
+        "sounds": [
+            "lalegamod:press_activate"
+        ]
     }
 }

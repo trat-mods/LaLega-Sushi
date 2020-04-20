@@ -24,6 +24,12 @@ public class PressingRecipe extends AProcessingRecipe
         this.input = input;
     }
     
+    @Override
+    public DefaultedList<Ingredient> getPreviewInputs()
+    {
+        return input;
+    }
+    
     @Override public boolean matches(Inventory inv, World world)
     {
         RecipeFinder recipeFinder = new RecipeFinder();
@@ -53,7 +59,7 @@ public class PressingRecipe extends AProcessingRecipe
     
     @Override public RecipeType<?> getType()
     {
-        return PressingRecipe.Type.INSTANCE;
+        return Type.INSTANCE;
     }
     
     public static class Type implements RecipeType<PressingRecipe>
@@ -62,7 +68,7 @@ public class PressingRecipe extends AProcessingRecipe
         {
         }
         
-        public static final PressingRecipe.Type INSTANCE = new PressingRecipe.Type();
+        public static final Type INSTANCE = new Type();
         public static final String ID = "pressing_recipe";
     }
 }

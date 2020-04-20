@@ -3,7 +3,7 @@ package net.la.lega.mod.loader;
 import net.fabricmc.api.ModInitializer;
 import net.la.lega.mod.initializer.*;
 
-public class LLoader implements ModInitializer
+public final class LLoader implements ModInitializer
 {
     
     public static final String MOD_ID = "lalegamod";
@@ -22,5 +22,6 @@ public class LLoader implements ModInitializer
         LFeatures.initialize();
         LBehaviors.initialize();
         LLootTablesInjector.initialize();
+        LTradeOffers.initialize();
     }
 }

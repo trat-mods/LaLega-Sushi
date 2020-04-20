@@ -2,6 +2,7 @@ package net.la.lega.mod.entity;
 
 import net.la.lega.mod.entity.abstraction.AProcessingEntity;
 import net.la.lega.mod.initializer.LEntities;
+import net.la.lega.mod.initializer.LItems;
 import net.la.lega.mod.initializer.LTags;
 import net.la.lega.mod.initializer.LVillagerProfessions;
 import net.la.lega.mod.recipe.SushiCraftingRecipe;
@@ -21,6 +22,8 @@ public class SushiCrafterBlockEntity extends AProcessingEntity
     public static final int OUTPUT_SLOT = 0;
     public static final int[] REQUIRED_SLOTS = new int[]{1, 2};
     public static final int[] INGREDIENTS_SLOTS = new int[]{3, 4, 5};
+    
+    private VillagerEntity sushiMan = null;
     
     private boolean isRequiredSlot(int slot)
     {
@@ -209,6 +212,10 @@ public class SushiCrafterBlockEntity extends AProcessingEntity
             if(isSushiManNear())
             {
                 SushiCraftingRecipe match = world.getRecipeManager().getFirstMatch(SushiCraftingRecipe.Type.INSTANCE, calculateCurrentInventory(), world).orElse(null);
+                if(match != null && match.getOutput().getItem().equals(LItems.PUFFER_FISH_FILLET))
+                {
+                    match = canSushiManCutPufferFish() ? match : null;
+                }
                 checkCurrentRecipe(match);
                 processCurrentRecipe();
             }
@@ -248,9 +255,16 @@ public class SushiCrafterBlockEntity extends AProcessingEntity
         {
             if(villager.getVillagerData().getProfession() == LVillagerProfessions.SUSHI_MAN_PROFESSION)
             {
+                sushiMan = villager;
                 return true;
             }
         }
+        sushiMan = null;
         return false;
+    }
+    
+    private boolean canSushiManCutPufferFish()
+    {
+        return sushiMan.getVillagerData().getLevel() >= 3;
     }
 }

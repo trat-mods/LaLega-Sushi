@@ -6,7 +6,7 @@ import net.la.lega.mod.loader.LLoader;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.registry.Registry;
 
-public abstract class LEntities
+public final class LEntities
 {
     public static BlockEntityType<BlastChillerBlockEntity> BLAST_CHILLER_BLOCK_ENTITY;
     public static BlockEntityType<ThreadCutterBlockEntity> THREAD_CUTTER_BLOCK_ENTITY;

@@ -6,7 +6,7 @@ import net.minecraft.loot.UniformLootTableRange;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.util.Identifier;
 
-public abstract class LLootTablesInjector
+public final class LLootTablesInjector
 {
     private static final Identifier SQUID_LOOT_TABLE_ID = new Identifier("minecraft", "entities/squid");
     

@@ -9,7 +9,7 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
 
-public abstract class LVillagerProfessions
+public final class LVillagerProfessions
 {
     public static final String sushiManId = "sushi_man";
     public static VillagerProfession SUSHI_MAN_PROFESSION;

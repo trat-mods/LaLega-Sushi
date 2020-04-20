@@ -6,7 +6,7 @@ import net.la.lega.mod.dispense_behaviour.SteamCookerDispenserBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Items;
 
-public abstract class LBehaviors
+public final class LBehaviors
 {
     public static void initialize()
     {

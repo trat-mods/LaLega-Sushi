@@ -6,7 +6,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.registry.Registry;
 
-public abstract class LItems
+public final class LItems
 {
     public static final Item AVOCADO = new Avocado();
     public static final Item SASHIMI_SAKE = new SashimiSake();

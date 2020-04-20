@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,models=0": {"model": "lalegamod:block/press/base"},
+        "facing=south,models=0": {"model": "lalegamod:block/press/base", "y": 180},
+        "facing=west,models=0": {"model": "lalegamod:block/press/base", "y": 270},
+        "facing=east,models=0": {"model": "lalegamod:block/press/base", "y": 90},
+        "facing=north,models=1": {"model": "lalegamod:block/press/head"},
+        "facing=south,models=1": {"model": "lalegamod:block/press/head", "y": 180},
+        "facing=west,models=1": {"model": "lalegamod:block/press/head", "y": 270},
+        "facing=east,models=1": {"model": "lalegamod:block/press/head", "y": 90}
+    }
+}

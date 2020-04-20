@@ -11,7 +11,7 @@ import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.DecoratorConfig;
 import net.minecraft.world.gen.feature.*;
 
-public abstract class LFeatures
+public final class LFeatures
 {
     private static RandomAgeCropFeature RICE_FEATURE;
     private static RandomAgeCropFeature AVOCADO_FEATURE;

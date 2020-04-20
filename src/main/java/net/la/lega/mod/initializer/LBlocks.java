@@ -3,7 +3,7 @@ package net.la.lega.mod.initializer;
 import net.la.lega.mod.block.*;
 import net.minecraft.util.registry.Registry;
 
-public abstract class LBlocks
+public final class LBlocks
 {
     public static final BlastChillerBlock BLAST_CHILLER_BLOCK = new BlastChillerBlock();
     public static final ThreadCutterBlock THREAD_CUTTER_BLOCK = new ThreadCutterBlock();

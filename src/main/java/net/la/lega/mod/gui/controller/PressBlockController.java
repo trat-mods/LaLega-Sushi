@@ -31,11 +31,11 @@ public class PressBlockController extends CottonCraftingController
         WLabel title = new WLabel("Press", WLabel.DEFAULT_TEXT_COLOR);
         
         root.add(title, 10, 2);
-        root.add(inputSlot, 20, 36);
-        root.add(input2Slot, 78, 44);
+        root.add(inputSlot, 26, 20);
+        root.add(input2Slot, 26, 44);
         root.add(outputSlot, 130, 36);
         //root.add(label, 72, 20);
-        root.add(progressBar, 68, 2, 30, 40);
+        root.add(progressBar, 68, 16, 30, 40);
         root.add(playerInvPanel, 0, 70);
         root.validate(this);
     }
