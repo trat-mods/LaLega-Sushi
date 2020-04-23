@@ -1,30 +1,30 @@
 {
     "textures": {
-        "top": "lalegamod:block/blast_chiller_side"
+        "composite": "lalegamod:block/press/press_head_composite"
     },
     "elements": [
         {
             "from": [7, 9, 6],
             "to": [9, 13, 8],
             "faces": {
-                "down": {"uv": [2, 2, 6, 10], "texture": "#top", "cullface": "down"},
-                "up": {"uv": [2, 2, 6, 10], "texture": "#top"},
-                "north": {"uv": [2, 2, 6, 10], "texture": "#top"},
-                "south": {"uv": [2, 2, 6, 10], "texture": "#top"},
-                "west": {"uv": [2, 2, 6, 10], "texture": "#top"},
-                "east": {"uv": [2, 2, 6, 10], "texture": "#top"}
+                "down": {"uv": [2, 2, 6, 10], "texture": "#composite", "cullface": "down"},
+                "up": {"uv": [2, 2, 6, 10], "texture": "#composite", "cullface": "up"},
+                "north": {"uv": [2, 4, 4, 8], "texture": "#composite"},
+                "south": {"uv": [2, 4, 4, 8], "texture": "#composite"},
+                "west": {"uv": [2, 4, 4, 8], "texture": "#composite"},
+                "east": {"uv": [2, 4, 4, 8], "texture": "#composite"}
             }
         },
         {
             "from": [5, 7, 4],
             "to": [11, 9, 10],
             "faces": {
-                "down": {"uv": [2, 2, 14, 8], "texture": "#top"},
-                "up": {"uv": [2, 2, 14, 8], "texture": "#top"},
-                "north": {"uv": [2, 2, 14, 8], "texture": "#top"},
-                "south": {"uv": [2, 2, 14, 8], "texture": "#top"},
-                "west": {"uv": [2, 2, 14, 8], "texture": "#top"},
-                "east": {"uv": [2, 2, 14, 8], "texture": "#top"}
+                "down": {"uv": [0, 2, 6, 8], "texture": "#composite"},
+                "up": {"uv": [0, 2, 6, 8], "texture": "#composite"},
+                "north": {"uv": [0, 0, 6, 2], "texture": "#composite"},
+                "south": {"uv": [0, 0, 6, 2], "texture": "#composite"},
+                "west": {"uv": [0, 2, 6, 4], "texture": "#composite"},
+                "east": {"uv": [0, 2, 6, 4], "texture": "#composite"}
             }
         }
     ]

@@ -62,6 +62,7 @@ public class BlastChillerBlockEntity extends AProcessingEntity
     {
         if(!this.world.isClient)
         {
+            System.out.println(getCurrentProcessingTime());
             BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
             checkCurrentRecipe(match);
             processCurrentRecipe();

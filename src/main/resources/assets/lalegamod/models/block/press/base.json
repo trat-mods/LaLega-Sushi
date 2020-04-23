@@ -1,10 +1,12 @@
 {
     "parent": "block/block",
     "textures": {
-        "black": "lalegamod:block/fryer_handle",
+        "composite": "lalegamod:block/press/press_head_composite",
         "metal": "lalegamod:block/press/metal",
+        "light_metal": "lalegamod:block/press/light_metal",
         "back": "lalegamod:block/press/back",
-        "glass": "minecraft:block/glass",
+        "glass": "lalegamod:block/press/glass_front",
+        "glass_top": "lalegamod:block/press/glass_top",
         "particle": "#back"
     },
     "elements": [
@@ -13,11 +15,11 @@
             "to": [16, 3, 15],
             "faces": {
                 "down": {"texture": "#metal", "cullface": "down"},
-                "up": {"texture": "#metal"},
-                "north": {"texture": "#metal"},
-                "south": {"texture": "#metal"},
-                "west": {"texture": "#metal"},
-                "east": {"texture": "#metal"}
+                "up": {"texture": "#light_metal"},
+                "north": {"texture": "#metal", "cullface": "north"},
+                "south": {"texture": "#metal", "cullface": "south"},
+                "west": {"texture": "#metal", "cullface": "west"},
+                "east": {"texture": "#metal", "cullface": "east"}
             }
         },
         {
@@ -46,33 +48,33 @@
         },
         {
             "from": [3, 3, 0],
-            "to": [13, 16, 1],
+            "to": [13, 15, 1],
             "faces": {
                 "down": {"uv": [6, 6, 7, 7], "texture": "#glass", "cullface": "down"},
                 "up": {"uv": [6, 6, 7, 7], "texture": "#glass"},
-                "north": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+                "north": {"texture": "#glass"},
                 "south": {"uv": [6, 6, 7, 7], "texture": "#glass", "cullface": "south"},
                 "west": {"uv": [0, 0, 16, 16], "texture": "#glass"},
                 "east": {"uv": [0, 0, 16, 16], "texture": "#glass"}
             }
         },
         {
-            "from": [3, 14, 1],
+            "from": [3, 15, 0],
             "to": [13, 16, 4],
             "faces": {
-                "down": {"uv": [6, 6, 10, 10], "texture": "#glass", "cullface": "down"},
-                "up": {"uv": [6, 6, 10, 10], "texture": "#glass"},
-                "north": {"uv": [6, 6, 10, 10], "texture": "#glass"},
-                "south": {"uv": [6, 6, 10, 10], "texture": "#glass"},
-                "west": {"uv": [6, 6, 10, 10], "texture": "#glass"},
-                "east": {"uv": [6, 6, 10, 10], "texture": "#glass"}
+                "down": {"texture": "#glass_top", "cullface": "down"},
+                "up": {"texture": "#glass_top"},
+                "north": {"texture": "#glass_top", "cullface": "north"},
+                "south": {"texture": "#glass_top", "cullface": "south"},
+                "west": {"texture": "#glass_top", "cullface": "west"},
+                "east": {"texture": "#glass_top", "cullface": "east"}
             }
         },
         {
             "from": [3, 13, 4],
             "to": [13, 16, 11],
             "faces": {
-                "down": {"texture": "#metal", "cullface": "down"},
+                "down": {"texture": "#metal"},
                 "up": {"texture": "#metal"},
                 "north": {"texture": "#metal"},
                 "south": {"texture": "#metal"},
@@ -84,12 +86,12 @@
             "from": [6, 9, 5],
             "to": [10, 13, 9],
             "faces": {
-                "down": {"uv": [2, 2, 14, 8], "texture": "#black"},
-                "up": {"uv": [2, 2, 14, 8], "texture": "#black"},
-                "north": {"uv": [2, 2, 14, 8], "texture": "#black"},
-                "south": {"uv": [2, 2, 14, 8], "texture": "#black"},
-                "west": {"uv": [2, 2, 14, 8], "texture": "#black"},
-                "east": {"uv": [2, 2, 14, 8], "texture": "#black"}
+                "down": {"uv": [2, 2, 14, 8], "texture": "#metal"},
+                "up": {"uv": [2, 2, 14, 8], "texture": "#metal"},
+                "north": {"uv": [2, 2, 14, 8], "texture": "#metal"},
+                "south": {"uv": [2, 2, 14, 8], "texture": "#metal"},
+                "west": {"uv": [2, 2, 14, 8], "texture": "#metal"},
+                "east": {"uv": [2, 2, 14, 8], "texture": "#metal"}
             }
         },
         {

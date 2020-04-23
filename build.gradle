@@ -26,6 +26,7 @@ dependencies {
 
     modImplementation "io.github.cottonmc:LibGui:1.8.1+1.15.2"
     include "io.github.cottonmc:LibGui:1.8.1+1.15.2"
+    include "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {

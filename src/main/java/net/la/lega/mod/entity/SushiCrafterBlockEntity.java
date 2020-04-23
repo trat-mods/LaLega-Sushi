@@ -250,7 +250,7 @@ public class SushiCrafterBlockEntity extends AProcessingEntity
     
     private boolean isSushiManNear()
     {
-        List<VillagerEntity> villagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(3D, 3D, 3D));
+        List<VillagerEntity> villagers = world.getNonSpectatingEntities(VillagerEntity.class, (new Box(getPos())).expand(5D, 5D, 5D));
         for(VillagerEntity villager : villagers)
         {
             if(villager.getVillagerData().getProfession() == LVillagerProfessions.SUSHI_MAN_PROFESSION)
