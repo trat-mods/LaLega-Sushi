@@ -4,7 +4,7 @@ import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.la.lega.mod.api.LimitedQueue;
 import net.la.lega.mod.api.ProcessableRecipeObject;
 import net.la.lega.mod.block.FryerBlock;
-import net.la.lega.mod.entity.abstraction.AInventoryEntity;
+import net.la.lega.mod.entity.abstraction.ASidedInventoryEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.model_enum.OilType;
 import net.la.lega.mod.recipe.FryingRecipe;
@@ -20,7 +20,7 @@ import net.minecraft.util.math.Direction;
 
 import java.util.function.Supplier;
 
-public class FryerBlockEntity extends AInventoryEntity implements Tickable, PropertyDelegateHolder
+public class FryerBlockEntity extends ASidedInventoryEntity implements Tickable, PropertyDelegateHolder
 {
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;

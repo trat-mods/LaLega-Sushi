@@ -13,7 +13,7 @@ import net.minecraft.util.Tickable;
  *
  * @author t_r_a_t
  */
-public abstract class AProcessingEntity extends AInventoryEntity implements Tickable, PropertyDelegateHolder, BlockEntityClientSerializable
+public abstract class AProcessingEntity extends ASidedInventoryEntity implements Tickable, PropertyDelegateHolder, BlockEntityClientSerializable
 {
     public static final int PROCESS_TIME = 0;
     public static final int UNIT_PROCESS_TIME = 1;

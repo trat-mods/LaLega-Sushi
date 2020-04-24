@@ -119,6 +119,7 @@ public class FryerBlock extends AHorizontalFacingInventoryBlock
         {
             ContainerProviderRegistry.INSTANCE.openContainer(ID, player, (packetByteBuf -> packetByteBuf.writeBlockPos(pos)));
         }
+        world.updateHorizontalAdjacent(pos, this);
         return ActionResult.SUCCESS;
     }
     
@@ -132,7 +133,6 @@ public class FryerBlock extends AHorizontalFacingInventoryBlock
     @Override public int getComparatorOutput(BlockState state, World world, BlockPos pos)
     {
         FryerBlockEntity fryerEntity = (FryerBlockEntity) world.getBlockEntity(pos);
-        System.out.println(fryerEntity.getComparatorOutput());
         return fryerEntity.getComparatorOutput();
     }
     

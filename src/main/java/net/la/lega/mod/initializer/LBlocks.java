@@ -14,6 +14,7 @@ public final class LBlocks
     public static final FryerBlock FRYER_BLOCK = new FryerBlock();
     public static final SteamCookerBlock STEAM_COOKER_BLOCK = new SteamCookerBlock();
     public static final PressBlock PRESS_BLOCK = new PressBlock();
+    public static final PentahopperBlock PENTAHOPPER_BLOCK = new PentahopperBlock();
     
     public static void initialize()
     {
@@ -26,5 +27,6 @@ public final class LBlocks
         Registry.register(Registry.BLOCK, FryerBlock.ID, FRYER_BLOCK);
         Registry.register(Registry.BLOCK, SteamCookerBlock.ID, STEAM_COOKER_BLOCK);
         Registry.register(Registry.BLOCK, PressBlock.ID, PRESS_BLOCK);
+        Registry.register(Registry.BLOCK, PentahopperBlock.ID, PENTAHOPPER_BLOCK);
     }
 }

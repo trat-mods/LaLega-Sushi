@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(VillagerProfession.class)
-public interface VillagerProfessionAccessor 
+public interface VillagerProfessionAccessor
 {
-	@Invoker("<init>")
-    static VillagerProfession accessor$create(String id, PointOfInterestType type, ImmutableSet<Item> gatherableItems, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent soundEvent) 
+    @Invoker("<init>")
+    static VillagerProfession accessor$create(String id, PointOfInterestType type, ImmutableSet<Item> gatherableItems, ImmutableSet<Block> secondaryJobSites, @Nullable SoundEvent soundEvent)
     {
-		throw new AssertionError("Untransformed accessor!");
-	}
+        throw new AssertionError("Untransformed accessor!");
+    }
 }

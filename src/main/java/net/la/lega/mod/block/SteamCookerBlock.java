@@ -112,6 +112,7 @@ public class SteamCookerBlock extends AHorizontalFacingInventoryBlock
         {
             ContainerProviderRegistry.INSTANCE.openContainer(ID, player, (packetByteBuf -> packetByteBuf.writeBlockPos(pos)));
         }
+        world.updateHorizontalAdjacent(pos, this);
         return ActionResult.SUCCESS;
     }
     

@@ -4,7 +4,7 @@ import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.la.lega.mod.api.LimitedQueue;
 import net.la.lega.mod.api.ProcessableRecipeObject;
 import net.la.lega.mod.block.SteamCookerBlock;
-import net.la.lega.mod.entity.abstraction.AInventoryEntity;
+import net.la.lega.mod.entity.abstraction.ASidedInventoryEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.recipe.SteamCookingRecipe;
 import net.minecraft.block.BlockState;
@@ -17,7 +17,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Direction;
 
-public class SteamCookerBlockEntity extends AInventoryEntity implements PropertyDelegateHolder, Tickable
+public class SteamCookerBlockEntity extends ASidedInventoryEntity implements PropertyDelegateHolder, Tickable
 {
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;

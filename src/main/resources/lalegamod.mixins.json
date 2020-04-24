@@ -6,7 +6,8 @@
         "VillagerEntityMixin",
         "FarmerVillagerTaskMixin",
         "PointOfInterestTypeAccessor",
-        "VillagerProfessionAccessor"
+        "VillagerProfessionAccessor",
+        "HopperBlockEntityAccessor"
     ],
     "client": [
     ],

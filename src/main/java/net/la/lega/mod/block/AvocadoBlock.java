@@ -44,14 +44,14 @@ public class AvocadoBlock extends CropBlock
     public AvocadoBlock()
     {
         super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().build());
-        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(AGE, 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
     
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
     {
         Block block = world.getBlockState(pos.down()).getBlock();
-        return (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL) && (world.getBlockState(pos.up()).getBlock() == Blocks.AIR);
+        return (block == Blocks.GRASS_BLOCK || block == Blocks.DIRT || block == Blocks.COARSE_DIRT || block == Blocks.PODZOL);
     }
     
     @Override
@@ -63,7 +63,7 @@ public class AvocadoBlock extends CropBlock
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos)
     {
-        return AGE_TO_SHAPE[(Integer) state.get(this.getAgeProperty())];
+        return AGE_TO_SHAPE[state.get(this.getAgeProperty())];
     }
     
     public void setAgeState(World world, BlockPos pos, int age)
@@ -73,6 +73,17 @@ public class AvocadoBlock extends CropBlock
         {
             world.setBlockState(pos, this.withAge(age > getMaxAge() ? getMaxAge() : age), 0B1011);
         }
+    }
+    
+    @Override public boolean canGrow(World world, Random random, BlockPos pos, BlockState state)
+    {
+        return getAge(state) < getMaxAge();
+    }
+    
+    @Override public void applyGrowth(World world, BlockPos pos, BlockState state)
+    {
+        super.applyGrowth(world, pos, state);
+        world.updateHorizontalAdjacent(pos, this);
     }
     
     @Override
@@ -114,6 +125,7 @@ public class AvocadoBlock extends CropBlock
         if(hasBeenHarvested)
         {
             setAgeState(world, pos, 3);
+            world.updateHorizontalAdjacent(pos, world.getBlockState(pos).getBlock());
             return ActionResult.SUCCESS;
         }
         else
@@ -149,6 +161,7 @@ public class AvocadoBlock extends CropBlock
             dropAvocadoes(state, world, pos);
         }
         
+        world.updateHorizontalAdjacent(pos, world.getBlockState(pos).getBlock());
         super.onBreak(world, pos, state, player);
         return;
     }

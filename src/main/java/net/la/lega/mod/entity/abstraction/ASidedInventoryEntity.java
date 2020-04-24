@@ -1,7 +1,7 @@
 package net.la.lega.mod.entity.abstraction;
 
 import blue.endless.jankson.annotation.Nullable;
-import net.la.lega.mod.api.ImplementedInventory;
+import net.la.lega.mod.api.ImplementedSidedInventory;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,12 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.DefaultedList;
+import net.minecraft.util.math.Direction;
 
-public abstract class AInventoryEntity extends BlockEntity implements ImplementedInventory
+public abstract class ASidedInventoryEntity extends BlockEntity implements ImplementedSidedInventory
 {
     protected DefaultedList<ItemStack> items;
     
-    public AInventoryEntity(BlockEntityType<?> entity, int itemStackNumber)
+    public ASidedInventoryEntity(BlockEntityType<?> entity, int itemStackNumber)
     {
         super(entity);
         items = DefaultedList.ofSize(itemStackNumber, ItemStack.EMPTY);
@@ -40,8 +41,16 @@ public abstract class AInventoryEntity extends BlockEntity implements Implemente
     }
     
     @Override
+    public abstract int[] getInvAvailableSlots(Direction side);
+    
+    @Override
     public abstract boolean isValidInvStack(int slot, ItemStack stack);
     
+    @Override
+    public abstract boolean canInsertInvStack(int slot, ItemStack stack, Direction dir);
+    
+    @Override
+    public abstract boolean canExtractInvStack(int slot, ItemStack stack, Direction dir);
     
     protected boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe)
     {

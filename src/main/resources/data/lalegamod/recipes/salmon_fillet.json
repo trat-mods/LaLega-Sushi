@@ -4,6 +4,6 @@
         "item": "minecraft:salmon"
     },
     "output": "lalegamod:salmon_fillet",
-    "processingTime": 120,
+    "processingTime": 150,
     "outputAmount": 3
 }

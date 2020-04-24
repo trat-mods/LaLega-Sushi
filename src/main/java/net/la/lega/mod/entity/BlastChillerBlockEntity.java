@@ -7,6 +7,7 @@ import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.la.lega.mod.recipe.abstraction.AInjectiveProcessingRecipe;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HopperBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;

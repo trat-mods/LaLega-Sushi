@@ -4,6 +4,7 @@ import net.la.lega.mod.block.*;
 import net.la.lega.mod.item.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.registry.Registry;
 
 public final class LItems
@@ -88,5 +89,6 @@ public final class LItems
         Registry.register(Registry.ITEM, FryerBlock.ID, new BlockItem(LBlocks.FRYER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
         Registry.register(Registry.ITEM, SteamCookerBlock.ID, new BlockItem(LBlocks.STEAM_COOKER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
         Registry.register(Registry.ITEM, PressBlock.ID, new BlockItem(LBlocks.PRESS_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
+        Registry.register(Registry.ITEM, PentahopperBlock.ID, new BlockItem(LBlocks.PENTAHOPPER_BLOCK, new Item.Settings().group(ItemGroup.REDSTONE)));
     }
 }

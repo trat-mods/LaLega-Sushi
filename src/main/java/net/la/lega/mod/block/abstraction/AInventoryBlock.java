@@ -1,6 +1,7 @@
 package net.la.lega.mod.block.abstraction;
 
 import net.la.lega.mod.entity.abstraction.AInventoryEntity;
+import net.la.lega.mod.entity.abstraction.ASidedInventoryEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -26,9 +27,9 @@ public abstract class AInventoryBlock extends BlockWithEntity
         if(state.getBlock() != newState.getBlock())
         {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if(blockEntity instanceof AInventoryEntity)
+            if(blockEntity instanceof ASidedInventoryEntity || blockEntity instanceof AInventoryEntity)
             {
-                ItemScatterer.spawn(world, (BlockPos) pos, (Inventory) ((AInventoryEntity) blockEntity));
+                ItemScatterer.spawn(world, pos, (Inventory) (blockEntity));
                 world.updateHorizontalAdjacent(pos, this);
             }
             super.onBlockRemoved(state, world, pos, newState, moved);

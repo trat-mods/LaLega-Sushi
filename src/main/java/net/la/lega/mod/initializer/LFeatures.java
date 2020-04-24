@@ -23,9 +23,9 @@ public final class LFeatures
         AVOCADO_FEATURE = Registry.register(Registry.FEATURE, new Identifier(LLoader.MOD_ID, "avocado_feature"), new RandomAgeCropFeature(DefaultFeatureConfig::deserialize, LBlocks.AVOCADO_BLOCK));
         WASABI_FEATURE = Registry.register(Registry.FEATURE, new Identifier(LLoader.MOD_ID, "wasabi_feature"), new RandomAgeCropFeature(DefaultFeatureConfig::deserialize, LBlocks.WASABI_BLOCK));
         
-        ConfiguredFeature configuredRiceFeature = configureFeature(RICE_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(43, 0.91F));
-        ConfiguredFeature configuredAvocadoFeature = configureFeature(AVOCADO_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(12, 0.45F));
-        ConfiguredFeature configuredWasabiFeature = configureFeature(WASABI_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(24, 0.68F));
+        ConfiguredFeature configuredRiceFeature = configureFeature(RICE_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(46, 0.925F));
+        ConfiguredFeature configuredAvocadoFeature = configureFeature(AVOCADO_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(14, 0.475F));
+        ConfiguredFeature configuredWasabiFeature = configureFeature(WASABI_FEATURE, new DefaultFeatureConfig(), Decorator.COUNT_CHANCE_HEIGHTMAP, new CountChanceDecoratorConfig(28, 0.7F));
         
         Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);
         Registry.BIOME.get(Registry.BIOME.getId(Biomes.JUNGLE_EDGE)).addFeature(GenerationStep.Feature.VEGETAL_DECORATION, configuredRiceFeature);

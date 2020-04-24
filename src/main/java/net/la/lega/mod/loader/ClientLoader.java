@@ -65,6 +65,12 @@ public final class ClientLoader implements ClientModInitializer
               (syncId, id, player, buf) -> new PressBlockScreen(
                     new PressBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
                     player));
+        
+        ScreenProviderRegistry.INSTANCE.registerFactory(
+              PentahopperBlock.ID,
+              (syncId, id, player, buf) -> new PentahopperBlockScreen(
+                    new PentahopperBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
+                    player));
     }
     
     private void setBlocksRenderLayer()
