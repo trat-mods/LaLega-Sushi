@@ -15,6 +15,6 @@ public final class LUIControllers
         ContainerProviderRegistry.INSTANCE.registerFactory(FryerBlock.ID, (syncId, id, player, buf) -> new FryerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
         ContainerProviderRegistry.INSTANCE.registerFactory(SteamCookerBlock.ID, (syncId, id, player, buf) -> new SteamCookerBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
         ContainerProviderRegistry.INSTANCE.registerFactory(PressBlock.ID, (syncId, id, player, buf) -> new PressBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
-        ContainerProviderRegistry.INSTANCE.registerFactory(PentahopperBlock.ID, (syncId, id, player, buf) -> new PentahopperBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
+        ContainerProviderRegistry.INSTANCE.registerFactory(QuadrhopperBlock.ID, (syncId, id, player, buf) -> new QuadrhopperBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())));
     }
 }

@@ -10,17 +10,17 @@ public class FutomakiSake extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "futomaki_sake");
     
-    public static final float saturation = 3.15F;
-    public static final int hunger = 8;
+    public static final float saturation = 3F;
+    public static final int hunger = 7;
     
     public FutomakiSake()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .alwaysEdible()
+                    .build())
              );
     }
 }

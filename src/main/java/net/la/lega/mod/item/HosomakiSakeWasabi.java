@@ -17,17 +17,17 @@ public class HosomakiSakeWasabi extends Item
     public static final int effectDuration = 20 * 14;
     public static final float effectChance = 0.385F;
     public static final float saturation = 2.35F;
-    public static final int hunger = 4;
+    public static final int hunger = 3;
     
     public HosomakiSakeWasabi()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .snack().alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .snack().alwaysEdible()
+                    .build())
              );
     }
 }

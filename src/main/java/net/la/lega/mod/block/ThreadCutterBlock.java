@@ -25,7 +25,7 @@ public class ThreadCutterBlock extends AFacingInventoryBlock
     
     public ThreadCutterBlock()
     {
-        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(0.8F, 0.8F).build());
+        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(3.25F, 4.15F).build());
     }
     
     @Override

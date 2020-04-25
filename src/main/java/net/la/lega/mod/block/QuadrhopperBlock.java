@@ -3,7 +3,7 @@ package net.la.lega.mod.block;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.la.lega.mod.block.abstraction.AFacingInventoryBlock;
-import net.la.lega.mod.entity.PentahopperBlockEntity;
+import net.la.lega.mod.entity.QuadrhopperBlockEntity;
 import net.la.lega.mod.loader.LLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlacementEnvironment;
@@ -31,7 +31,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class PentahopperBlock extends AFacingInventoryBlock
+public class QuadrhopperBlock extends AFacingInventoryBlock
 {
     public static final BooleanProperty ENABLED;
     private static final VoxelShape TOP_SHAPE;
@@ -50,22 +50,22 @@ public class PentahopperBlock extends AFacingInventoryBlock
     private static final VoxelShape WEST_RAY_TRACE_SHAPE;
     
     
-    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "pentahopper");
+    public static final Identifier ID = new Identifier(LLoader.MOD_ID, "quadrhopper");
     
-    public PentahopperBlock()
+    public QuadrhopperBlock()
     {
         super(FabricBlockSettings.of(Material.METAL).breakByHand(true).strength(3.0F, 4.8F).sounds(BlockSoundGroup.METAL).nonOpaque().build());
     }
     
     @Override public BlockEntity createBlockEntity(BlockView view)
     {
-        return new PentahopperBlockEntity();
+        return new QuadrhopperBlockEntity();
     }
     
     
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context)
     {
-        switch((Direction) state.get(FACING))
+        switch(state.get(FACING))
         {
             case DOWN:
                 return DOWN_SHAPE;
@@ -84,7 +84,7 @@ public class PentahopperBlock extends AFacingInventoryBlock
     
     public VoxelShape getRayTraceShape(BlockState state, BlockView view, BlockPos pos)
     {
-        switch((Direction) state.get(FACING))
+        switch(state.get(FACING))
         {
             case DOWN:
                 return DOWN_RAY_TRACE_SHAPE;
@@ -109,7 +109,7 @@ public class PentahopperBlock extends AFacingInventoryBlock
         else
         {
             BlockEntity be = world.getBlockEntity(pos);
-            if(be instanceof PentahopperBlockEntity)
+            if(be instanceof QuadrhopperBlockEntity)
             {
                 ContainerProviderRegistry.INSTANCE.openContainer(ID, player, (packetByteBuf -> packetByteBuf.writeBlockPos(pos)));
             }
@@ -120,10 +120,9 @@ public class PentahopperBlock extends AFacingInventoryBlock
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity)
     {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if(blockEntity instanceof PentahopperBlockEntity)
+        if(blockEntity instanceof QuadrhopperBlockEntity)
         {
-            System.out.println("Entity");
-            ((PentahopperBlockEntity) blockEntity).onEntityCollided(entity);
+            ((QuadrhopperBlockEntity) blockEntity).onEntityCollided(entity);
         }
     }
     
@@ -135,9 +134,9 @@ public class PentahopperBlock extends AFacingInventoryBlock
     private void updateEnabled(World world, BlockPos pos, BlockState state)
     {
         boolean bl = !world.isReceivingRedstonePower(pos);
-        if(bl != (Boolean) state.get(ENABLED))
+        if(bl != state.get(ENABLED))
         {
-            world.setBlockState(pos, (BlockState) state.with(ENABLED, bl), 4);
+            world.setBlockState(pos, state.with(ENABLED, bl), 4);
         }
     }
     

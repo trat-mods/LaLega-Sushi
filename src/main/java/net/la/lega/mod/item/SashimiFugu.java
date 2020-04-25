@@ -16,10 +16,12 @@ public class SashimiFugu extends Item
     public SashimiFugu()
     {
         super(new Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation).snack().alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation).snack().alwaysEdible()
+                    .alwaysEdible()
+                    .snack()
+                    .build())
              );
     }
 }

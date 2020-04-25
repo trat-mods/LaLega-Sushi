@@ -16,18 +16,18 @@ public class UramakiSakeWasabi extends Item
     public static final StatusEffect effect = StatusEffects.SPEED;
     public static final int effectDuration = 20 * 14;
     public static final float effectChance = 0.385F;
-    public static final float saturation = 2.9F;
+    public static final float saturation = 3.15F;
     public static final int hunger = 6;
     
     public UramakiSakeWasabi()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .alwaysEdible()
+                    .build())
              );
     }
 }

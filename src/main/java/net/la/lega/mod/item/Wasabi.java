@@ -22,11 +22,12 @@ public class Wasabi extends Item
     public Wasabi()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation).snack().alwaysEdible()
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation).snack().alwaysEdible()
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .snack()
+                    .build())
              );
     }
 }

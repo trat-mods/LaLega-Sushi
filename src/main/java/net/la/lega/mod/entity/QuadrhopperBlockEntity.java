@@ -1,7 +1,7 @@
 package net.la.lega.mod.entity;
 
 import blue.endless.jankson.annotation.Nullable;
-import net.la.lega.mod.block.PentahopperBlock;
+import net.la.lega.mod.block.QuadrhopperBlock;
 import net.la.lega.mod.entity.abstraction.AInventoryEntity;
 import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.mixin.HopperBlockEntityAccessor;
@@ -35,16 +35,16 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class PentahopperBlockEntity extends AInventoryEntity implements Hopper, Tickable
+public class QuadrhopperBlockEntity extends AInventoryEntity implements Hopper, Tickable
 {
     public static final int COOLDOWN = 6;
     private int transferCooldown;
     private long lastTickTime;
     private int lastUsedIndex;
     
-    public PentahopperBlockEntity()
+    public QuadrhopperBlockEntity()
     {
-        super(LEntities.PENTAHOPPER_BLOCK_ENTITY, 5);
+        super(LEntities.PENTAHOPPER_BLOCK_ENTITY, 4);
         this.transferCooldown = -1;
         lastUsedIndex = 0;
     }
@@ -76,7 +76,6 @@ public class PentahopperBlockEntity extends AInventoryEntity implements Hopper, 
     
     @Override public void tick()
     {
-        System.out.println(lastUsedIndex);
         if(this.world != null && !this.world.isClient)
         {
             --this.transferCooldown;
@@ -96,7 +95,7 @@ public class PentahopperBlockEntity extends AInventoryEntity implements Hopper, 
     {
         if(this.world != null && !this.world.isClient)
         {
-            if(!this.needsCooldown() && this.getCachedState().get(PentahopperBlock.ENABLED))
+            if(!this.needsCooldown() && this.getCachedState().get(QuadrhopperBlock.ENABLED))
             {
                 boolean bl = false;
                 if(!this.isInvEmpty())
@@ -237,15 +236,13 @@ public class PentahopperBlockEntity extends AInventoryEntity implements Hopper, 
         }
         else
         {
-            Direction direction = ((Direction) this.getCachedState().get(PentahopperBlock.FACING)).getOpposite();
+            Direction direction = ((Direction) this.getCachedState().get(QuadrhopperBlock.FACING)).getOpposite();
             if(this.isInventoryFull(inventory, direction))
             {
                 return false;
             }
             else
             {
-                System.out.println("inserting");
-                //TODO round robin
                 for(int i = lastUsedIndex; i < this.getInvSize(); i++)
                 {
                     if(!this.getInvStack(i).isEmpty())
@@ -317,15 +314,15 @@ public class PentahopperBlockEntity extends AInventoryEntity implements Hopper, 
             
             if(bl)
             {
-                if(bl2 && to instanceof PentahopperBlockEntity)
+                if(bl2 && to instanceof QuadrhopperBlockEntity)
                 {
-                    PentahopperBlockEntity hopperBlockEntity = (PentahopperBlockEntity) to;
+                    QuadrhopperBlockEntity hopperBlockEntity = (QuadrhopperBlockEntity) to;
                     if(!hopperBlockEntity.isDisabled())
                     {
                         int k = 0;
-                        if(from instanceof PentahopperBlockEntity)
+                        if(from instanceof QuadrhopperBlockEntity)
                         {
-                            PentahopperBlockEntity hopperBlockEntity2 = (PentahopperBlockEntity) from;
+                            QuadrhopperBlockEntity hopperBlockEntity2 = (QuadrhopperBlockEntity) from;
                             if(hopperBlockEntity.lastTickTime >= hopperBlockEntity2.lastTickTime)
                             {
                                 k = 1;
@@ -414,7 +411,7 @@ public class PentahopperBlockEntity extends AInventoryEntity implements Hopper, 
     @Nullable
     private Inventory getOutputInventory()
     {
-        Direction direction = (Direction) this.getCachedState().get(PentahopperBlock.FACING);
+        Direction direction = (Direction) this.getCachedState().get(QuadrhopperBlock.FACING);
         return getInventoryAt(this.getWorld(), this.pos.offset(direction));
     }
     

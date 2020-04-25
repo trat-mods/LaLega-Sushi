@@ -16,8 +16,8 @@ public class FutomakiSakeWasabi extends Item
     public static final StatusEffect effect = StatusEffects.SPEED;
     public static final int effectDuration = 20 * 14;
     public static final float effectChance = 0.385F;
-    public static final float saturation = 3.55F;
-    public static final int hunger = 8;
+    public static final float saturation = 3.4F;
+    public static final int hunger = 7;
     
     public FutomakiSakeWasabi()
     {
@@ -28,6 +28,6 @@ public class FutomakiSakeWasabi extends Item
                     .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
                     .alwaysEdible()
                     .build())
-        );
+             );
     }
 }

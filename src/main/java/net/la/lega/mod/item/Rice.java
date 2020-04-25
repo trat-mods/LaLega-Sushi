@@ -10,16 +10,16 @@ public class Rice extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "rice");
     
-    public static final float saturation = 2F;
+    public static final float saturation = 1.55F;
     public static final int hunger = 2;
     
     public Rice()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .build())
              );
     }
 }

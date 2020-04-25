@@ -16,11 +16,10 @@ public class CookedSquid extends Item
     public CookedSquid()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder().hunger(hunger)
-                                .saturationModifier(saturation)
-                                .snack()
-                                .alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder().hunger(hunger)
+                    .saturationModifier(saturation)
+                    .snack()
+                    .build())
              );
     }
 }

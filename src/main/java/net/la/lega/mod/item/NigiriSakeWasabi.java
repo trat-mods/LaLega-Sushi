@@ -22,12 +22,12 @@ public class NigiriSakeWasabi extends Item
     public NigiriSakeWasabi()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .alwaysEdible()
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .alwaysEdible()
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .build())
              );
     }
 }

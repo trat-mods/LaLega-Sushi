@@ -67,9 +67,9 @@ public final class ClientLoader implements ClientModInitializer
                     player));
         
         ScreenProviderRegistry.INSTANCE.registerFactory(
-              PentahopperBlock.ID,
-              (syncId, id, player, buf) -> new PentahopperBlockScreen(
-                    new PentahopperBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
+              QuadrhopperBlock.ID,
+              (syncId, id, player, buf) -> new QuadrhopperBlockScreen(
+                    new QuadrhopperBlockController(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())),
                     player));
     }
     

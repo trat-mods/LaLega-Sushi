@@ -13,20 +13,20 @@ public class MinchedPork extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "minched_pork");
     
-    public static final float saturation = 2.15F;
+    public static final float saturation = 2.1F;
     public static final int hunger = 4;
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 20;
-    public static final float effectChance = 0.175F;
+    public static final float effectChance = 0.185F;
     
     public MinchedPork()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .alwaysEdible()
-                                .build()));
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .alwaysEdible()
+                    .build()));
     }
 }

@@ -20,8 +20,8 @@ import java.util.List;
 public class SushiCrafterBlockEntity extends AProcessingEntity
 {
     public static final int OUTPUT_SLOT = 0;
-    public static final int[] REQUIRED_SLOTS = new int[]{1, 2};
-    public static final int[] INGREDIENTS_SLOTS = new int[]{3, 4, 5};
+    public static final int[] REQUIRED_SLOTS = new int[]{1, 2, 3, 4};
+    public static final int[] INGREDIENTS_SLOTS = new int[]{5, 6, 7, 8, 9, 10, 11, 12};
     
     private VillagerEntity sushiMan = null;
     
@@ -70,7 +70,7 @@ public class SushiCrafterBlockEntity extends AProcessingEntity
     
     public SushiCrafterBlockEntity()
     {
-        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 6);
+        super(LEntities.SUSHI_CRAFTER_BLOCK_ENTITY, 13);
         calculateSlots();
     }
     

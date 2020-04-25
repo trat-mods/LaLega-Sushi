@@ -41,7 +41,7 @@ public class BlastChillerBlock extends AHorizontalFacingInventoryBlock
     
     public BlastChillerBlock()
     {
-        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(0.5F, 0.5F).nonOpaque().build());
+        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(2.5F, 3.8F).nonOpaque().build());
         this.setDefaultState((BlockState) ((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(ON, false)));
     }
     

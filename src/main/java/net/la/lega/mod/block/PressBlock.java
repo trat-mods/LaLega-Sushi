@@ -29,7 +29,7 @@ public class PressBlock extends AHorizontalFacingInventoryBlock
     
     public PressBlock()
     {
-        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(1F, 1F).nonOpaque().build());
+        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(4F, 5.5F).nonOpaque().build());
         this.setDefaultState(this.stateManager.getDefaultState().with(MODELS, 0));
     }
     

@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "facing=up": {"model": "lalegamod:block/quadrhopper/quadrhopper"},
+        "facing=down": {"model": "lalegamod:block/quadrhopper/quadrhopper"},
+        "facing=north": {"model": "lalegamod:block/quadrhopper/quadrhopper_side"},
+        "facing=south": {"model": "lalegamod:block/quadrhopper/quadrhopper_side", "y": 180},
+        "facing=west": {"model": "lalegamod:block/quadrhopper/quadrhopper_side", "y": 270},
+        "facing=east": {"model": "lalegamod:block/quadrhopper/quadrhopper_side", "y": 90}
+    }
+}

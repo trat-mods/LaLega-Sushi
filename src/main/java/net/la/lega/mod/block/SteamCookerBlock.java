@@ -50,7 +50,7 @@ public class SteamCookerBlock extends AHorizontalFacingInventoryBlock
     
     public SteamCookerBlock()
     {
-        super(FabricBlockSettings.of(Material.WOOD).breakByHand((true)).sounds(BlockSoundGroup.WOOD).strength(1F, 1F).nonOpaque().build());
+        super(FabricBlockSettings.of(Material.WOOD).breakByHand((true)).sounds(BlockSoundGroup.WOOD).strength(1.25F, 1.5F).nonOpaque().build());
         this.setDefaultState(this.stateManager.getDefaultState().with(ON, false).with(WATER_FILL_LEVEL, 0));
     }
     

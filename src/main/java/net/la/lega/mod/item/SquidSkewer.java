@@ -20,20 +20,20 @@ public class SquidSkewer extends Item
     
     public static final StatusEffect effect = StatusEffects.LUCK;
     public static final int effectDuration = 20 * 60;
-    public static final float effectChance = 0.0675F;
-    public static final float saturation = 1.95F;
+    public static final float effectChance = 0.0925F;
+    public static final float saturation = 1.85F;
     public static final int hunger = 4;
     
     public SquidSkewer()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_FOOD)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .snack()
-                                .alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .snack()
+                    .alwaysEdible()
+                    .build())
              );
     }
     

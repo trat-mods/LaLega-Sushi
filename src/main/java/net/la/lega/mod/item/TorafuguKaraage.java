@@ -10,16 +10,17 @@ public class TorafuguKaraage extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "torafugu_karaage");
     
-    public static final float saturation = 5.85F;
-    public static final int hunger = 10;
+    public static final float saturation = 5.65F;
+    public static final int hunger = 9;
     
     public TorafuguKaraage()
     {
         super(new Settings().group(LItemGroups.LALEGA_FOOD)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .snack()
+                    .build())
              );
     }
 }

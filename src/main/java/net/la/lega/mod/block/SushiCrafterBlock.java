@@ -24,7 +24,7 @@ public class SushiCrafterBlock extends AHorizontalFacingInventoryBlock
     
     public SushiCrafterBlock()
     {
-        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(1F, 1F).nonOpaque().build());
+        super(FabricBlockSettings.of(Material.METAL).breakByHand((true)).sounds(BlockSoundGroup.METAL).strength(2F, 2.15F).nonOpaque().build());
     }
     
     @Override

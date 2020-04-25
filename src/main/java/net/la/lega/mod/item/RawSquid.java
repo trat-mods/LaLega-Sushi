@@ -15,17 +15,17 @@ public class RawSquid extends Item
     
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 20;
-    public static final float effectChance = 0.175F;
+    public static final float effectChance = 0.20F;
     public static final float saturation = 0.9F;
     public static final int hunger = 1;
     
     public RawSquid()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder().hunger(hunger)
-                                .saturationModifier(saturation)
-                                .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
-                                .build())
+              .food(new FoodComponent.Builder().hunger(hunger)
+                    .saturationModifier(saturation)
+                    .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
+                    .build())
              );
     }
 }

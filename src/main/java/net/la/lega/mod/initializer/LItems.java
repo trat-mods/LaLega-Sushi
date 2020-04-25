@@ -89,6 +89,6 @@ public final class LItems
         Registry.register(Registry.ITEM, FryerBlock.ID, new BlockItem(LBlocks.FRYER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
         Registry.register(Registry.ITEM, SteamCookerBlock.ID, new BlockItem(LBlocks.STEAM_COOKER_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
         Registry.register(Registry.ITEM, PressBlock.ID, new BlockItem(LBlocks.PRESS_BLOCK, new Item.Settings().group(LItemGroups.LALEGA_BLOCKS)));
-        Registry.register(Registry.ITEM, PentahopperBlock.ID, new BlockItem(LBlocks.PENTAHOPPER_BLOCK, new Item.Settings().group(ItemGroup.REDSTONE)));
+        Registry.register(Registry.ITEM, QuadrhopperBlock.ID, new BlockItem(LBlocks.PENTAHOPPER_BLOCK, new Item.Settings().group(ItemGroup.REDSTONE)));
     }
 }
