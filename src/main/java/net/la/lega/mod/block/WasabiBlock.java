@@ -30,7 +30,7 @@ public class WasabiBlock extends CropBlock
     public WasabiBlock()
     {
         super(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().build());
-        this.setDefaultState((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(this.getAgeProperty(), 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(this.getAgeProperty(), 0));
     }
     
     private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
@@ -68,13 +68,13 @@ public class WasabiBlock extends CropBlock
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
-        if(world.getBaseLightLevel(pos, 0) >= 9)
+        if(world.getBaseLightLevel(pos, 0) >= 8)
         {
             int i = this.getAge(state);
             if(i < this.getMaxAge())
             {
                 float f = getAvailableMoisture(this, world, pos);
-                if(random.nextInt((int) (28.0F / f) + 1) == 0)
+                if(random.nextInt((int) (32.0F / f) + 1) == 0)
                 {
                     world.setBlockState(pos, this.withAge(i + 1), 2);
                 }

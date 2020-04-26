@@ -12,6 +12,7 @@ public final class LSounds
     public static SoundEvent FRYER_ON_SOUNDEVENT = new SoundEvent(FryerBlock.ON_SOUND);
     public static SoundEvent STEAM_COOKER_PRESSURE_SOUNDEVENT = new SoundEvent(SteamCookerBlock.PRESSURE_SOUND);
     public static SoundEvent PRESS_ACTIVATE_SOUNDEVENT = new SoundEvent(PressBlock.ACTIVATE_SOUND);
+    public static SoundEvent SUSHIMAN_SHARPEN_SOUNDEVENT = new SoundEvent(LVillagerProfessions.SUSHIMAN_SHARPEN_SOUND);
     
     public static void initialize()
     {
@@ -21,5 +22,6 @@ public final class LSounds
         Registry.register(Registry.SOUND_EVENT, FryerBlock.ON_SOUND, FRYER_ON_SOUNDEVENT);
         Registry.register(Registry.SOUND_EVENT, SteamCookerBlock.PRESSURE_SOUND, STEAM_COOKER_PRESSURE_SOUNDEVENT);
         Registry.register(Registry.SOUND_EVENT, PressBlock.ACTIVATE_SOUND, PRESS_ACTIVATE_SOUNDEVENT);
+        Registry.register(Registry.SOUND_EVENT, LVillagerProfessions.SUSHIMAN_SHARPEN_SOUND, SUSHIMAN_SHARPEN_SOUNDEVENT);
     }
 }

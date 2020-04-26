@@ -14,9 +14,9 @@ public class FutomakiSakeWasabi extends Item
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "futomaki_sake_wasabi");
     
     public static final StatusEffect effect = StatusEffects.SPEED;
-    public static final int effectDuration = 20 * 14;
+    public static final int effectDuration = 20 * 15;
     public static final float effectChance = 0.385F;
-    public static final float saturation = 3.4F;
+    public static final float saturation = 3.95F;
     public static final int hunger = 7;
     
     public FutomakiSakeWasabi()

@@ -13,9 +13,9 @@ public class Gyoza extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "gyoza");
     
-    public static final StatusEffect effect = StatusEffects.INSTANT_HEALTH;
+    public static final StatusEffect effect = StatusEffects.REGENERATION;
     public static final int effectDuration = 20 * 8;
-    public static final float effectChance = 0.2575F;
+    public static final float effectChance = 0.225F;
     public static final float saturation = 3.85F;
     public static final int hunger = 6;
     

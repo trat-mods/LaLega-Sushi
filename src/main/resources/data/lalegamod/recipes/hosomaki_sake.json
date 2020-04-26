@@ -1,22 +1,23 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "S#",
-        "DD"
+        "#",
+        "S",
+        "D"
     ],
     "key": {
         "#": {
             "item": "lalegamod:sashimi_sake"
         },
         "S": {
-            "item": "lalegamod:avocado"
+            "item": "lalegamod:rice"
         },
         "D": {
-            "item": "lalegamod:rice"
+            "item": "minecraft:dried_kelp"
         }
     },
     "result": {
-        "item": "lalegamod:uramaki_sake",
+        "item": "lalegamod:hosomaki_sake",
         "count": 1
     }
 }

@@ -10,16 +10,16 @@ public class Avocado extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "avocado");
     
-    public static final float saturation = 1F;
+    public static final float saturation = 0.85F;
     public static final int hunger = 1;
     
     public Avocado()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .build())
              );
     }
 }

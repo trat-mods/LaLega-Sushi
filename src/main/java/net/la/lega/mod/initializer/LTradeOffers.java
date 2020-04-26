@@ -15,16 +15,17 @@ public final class LTradeOffers
     //#region SUSHI_MAN
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_1 = new TradeOffers.Factory[]
           {
-                new SellItemFactory(Items.PUFFERFISH, 3, 1, 5, 3),
+                new SellItemFactory(Items.PUFFERFISH, 3, 1, 10, 3),
                 new BuyItemFactory(LItems.RICE_FLOUR, 18, 1, 8, 2)
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_2 = new TradeOffers.Factory[]
           {
-                new SellItemFactory(LItems.AVOCADO, 22, 1, 2, 12)
+                new SellItemFactory(LItems.AVOCADO, 22, 1, 2, 12),
+                new BuyItemFactory(Items.KELP, 32, 1, 10, 8)
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_3 = new TradeOffers.Factory[]
           {
-                new SellItemFactory(LItems.WASABI, 2, 4, 5, 8),
+                new SellItemFactory(LItems.WASABI, 3, 4, 5, 8),
                 new BuyItemFactory(Items.IRON_INGOT, 16, 1, 4, 6)
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_4 = new TradeOffers.Factory[]
@@ -33,8 +34,8 @@ public final class LTradeOffers
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_5 = new TradeOffers.Factory[]
           {
-                new BuyItemFactory(Items.HEART_OF_THE_SEA, 1, 32, 1, 22),
-                new SellItemFactory(LItems.TORAFUGU_KARAAGE, 1, 1, 16, 16)
+                new BuyItemFactory(Items.HEART_OF_THE_SEA, 1, 38, 1, 22),
+                new SellItemFactory(LItems.TORAFUGU_KARAAGE, 5, 1, 16, 16)
           };
     private final static ImmutableMap<Integer, TradeOffers.Factory[]> SUSHIMAN_TRADES = ImmutableMap.<Integer, TradeOffers.Factory[]>builder()
           .put(1, SUSHIMAN_LVL_1)

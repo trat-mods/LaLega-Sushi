@@ -10,17 +10,17 @@ public class NigiriSake extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "nigiri_sake");
     
-    public static final float saturation = 2F;
+    public static final float saturation = 2.1F;
     public static final int hunger = 5;
     
     public NigiriSake()
     {
         super(new Item.Settings().group(LItemGroups.LALEGA_SUSHI)
-                    .food(new FoodComponent.Builder()
-                                .hunger(hunger)
-                                .saturationModifier(saturation)
-                                .alwaysEdible()
-                                .build())
+              .food(new FoodComponent.Builder()
+                    .hunger(hunger)
+                    .saturationModifier(saturation)
+                    .alwaysEdible()
+                    .build())
              );
     }
 }

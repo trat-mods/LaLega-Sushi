@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "OBG"
+    ],
+    "key": {
+        "#": {
+            "item": "lalegamod:torafugu_karaage"
+        },
+        "O": {
+            "item": "lalegamod:rice"
+        },
+        "B": {
+            "item": "minecraft:bowl"
+        },
+        "G": {
+            "item": "lalegamod:wasabi"
+        }
+    },
+    "result": {
+        "item": "lalegamod:torafugu_karaage_bowl",
+        "count": 1
+    }
+}

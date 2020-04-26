@@ -7,7 +7,6 @@ import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.recipe.BlastChillingRecipe;
 import net.la.lega.mod.recipe.abstraction.AInjectiveProcessingRecipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.HopperBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.util.math.Direction;
@@ -63,7 +62,6 @@ public class BlastChillerBlockEntity extends AProcessingEntity
     {
         if(!this.world.isClient)
         {
-            System.out.println(getCurrentProcessingTime());
             BlastChillingRecipe match = world.getRecipeManager().getFirstMatch(BlastChillingRecipe.Type.INSTANCE, this, world).orElse(null);
             checkCurrentRecipe(match);
             processCurrentRecipe();

@@ -10,8 +10,8 @@ public class SashimiSake extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "sashimi_sake");
     
-    public static final float saturation = 1F;
-    public static final int hunger = 2;
+    public static final float saturation = 1.375F;
+    public static final int hunger = 3;
     
     public SashimiSake()
     {

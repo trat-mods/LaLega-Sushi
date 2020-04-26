@@ -140,10 +140,10 @@ public class SteamCookerBlock extends AHorizontalFacingInventoryBlock
         {
             if(random.nextDouble() < 0.55D)
             {
-                double x = (double) pos.getX() + 0.3D + (random.nextDouble() * 0.375D);
-                double y = (double) pos.getY() + 0.65D;
-                double z = (double) pos.getZ() + 0.3D + (random.nextDouble() * 0.4375);
-                double vy = random.nextDouble() * 0.1D;
+                double x = (double) pos.getX() + 0.3D + (random.nextDouble() * 0.5D);
+                double y = (double) pos.getY() + 0.85D;
+                double z = (double) pos.getZ() + 0.3D + (random.nextDouble() * 0.5D);
+                double vy = random.nextDouble() * 0.2D;
                 world.addParticle(ParticleTypes.CLOUD, x, y, z, 0.0D, vy, 0.0D);
             }
             if(random.nextDouble() < 0.125D)

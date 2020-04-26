@@ -19,9 +19,9 @@ public class SquidSkewer extends Item
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "squid_skewer");
     
     public static final StatusEffect effect = StatusEffects.LUCK;
-    public static final int effectDuration = 20 * 60;
-    public static final float effectChance = 0.0925F;
-    public static final float saturation = 1.85F;
+    public static final int effectDuration = 20 * 45;
+    public static final float effectChance = 0.115F;
+    public static final float saturation = 1.95F;
     public static final int hunger = 4;
     
     public SquidSkewer()

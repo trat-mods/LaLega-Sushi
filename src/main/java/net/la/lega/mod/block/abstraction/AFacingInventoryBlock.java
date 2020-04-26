@@ -12,7 +12,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 
-public class AFacingInventoryBlock extends AInventoryBlock
+public abstract class AFacingInventoryBlock extends AInventoryBlock
 {
     public static final DirectionProperty FACING;
     

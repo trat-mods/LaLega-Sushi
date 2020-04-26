@@ -28,5 +28,10 @@
         "sounds": [
             "lalegamod:press_activate"
         ]
+    },
+    "sushi_man_knife_sharpen": {
+        "sounds": [
+            "lalegamod:sushi_man_knife_sharpen"
+        ]
     }
 }

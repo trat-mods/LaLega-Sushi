@@ -39,6 +39,8 @@ public final class LItems
     public static final Item FRIED_URAMAKI_SAKE = new FriedUramakiSake();
     public static final Item FRIED_FUTOMAKI_SAKE = new FriedFutomakiSake();
     public static final Item FRIED_HOSOMAKI_SAKE = new FriedHosomakiSake();
+    public static final Item SASHIMI_FUGU_BOWL = new SashimiFuguBowl();
+    public static final Item TORAFUGU_KARAAGE_BOWL = new TorafuguKaraageBowl();
     
     public static Item AVOCADO_SEED;
     public static Item RICE_SEEDS;
@@ -69,6 +71,9 @@ public final class LItems
         Registry.register(Registry.ITEM, FriedUramakiSake.ID, FRIED_URAMAKI_SAKE);
         Registry.register(Registry.ITEM, FriedFutomakiSake.ID, FRIED_FUTOMAKI_SAKE);
         Registry.register(Registry.ITEM, FriedHosomakiSake.ID, FRIED_HOSOMAKI_SAKE);
+        
+        Registry.register(Registry.ITEM, TorafuguKaraageBowl.ID, TORAFUGU_KARAAGE_BOWL);
+        Registry.register(Registry.ITEM, SashimiFuguBowl.ID, SASHIMI_FUGU_BOWL);
         
         Registry.register(Registry.ITEM, WheatFlour.ID, WHEAT_FLOUR);
         Registry.register(Registry.ITEM, SunflowerFlour.ID, SUNFLOWER_FLOUR);

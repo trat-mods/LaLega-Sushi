@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#P#",
+        "#I#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:smooth_stone"
+        },
+        "P": {
+            "item": "minecraft:piston"
+        },
+        "I": {
+            "item": "minecraft:glass"
+        }
+    },
+    "result": {
+        "item": "lalegamod:press",
+        "count": 1
+    }
+}

@@ -11,7 +11,7 @@ public class TorafuguKaraage extends Item
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "torafugu_karaage");
     
     public static final float saturation = 5.65F;
-    public static final int hunger = 9;
+    public static final int hunger = 8;
     
     public TorafuguKaraage()
     {

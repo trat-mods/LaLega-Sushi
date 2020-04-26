@@ -14,8 +14,8 @@ public class Wasabi extends Item
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "wasabi");
     
     public static final StatusEffect effect = StatusEffects.SPEED;
-    public static final int effectDuration = 20 * 8;
-    public static final float effectChance = 0.125F;
+    public static final int effectDuration = 20 * 10;
+    public static final float effectChance = 0.175F;
     public static final float saturation = 0.85F;
     public static final int hunger = 1;
     

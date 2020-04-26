@@ -3,6 +3,7 @@
     "textures": {
         "side": "lalegamod:block/steam_cooker/side_0_off",
         "top": "lalegamod:block/steam_cooker/top",
+        "top_inside": "lalegamod:block/steam_cooker/top_inside",
         "bottom": "lalegamod:block/steam_cooker/bottom",
         "particle": "#top"
     },
@@ -17,6 +18,18 @@
                 "south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
                 "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
                 "east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"}
+            }
+        },
+        {
+            "from": [1, 0, 1],
+            "to": [15, 0, 15],
+            "faces": {
+                "down": {"texture": "#bottom", "cullface": "down"},
+                "up": {"texture": "#bottom", "cullface": "up"},
+                "north": {"texture": "#bottom", "cullface": "north"},
+                "south": {"texture": "#bottom", "cullface": "south"},
+                "west": {"texture": "#bottom", "cullface": "west"},
+                "east": {"texture": "#bottom", "cullface": "east"}
             }
         },
         {
@@ -83,12 +96,12 @@
             "from": [1, 9, 1],
             "to": [15, 9, 15],
             "faces": {
-                "down": {"texture": "#bottom", "cullface": "down"},
-                "up": {"texture": "#bottom"},
-                "north": {"texture": "#bottom", "cullface": "north"},
-                "south": {"texture": "#bottom", "cullface": "south"},
-                "west": {"texture": "#bottom", "cullface": "west"},
-                "east": {"texture": "#bottom", "cullface": "east"}
+                "down": {"texture": "#top_inside"},
+                "up": {"texture": "#top_inside"},
+                "north": {"texture": "#top_inside", "cullface": "north"},
+                "south": {"texture": "#top_inside", "cullface": "south"},
+                "west": {"texture": "#top_inside", "cullface": "west"},
+                "east": {"texture": "#top_inside", "cullface": "east"}
             }
         }
     ]

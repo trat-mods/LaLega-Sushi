@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#G#",
+        "PBP"
+    ],
+    "key": {
+        "#": {
+            "item": "lalegamod:sashimi_fugu"
+        },
+        "P": {
+            "item": "lalegamod:avocado"
+        },
+        "B": {
+            "item": "minecraft:bowl"
+        },
+        "G": {
+            "item": "lalegamod:wasabi"
+        }
+    },
+    "result": {
+        "item": "lalegamod:sashimi_fugu_bowl",
+        "count": 1
+    }
+}

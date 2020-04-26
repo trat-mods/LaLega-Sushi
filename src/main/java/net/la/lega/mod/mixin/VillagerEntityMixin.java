@@ -19,28 +19,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Set;
 
 @Mixin(VillagerEntity.class)
-public abstract class VillagerEntityMixin extends AbstractTraderEntity 
+public abstract class VillagerEntityMixin extends AbstractTraderEntity
 {
-    public VillagerEntityMixin(EntityType<? extends AbstractTraderEntity> entityType, World world) 
+    public VillagerEntityMixin(EntityType<? extends AbstractTraderEntity> entityType, World world)
     {
         super(entityType, world);
     }
-
+    
     @Shadow private static Set<Item> GATHERABLE_ITEMS;
+    
     @Shadow public abstract VillagerData getVillagerData();
-
+    
     @Inject(at = @At("HEAD"), method = "hasSeedToPlant", cancellable = true)
     private void hasSeedToPlant(CallbackInfoReturnable<Boolean> info)
-    {  
+    {
         BasicInventory basicInventory = this.getInventory();
-        info.setReturnValue(basicInventory.containsAnyInInv(ImmutableSet.of(Items.WHEAT_SEEDS, Items.POTATO, Items.CARROT, Items.BEETROOT_SEEDS, LItems.RICE_SEEDS)));
+        info.setReturnValue(basicInventory.containsAnyInInv(ImmutableSet.of(Items.WHEAT_SEEDS, Items.POTATO, Items.CARROT, Items.BEETROOT_SEEDS, LItems.RICE_SEEDS, LItems.WASABI_ROOT)));
         info.cancel();
     }
-
+    
     @Inject(at = @At("HEAD"), method = "canGather", cancellable = true)
     private void canGather(Item item, CallbackInfoReturnable<Boolean> info)
-    {  
-        info.setReturnValue(GATHERABLE_ITEMS.contains(item) || this.getVillagerData().getProfession().getGatherableItems().contains(item) || item.equals(LItems.RICE_SEEDS));
+    {
+        info.setReturnValue(GATHERABLE_ITEMS.contains(item) || this.getVillagerData().getProfession().getGatherableItems().contains(item) || item.equals(LItems.RICE_SEEDS) || item.equals(LItems.WASABI_ROOT));
         info.cancel();
     }
 }

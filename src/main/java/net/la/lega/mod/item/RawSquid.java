@@ -13,11 +13,11 @@ public class RawSquid extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "raw_squid");
     
-    public static final StatusEffect effect = StatusEffects.POISON;
+    public static final StatusEffect effect = StatusEffects.NAUSEA;
     public static final int effectDuration = 20 * 20;
-    public static final float effectChance = 0.20F;
-    public static final float saturation = 0.9F;
-    public static final int hunger = 1;
+    public static final float effectChance = 0.215F;
+    public static final float saturation = 1.25F;
+    public static final int hunger = 2;
     
     public RawSquid()
     {

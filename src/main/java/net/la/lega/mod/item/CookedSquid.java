@@ -10,7 +10,7 @@ public class CookedSquid extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "cooked_squid");
     
-    public static final float saturation = 1.45F;
+    public static final float saturation = 1.55F;
     public static final int hunger = 3;
     
     public CookedSquid()

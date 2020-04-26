@@ -16,7 +16,7 @@ public class NigiriSakeWasabi extends Item
     public static final StatusEffect effect = StatusEffects.SPEED;
     public static final int effectDuration = 20 * 14;
     public static final float effectChance = 0.385F;
-    public static final float saturation = 2.4F;
+    public static final float saturation = 2.6F;
     public static final int hunger = 5;
     
     public NigiriSakeWasabi()

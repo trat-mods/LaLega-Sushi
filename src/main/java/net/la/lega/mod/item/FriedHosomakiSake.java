@@ -10,7 +10,7 @@ public class FriedHosomakiSake extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "fried_hosomaki_sake");
     
-    public static final float saturation = 2.75F;
+    public static final float saturation = 3F;
     public static final int hunger = 4;
     
     public FriedHosomakiSake()

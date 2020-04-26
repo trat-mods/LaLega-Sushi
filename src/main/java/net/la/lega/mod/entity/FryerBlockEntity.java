@@ -25,7 +25,7 @@ public class FryerBlockEntity extends ASidedInventoryEntity implements Tickable,
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;
     public static final int INPUT_SLOT = 2;
-    private static final int MAX_OIL_USAGE = 256;
+    private static final int MAX_OIL_USAGE = 384;
     
     public static final int CURRENT_OIL_USAGE = 0;
     public static final int MAX_USAGE = 1;
