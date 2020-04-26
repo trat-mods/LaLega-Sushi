@@ -10,7 +10,7 @@ public class MinchedPork extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "minched_pork");
     
-    public static final float saturation = 1.8F;
+    public static final float saturation = 1.9F;
     public static final int hunger = 3;
     
     public MinchedPork()

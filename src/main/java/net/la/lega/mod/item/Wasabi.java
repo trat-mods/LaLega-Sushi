@@ -24,7 +24,7 @@ public class Wasabi extends Item
         super(new Item.Settings().group(LItemGroups.LALEGA_INGREDIENTS)
               .food(new FoodComponent.Builder()
                     .hunger(hunger)
-                    .saturationModifier(saturation).snack().alwaysEdible()
+                    .saturationModifier(saturation).snack()
                     .statusEffect(new StatusEffectInstance(effect, effectDuration), effectChance)
                     .snack()
                     .build())

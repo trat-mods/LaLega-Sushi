@@ -18,13 +18,13 @@ public class SashimiFuguBowl extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "sashimi_fugu_bowl");
     
-    public static final StatusEffect speedEffect = StatusEffects.SPEED;
-    public static final int speedEffectDuration = 20 * 30;
-    public static final float speedEffectChance = 0.20F;
+    public static final StatusEffect speedEffect = StatusEffects.NIGHT_VISION;
+    public static final int speedEffectDuration = 20 * 50;
+    public static final float speedEffectChance = 0.75F;
     
     public static final StatusEffect luckEffect = StatusEffects.LUCK;
-    public static final int luckEffectDuration = 20 * 60;
-    public static final float luckEffectChance = 0.15F;
+    public static final int luckEffectDuration = 20 * 80;
+    public static final float luckEffectChance = 0.2275F;
     
     public static final float saturation = 12F;
     public static final int hunger = 9;
@@ -32,9 +32,9 @@ public class SashimiFuguBowl extends Item
     public SashimiFuguBowl()
     {
         super(new Settings().group(LItemGroups.LALEGA_FOOD)
-              .maxCount(8)
+              .maxCount(6)
               .food(new FoodComponent.Builder().hunger(hunger)
-                    .saturationModifier(saturation).alwaysEdible()
+                    .saturationModifier(saturation)
                     .statusEffect(new StatusEffectInstance(speedEffect, speedEffectDuration), speedEffectChance)
                     .statusEffect(new StatusEffectInstance(luckEffect, luckEffectDuration), luckEffectChance)
                     .alwaysEdible()

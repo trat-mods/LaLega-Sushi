@@ -25,17 +25,17 @@ public final class LTradeOffers
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_3 = new TradeOffers.Factory[]
           {
-                new SellItemFactory(LItems.WASABI, 3, 4, 5, 8),
+                new SellItemFactory(LItems.WASABI, 4, 5, 5, 8),
                 new BuyItemFactory(Items.IRON_INGOT, 16, 1, 4, 6)
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_4 = new TradeOffers.Factory[]
           {
-                new SellItemFactory(LItems.WASABI_ROOT, 45, 1, 1, 16)
+                new SellItemFactory(LItems.WASABI_ROOT, 52, 1, 1, 16)
           };
     private final static TradeOffers.Factory[] SUSHIMAN_LVL_5 = new TradeOffers.Factory[]
           {
                 new BuyItemFactory(Items.HEART_OF_THE_SEA, 1, 38, 1, 22),
-                new SellItemFactory(LItems.TORAFUGU_KARAAGE, 5, 1, 16, 16)
+                new SellItemFactory(LItems.TORAFUGU_KARAAGE, 4, 1, 16, 16)
           };
     private final static ImmutableMap<Integer, TradeOffers.Factory[]> SUSHIMAN_TRADES = ImmutableMap.<Integer, TradeOffers.Factory[]>builder()
           .put(1, SUSHIMAN_LVL_1)

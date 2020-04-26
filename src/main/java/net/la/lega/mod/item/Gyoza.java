@@ -15,7 +15,7 @@ public class Gyoza extends Item
     
     public static final StatusEffect effect = StatusEffects.REGENERATION;
     public static final int effectDuration = 20 * 8;
-    public static final float effectChance = 0.225F;
+    public static final float effectChance = 0.245F;
     public static final float saturation = 3.85F;
     public static final int hunger = 6;
     

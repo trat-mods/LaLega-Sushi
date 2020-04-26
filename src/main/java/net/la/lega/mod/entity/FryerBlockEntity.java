@@ -25,7 +25,7 @@ public class FryerBlockEntity extends ASidedInventoryEntity implements Tickable,
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;
     public static final int INPUT_SLOT = 2;
-    private static final int MAX_OIL_USAGE = 384;
+    private static final int MAX_OIL_USAGE = 128;
     
     public static final int CURRENT_OIL_USAGE = 0;
     public static final int MAX_USAGE = 1;
@@ -290,6 +290,7 @@ public class FryerBlockEntity extends ASidedInventoryEntity implements Tickable,
         if(!world.isClient)
         {
             this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(FryerBlock.OIL_TYPE, oilType), 0B1011);
+            world.updateHorizontalAdjacent(pos, world.getBlockState(pos).getBlock());
         }
     }
     

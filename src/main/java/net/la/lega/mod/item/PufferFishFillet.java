@@ -15,8 +15,8 @@ public class PufferFishFillet extends Item
     
     public static final StatusEffect effect = StatusEffects.POISON;
     public static final int effectDuration = 20 * 60;
-    public static final float effectChance = 0.65F;
-    public static final float saturation = 1.25F;
+    public static final float effectChance = 0.575F;
+    public static final float saturation = 1.45F;
     public static final int hunger = 3;
     
     public PufferFishFillet()

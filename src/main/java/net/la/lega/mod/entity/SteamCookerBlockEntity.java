@@ -22,7 +22,7 @@ public class SteamCookerBlockEntity extends ASidedInventoryEntity implements Pro
     public static final int OUTPUT_SLOT = 0;
     public static final int PROCESSING_SLOT = 1;
     public static final int INPUT_SLOT = 2;
-    public static final int MAX_WATER_LEVEL = 160;
+    public static final int MAX_WATER_LEVEL = 100;
     
     public static final int CURRENT_WATER_LEVEL = 0;
     public static final int MAX_LEVEL = 1;
@@ -206,6 +206,7 @@ public class SteamCookerBlockEntity extends ASidedInventoryEntity implements Pro
         if(!world.isClient)
         {
             this.world.setBlockState(this.pos, (BlockState) this.world.getBlockState(this.pos).with(SteamCookerBlock.WATER_FILL_LEVEL, state), 0B1011);
+            world.updateHorizontalAdjacent(pos, world.getBlockState(pos).getBlock());
         }
     }
     

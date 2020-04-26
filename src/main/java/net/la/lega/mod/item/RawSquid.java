@@ -16,7 +16,7 @@ public class RawSquid extends Item
     public static final StatusEffect effect = StatusEffects.NAUSEA;
     public static final int effectDuration = 20 * 20;
     public static final float effectChance = 0.215F;
-    public static final float saturation = 1.25F;
+    public static final float saturation = 1.3F;
     public static final int hunger = 2;
     
     public RawSquid()

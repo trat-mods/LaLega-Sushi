@@ -10,7 +10,7 @@ public class Avocado extends Item
 {
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "avocado");
     
-    public static final float saturation = 0.85F;
+    public static final float saturation = 0.95F;
     public static final int hunger = 1;
     
     public Avocado()

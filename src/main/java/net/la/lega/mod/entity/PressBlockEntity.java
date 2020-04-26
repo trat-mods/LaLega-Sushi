@@ -7,6 +7,7 @@ import net.la.lega.mod.initializer.LEntities;
 import net.la.lega.mod.initializer.LSounds;
 import net.la.lega.mod.recipe.PressingRecipe;
 import net.minecraft.inventory.BasicInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.recipe.Recipe;
@@ -43,9 +44,21 @@ public class PressBlockEntity extends AProcessingEntity
         }
     }
     
+    private boolean isItemAlreadyPresent(Item item, int interestedSlot)
+    {
+        for(int i = 0; i < 2; i++)
+        {
+            if(i != interestedSlot && item == items.get(i).getItem())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     @Override public boolean isValidInvStack(int slot, ItemStack stack)
     {
-        return slot != OUTPUT_SLOT;
+        return slot != OUTPUT_SLOT && !isItemAlreadyPresent(stack.getItem(), slot);
     }
     
     @Override public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir)

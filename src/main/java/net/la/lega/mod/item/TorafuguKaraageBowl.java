@@ -19,12 +19,12 @@ public class TorafuguKaraageBowl extends Item
     public static final Identifier ID = new Identifier(LLoader.MOD_ID, "torafugu_karaage_bowl");
     
     public static final StatusEffect speedEffect = StatusEffects.SPEED;
-    public static final int speedEffectDuration = 20 * 30;
+    public static final int speedEffectDuration = 20 * 35;
     public static final float speedEffectChance = 0.325F;
     
     public static final StatusEffect regenEffect = StatusEffects.REGENERATION;
     public static final int regenEffectDuration = 20 * 20;
-    public static final float regenEffectChance = 0.85F;
+    public static final float regenEffectChance = 0.785F;
     
     public static final float saturation = 18F;
     public static final int hunger = 12;
@@ -32,9 +32,9 @@ public class TorafuguKaraageBowl extends Item
     public TorafuguKaraageBowl()
     {
         super(new Settings().group(LItemGroups.LALEGA_FOOD)
-              .maxCount(4)
+              .maxCount(2)
               .food(new FoodComponent.Builder().hunger(hunger)
-                    .saturationModifier(saturation).alwaysEdible()
+                    .saturationModifier(saturation)
                     .statusEffect(new StatusEffectInstance(speedEffect, speedEffectDuration), speedEffectChance)
                     .statusEffect(new StatusEffectInstance(regenEffect, regenEffectDuration), regenEffectChance)
                     .alwaysEdible()
