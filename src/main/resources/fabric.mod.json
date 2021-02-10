@@ -8,10 +8,10 @@
         "t_r_a_t"
     ],
     "contact": {
-        "homepage": "https://github.com/tratteo/LaLega-Sushi/wiki",
-        "sources": "https://github.com/tratteo/LaLega-Sushi"
+        "homepage": "https://github.com/tratteo/LaLega-Sushi-1.15/wiki",
+        "sources": "https://github.com/tratteo/LaLega-Sushi-1.15",
+        "issues": "https://github.com/tratteo/LaLega-Sushi-1.15/issues"
     },
-    "license": "CC0-1.0",
     "icon": "assets/lalegamod/icon.png",
     "environment": "*",
     "entrypoints": {

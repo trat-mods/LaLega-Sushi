@@ -212,6 +212,7 @@ public class SteamCookerBlockEntity extends ASidedInventoryEntity implements Pro
     
     public int getWaterFillLevel()
     {
+        if(world.getBlockState(pos).isAir()) return 0;
         return this.world.getBlockState(this.pos).get(SteamCookerBlock.WATER_FILL_LEVEL);
     }
     

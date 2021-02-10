@@ -296,6 +296,7 @@ public class FryerBlockEntity extends ASidedInventoryEntity implements Tickable,
     
     public OilType getOilType()
     {
+        if(world.getBlockState(pos).isAir()) return OilType.NONE;
         return this.world.getBlockState(pos).get(FryerBlock.OIL_TYPE);
     }
     
